@@ -1,4 +1,5 @@
-import os
-def speak(st):
-    os.system("gtts-cli "+st+" --output sound.mp3")
-    os.system("play sound.mp3 ")
+#!/usr/bin/python
+def speak(st,voice,OS):
+    tts = voice(st)
+    tts.save('file.mp3')
+    OS.system("play file.mp3")
