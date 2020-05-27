@@ -1,0 +1,26 @@
+Speech Recognization API from google
+=====================================
+
+install command
+------------------
+for no RPI install this first
+------------------------------------
+sudo apt-get install portaudio19-dev
+sudo apt-get install python-dev
+------------------------------------
+
+
+pip install SpeechRecognition
+
+
+
+quick try
+--------------
+python -m speech_recognitioin
+
+
+
+
+webhelp
+----------------------
+http://people.csail.mit.edu/hubert/pyaudio/#downloads
