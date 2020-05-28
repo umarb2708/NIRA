@@ -1,0 +1,19 @@
+Battery Monitorig
+
+Hardware Needed
+====================
+INA219 
+
+Software
+=================
+
+install header using below commands
+1.sudo pip install git+git://github.com/chrisb2/pi_ina219.git
+2.sudo pip install adafruit-charlcd
+
+
+
+
+webhelp
+=============
+https://www.rototron.info/raspberry-pi-ina219-tutorial/
