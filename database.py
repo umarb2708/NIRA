@@ -25,3 +25,17 @@ def insert_training_commands(values):
     mycursor.execute(sql, val)
     mydb.commit()
     print(mycursor.rowcount, "record inserted.")
+
+
+
+
+def check_commands(st):
+    result={
+            "SNO":1
+            }
+    mycursor.execute("SELECT * FROM commands")
+    myresult = mycursor.fetchall()
+    for x in myresult:
+        if(x[1] in st):
+            print("String found")
+

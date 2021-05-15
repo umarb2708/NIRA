@@ -12,3 +12,9 @@ apt install mariadb-server
 pip3 install mysql-connector-python
 # Steps to Create Local Database: https://raspberrytips.com/install-mariadb-raspberry-pi/
 
+
+
+#Follwoing commands for serial ports in raspberry pi
+#-----------------------------------------------------
+pip3 install pyserial
+
