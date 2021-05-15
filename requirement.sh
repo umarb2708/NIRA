@@ -1,5 +1,12 @@
-#Requirements for Text to Speech
-pip3 install pyttsx3
+# Requirements to run the REX Program.
+
+#Follwoing commands for text to speech installation in raspberry pi
+#-----------------------------------------------------
+sudo pip3 install pyttsx3
 sudo apt install libespeak1
-pip3 install comtypes
-sudo apt-get install alsa-utils
+
+
+#Follwoing commands to create database in raspberry pi
+#-----------------------------------------------------
+sudo apt install mariadb-server 
+sudo pip3 install mysql-connector-python
