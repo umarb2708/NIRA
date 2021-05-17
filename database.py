@@ -20,8 +20,8 @@ def insert_login_details(user,ip_address):
 
 
 def insert_training_commands(values):
-    sql = "INSERT INTO commands (main_kw,opt_kw1,opt_kw2,opt_kw3,opt_kw4,opt_kw5,action_file,param1,param2,param3,param4,param5) VALUES (%s, %s,%s, %s,%s, %s,%s, %s,%s, %s,%s, %s)"
-    val = (values["main_kw"],values["opt_kw1"],values["opt_kw2"],values["opt_kw3"],values["opt_kw4"],values["opt_kw5"],values["action_file"],values["param1"],values["param2"],values["param3"],values["param4"],values["param5"])
+    sql = "INSERT INTO commands (main_kw,action_file) VALUES (%s, %s)"
+    val = (values["main_kw"],values["action_file"])
     mycursor.execute(sql, val)
     mydb.commit()
     print(mycursor.rowcount, "record inserted.")
@@ -29,13 +29,13 @@ def insert_training_commands(values):
 
 
 
-def check_commands(st):
-    result={
-            "SNO":1
-            }
+def get_commands(st):
+    lis=""
     mycursor.execute("SELECT * FROM commands")
     myresult = mycursor.fetchall()
     for x in myresult:
         if(x[1] in st):
-            print("String found")
-
+            lis=x[2]
+            break
+            
+    return lis
