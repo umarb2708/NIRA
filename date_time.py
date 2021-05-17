@@ -18,13 +18,13 @@ def get_hour():
 def wishme():
     hour=get_hour()
     if hour>=6 and hour<12:
-        return "Good Morning!"
+        return "Good Morning"
 
     elif hour>=12 and hour<18:
-        return "Good Afternoon!"
+        return "Good Afternoon"
 
     elif hour>=18 and hour<24:
-        return "Good Evening!"
+        return "Good Evening"
 
     else:
-        return "Good Night!"
+        return "Good Night"

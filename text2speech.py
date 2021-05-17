@@ -2,12 +2,18 @@
 import pyttsx3
 engine = pyttsx3.init()
 rate = engine.getProperty('rate')   # getting details of current speaking rate
-print (rate)                        #printing current voice rate
-engine.setProperty('rate', 130)     # setting up new voice rate
+engine.setProperty('rate', 150)     # setting up new voice rate
 engine.setProperty('volume',1.0)
-
+engine.setProperty('age', 20)
+def check_voices():
+    voices = engine.getProperty('voices')
+    for voice in voices:
+        engine.setProperty('voice', voice.id)
+        print ("VOICE:"+voice.id)
+        engine.say('I am rex')
+    engine.runAndWait()
 def speak(text):
     engine.say(text)
-    print ("Speaking "+text)
+    print ("Speaking :"+text)
     engine.runAndWait()
 
