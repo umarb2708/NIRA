@@ -1,7 +1,9 @@
 import import_file as f
-
+import threading
+import time
 
 def get_commands():
-    #Commands from speech recognisation comes here
-    serial_cmd=f.ser.ser_read().decode('UTF-8')#commands from serial interface
-    return serial_cmd
+#    return f.ser.ser_read().decode('UTF-8')
+     return input("Command:")    
+  
+
