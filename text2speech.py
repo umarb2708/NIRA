@@ -14,6 +14,5 @@ def check_voices():
     engine.runAndWait()
 def speak(text):
     engine.say(text)
-    print ("Speaking :"+text)
-    engine.runAndWait()
-
+    #print ("Speaking :"+text)
+    #engine.runAndWait()

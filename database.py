@@ -53,7 +53,7 @@ def get_commands(st):
         if(x[1] in st):
             lis=x[2]
             break
-            
+
     return lis
 
 
@@ -66,6 +66,11 @@ def insert_cmd_executed(cmd,status):
     #print(mycursor.rowcount, "record inserted.")
 def update_automation_table(dev_id,status):
     sql="UPDATE home_automation SET status = '"+status+"' WHERE id="+str(dev_id)+";"
+    mycursor.execute(sql)
+    mydb.commit()
+    return "ok"
+def del_cmd_entries():
+    sql="DELETE FROM commands_executed"
     mycursor.execute(sql)
     mydb.commit()
     return "ok"

@@ -17,35 +17,44 @@ import os
 #Variables
 commands=""
 sleep=0
-
+def txt_out(str,ser,ter,t2s):
+    if ser:
+        f.ser.ser_write(str)
+    if ter:
+        print(str)
+    if t2s:
+        f.tts.speak(str)
 def initialize():
-  #This Function for initialize PI when Start Up
-  f.ser.ser_write("Welcome to the world of AI\n")
-  f.ser.ser_write("Inital Checks going on. Please  wait\n")
-  f.tts.speak("Hi "+f.dt.wishme()+". Please wait while initial check going on")
-  f.db.insert_login_details(f.user.get_user(),f.user.get_Host_name_IP())#Login details to Database
-  f.ser.ser_write("New Login Name:"+f.user.get_user()+"   IP address:"+f.user.get_Host_name_IP()+"\n")#Login details to Serial
-  f.tts.speak("Welcome to the world of AI. I am rex your companion. Tell your commands preceeding with rex")
-
-
+    #This Function for initialize PI when Start Up  or Restart
+    str="-------Welcome to the world of AI Next Generation computers-----\n"
+    txt_out(str,1,1,1)
+    str="Hi "+f.dt.wishme()+" sir. Please wait while initial check going on")
+    txt_out(str,1,1,1)
+    #-----------------------All the Initialisation done here-----------------------------------------
+    f.db.insert_login_details(f.user.get_user(),f.user.get_Host_name_IP())#Login details to Database
+    f.db.del_cmd_entries();
+    #-----------------------------------------------------------------------------------------------
+    while (f.tts.isBusy()):
+        time.sleep(3)
+    str="I am online and ready. Please command preceeding with hey rex"
+    txt_out(str,1,1,1)
 def exec_commands():
     global sleep
     while sleep==0:
         commands=cmd.get_commands()
-        print("First CMD:"+commands+"   Has "+str(len(commands)))
+
         if "hey rex" in commands:
             if(len(commands)<=10):#if Previous command is only wake word
-                f.tts.speak("Hi sir.")  
-                f.ser.ser_write("Hi. Please type your command") 
-                print("Hi Sir")         
+                str="Hi sir."
+                txt_out(str,1,1,1)
                 commands=cmd.get_commands()
+
             x=f.db.get_commands(commands)
-            print (x)
             commands=commands.replace("\n","")
+            txt_out("cmd:"+commands+"  exec:"+x,1,1,0)
             result=eval("f."+x+"('"+commands+"')")
             res=result.replace("::OK","").replace("::FAIL","")
-            f.ser.ser_write(res+"\n")
-            f.tts.speak(res)
+            txt_out(res,1,1,1)
             if "::OK" in result :
                 f.db.insert_cmd_executed(commands,1)
             else :
@@ -68,4 +77,3 @@ thread1 = threading.Thread(target=exec_commands)
 #thread2 = threading.Thread(target=handle_db_data)
 thread1.start()
 #thread2.start()
-    
