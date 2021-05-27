@@ -28,14 +28,13 @@ def initialize():
     #This Function for initialize PI when Start Up  or Restart
     str="-------Welcome to the world of AI Next Generation computers-----\n"
     txt_out(str,1,1,1)
-    str="Hi "+f.dt.wishme()+" sir. Please wait while initial check going on")
+    str="Hi "+f.dt.wishme()+" sir. Please wait while initial check going on"
     txt_out(str,1,1,1)
     #-----------------------All the Initialisation done here-----------------------------------------
     f.db.insert_login_details(f.user.get_user(),f.user.get_Host_name_IP())#Login details to Database
     f.db.del_cmd_entries();
     #-----------------------------------------------------------------------------------------------
-    while (f.tts.isBusy()):
-        time.sleep(3)
+    time.sleep(10)
     str="I am online and ready. Please command preceeding with hey rex"
     txt_out(str,1,1,1)
 def exec_commands():
