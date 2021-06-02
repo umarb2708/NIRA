@@ -42,8 +42,7 @@ def exec_commands():
     global sleep
     while sleep==0:
         commands=cmd.get_commands()
-
-        if "hira" in commands:
+        if "Hira" in commands:
             if(len(commands)<=10):#if Previous command is only wake word
                 str="Hi sir."
                 txt_out(str,1,1,1)
@@ -66,6 +65,9 @@ def exec_commands():
             elif "shut down" in res:
                 lnx_cmd="sudo shutdown -h now"
                 os.system(lnx_cmd)
+        else:
+            txt_out(commands,1,1,1)
+        
 
 
 
@@ -73,7 +75,8 @@ def exec_commands():
 #               MAIN LOGIC
 #-----------------------------------------------------------
 initialize()
-thread1 = threading.Thread(target=exec_commands)
-#thread2 = threading.Thread(target=handle_db_data)
-thread1.start()
-#thread2.start()
+exec_commands()
+#thread1 = threading.Thread(target=exec_commands)
+##thread2 = threading.Thread(target=handle_db_data)
+#thread1.start()
+##thread2.start()
