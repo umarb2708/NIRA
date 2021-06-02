@@ -26,12 +26,12 @@ print(mydb)
 mycursor = mydb.cursor()
 
 
-def insert_login_details(user,ip_address):
-    sql = "INSERT INTO user_log (user_name,ip_address) VALUES (%s, %s)"
-    val = (user,ip_address)
+def insert_login_details(values):
+    sql = "INSERT INTO user_log (user_name,ip_address,pid) VALUES (%s, %s, %s)"
+    val = (values["user"],values["ip_address"],values["pid"])
     mycursor.execute(sql, val)
     mydb.commit()
-    print(mycursor.rowcount, "record inserted.")
+    return "Login details USER:"+values["user"]+" IP:"+values["ip_address"]+" PID:"+values["pid"]
 
 
 def insert_training_commands(values):

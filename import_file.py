@@ -7,3 +7,4 @@ import home_automation as automation
 import wikipedia_search as wiki
 import train_rex as train
 import weather
+import speech_recog as sprc

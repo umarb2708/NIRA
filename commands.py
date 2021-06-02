@@ -4,6 +4,6 @@ import time
 
 def get_commands():
 #    return f.ser.ser_read().decode('UTF-8')
-     return input("Command:")    
+     return f.sprc.recog_speech(30)    
   
 

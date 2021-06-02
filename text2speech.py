@@ -1,5 +1,6 @@
 #Module for TEXT to Speech
 import pyttsx3
+import sys
 engine = pyttsx3.init()
 rate = engine.getProperty('rate')   # getting details of current speaking rate
 engine.setProperty('rate', 150)     # setting up new voice rate
@@ -14,5 +15,9 @@ def check_voices():
     engine.runAndWait()
 def speak(text):
     engine.say(text)
-    #print ("Speaking :"+text)
-    #engine.runAndWait()
+    print ("Speaking :"+text)
+    engine.runAndWait()
+
+
+
+speak(sys.argv[1])
