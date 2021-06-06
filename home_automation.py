@@ -8,7 +8,7 @@ def turn_on_device(command):
         if x in command:
             print("Turning on light")
             f.db.update_automation_table(4,"1")
-            return "Turning on light::OK"
+            return "Lights turned on::OK"
             break
 
 def turn_off_dev(command):
@@ -16,6 +16,6 @@ def turn_off_dev(command):
         if x in command:
             print("Turning off light")
             f.db.update_automation_table(4,"0")
-            return "Turning off light::OK"
+            return "Lights turned off::OK"
             break
 

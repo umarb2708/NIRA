@@ -36,7 +36,7 @@ def initialize():
     f.db.del_cmd_entries();
     #-----------------------------------------------------------------------------------------------
     time.sleep(10)
-    str="I am online and ready. Please command preceeding with hey rex"
+    str="Hi I am Hi ra . Human Intelligent Robo Assistant. Command me preceeding with hi ra"
     txt_out(str,1,1,1)
 def exec_commands():
     global sleep
@@ -44,7 +44,7 @@ def exec_commands():
         commands=cmd.get_commands()
         if "Hira" in commands:
             if(len(commands)<=10):#if Previous command is only wake word
-                str="Hi sir."
+                str="yes sir."
                 txt_out(str,1,1,1)
                 commands=cmd.get_commands()
 

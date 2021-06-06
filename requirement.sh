@@ -1,46 +1,36 @@
-# Requirements to run the REX Program.
+#--------------------------------------------------------------------------------------------------------------------------------
+#				This file contains Library files need for HIRA to work perfectly 
+#--------------------------------------------------------------------------------------------------------------------------------
 
-#Follwoing commands for text to speech installation in raspberry pi
-#-----------------------------------------------------
-pip3 install pyttsx3
-sudo apt install libespeak1
+#------------------Text to Speech--------------------
+pip install gTTS
 
-
-#Follwoing commands to create database in raspberry pi
-#-----------------------------------------------------
+#-------------------Database------------------------
 apt install mariadb-server 
 pip3 install mysql-connector-python
 # Steps to Create Local Database: https://raspberrytips.com/install-mariadb-raspberry-pi/
 
-#Follwoing commands for serial ports in raspberry pi
-#-----------------------------------------------------
-pip3 install pyserial
-
-#Follwoing commands for wikipedia in raspberry pi
-#-----------------------------------------------------
+#------------------Wikipedia--------------------------
 pip3 install wikipedia
 
-#Install Node REd for Dashboard
+#-------------------Node REd--------------------------
 sudo apt-get install build-essential
-#WEB:https://iotdesignpro.com/projects/home-automation-with-node-red-and-raspberry-pi
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+#visit:https://iotdesignpro.com/projects/home-automation-with-node-red-and-raspberry-pi
 
-
-
-
-#Installing MQTT Broker for Home automation
+#---------------MQTT Broker----------------------------
 sudo apt install -y mosquitto mosquitto-clients
 sudo systemctl enable mosquitto.service
 
+#--------------Android-ADB tool----------------------------
+sudo apt install snapd
+#reboot
+sudo snap install core
+sudo snap install android-adb --edge --devmode
+pip3 install pure-python-adb
 
 
 
-#To run Wordpress follow the website
-#https://www.makeuseof.com/tag/host-wordpress-raspberry-pi/
 
 
-
-#Follwoing commands for Node Js in raspberry pi
-#-----------------------------------------------------
-#sudo apt-get install nodejs npm
-#refer for projects:https://www.w3schools.com/nodejs/nodejs_raspberrypi.asp
 
