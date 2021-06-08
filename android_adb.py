@@ -1,34 +1,29 @@
 import os
 import time
-yt_watch_url="https://www.youtube.com/watch?v="
-yt_search_url="https://www.youtube.com/results?search_query="
-yt_param={
-        "video_code":"WpOJDaj0MM4",
-        "search_code":"IICDC2017 Team 126652 Quarterfinal Submission",
-        "search":0,
-        "watch":1,
-        "stop":0
-        
-        }
-
 def connect_android():
     connected=0
+    num_turn=0
     os.system("android-adb kill-server")
-    while (connected==0):
+    while (connected==0 & num_turn!=3):
+        num_turn=num_turn+1;
         reply=os.popen("android-adb connect 192.168.15.36:5555").read()[:-1]
         if "connected to" in reply:
             connected=1
-            print("ADB connected successfully")
-def open_youtube(yt_param):
-    if yt_param["stop"]==1:
-        re=os.popen("android-adb shell am force-stop com.google.android.youtube").read()[:-1]
-    elif yt_param["watch"]==1:
-        re=os.popen("android-adb shell am start  "+yt_watch_url+ yt_param["video_code"]).read()[:-1]
-        print("Reply as:"+re)
+    if connected:
+        return "ADB connection successfull"
+    else:
+        return "ADB connection failed"
 
-connect_android()
-time.sleep(3)
-open_youtube(yt_param)
-time.sleep(60)
-yt_param["stop"]=1
-open_youtube(yt_param)
+
+def exec_adb_am_shell(cmd):
+    adb_cmd="android-adb shell am "+cmd
+    re=os.popen("android-adb shell am "+cmd).read()[:-1]
+    return 1
+def exec_adb_input_shell(cmd):
+    re=os.popen("android-adb shell input "+cmd).read()[:-1]
+    return 1
+
+
+#res=connect_android()
+#res=exec_adb_am_shell("start  https://www.youtube.com/results?search_query=node+red+and+adb")
+

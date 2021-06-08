@@ -1,5 +1,5 @@
 #==============================================================================================================
-#                                      REX The Robot
+#                          HIRA Human Intelligent Robo Assistance
 #                                     ---------------
 #                                 Innovize Electro Solutions
 #--------------------------------------------------------------------------------------------------------------
@@ -10,7 +10,6 @@
 
 #import Files and handles
 import import_file as f
-import commands as cmd
 import time
 import threading
 import os
@@ -25,6 +24,7 @@ def txt_out(str,ser,ter,t2s):
     if t2s:
         f.tts.speak(str)
 def initialize():
+    global inpt
     #This Function for initialize PI when Start Up  or Restart
     str="-------Welcome to the world of AI Next Generation computers-----\n"
     txt_out(str,1,1,0)
@@ -33,22 +33,24 @@ def initialize():
     #-----------------------All the Initialisation done here-----------------------------------------
     res=f.db.insert_login_details(f.user.login_details())#Login details to Database
     txt_out(res,1,1,0)
-    f.db.del_cmd_entries();
+    f.db.del_cmd_entries() #delete recent commands table
+    f.adb.connect_android()  #initialize table
     #-----------------------------------------------------------------------------------------------
     time.sleep(10)
     str="Hi I am Hi ra . Human Intelligent Robo Assistant. Command me preceeding with hi ra"
     txt_out(str,1,1,1)
 def exec_commands():
-    global sleep
+    global sleep,inpt
     while sleep==0:
-        commands=cmd.get_commands()
-        if "Hira" in commands:
-            if(len(commands)<=10):#if Previous command is only wake word
+        commands=f.cmd.get_input()
+        if "Hira" in commands or "hey darling" in commands or "hira" in commands :
+            commands.replace("Hira","").replace("hey darling","").replace("hira","")
+            if(len(commands)<=4):#if Previous command is only wake word
                 str="yes sir."
                 txt_out(str,1,1,1)
-                commands=cmd.get_commands()
-
-            x=f.db.get_commands(commands)
+                #commands=cmd.get_voice_cmd()
+                commands=f.cmd.get_input()
+            x=f.db.search_cmd(commands)
             commands=commands.replace("\n","")
             txt_out("cmd:"+commands+"  exec:"+x,1,1,0)
             result=eval("f."+x+"('"+commands+"')")

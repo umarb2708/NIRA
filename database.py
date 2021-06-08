@@ -44,7 +44,7 @@ def insert_training_commands(values):
 
 
 
-def get_commands(st):
+def search_cmd(st):
     lis=""
     mycursor.execute("SELECT * FROM commands")
     myresult = mycursor.fetchall()
