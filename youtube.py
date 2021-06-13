@@ -13,8 +13,14 @@ yt_param={
 
 
 def open_youtube(command):
-    #adb_cmd="start "+yt_watch_url+ yt_param["video_code"]
-    adb_cmd="start com.google.android.youtube"
+    str="which video you want"
+    f.tts.speak(str)
+    search_word=f.cmd.get_input().replace(" ","+")
+    #print("YT DEBUG:Search Command:"+search_word)
+
+    #adb_cmd="start com.google.android.youtube"
+    adb_cmd="start "+yt_search_url+search_word
+    
     re=f.adb.exec_adb_am_shell(adb_cmd)
     if re:
         return "Youtube opened::OK"

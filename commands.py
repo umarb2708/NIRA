@@ -13,7 +13,7 @@ def get_term_cmd():
 def get_input():
     global mode
     if mode==1:
-        return get_voice_cmd()
+        return get_voice_cmd().lower()
     elif mode==2:
-        return get_term_cmd()
+        return get_term_cmd().lower()
     
