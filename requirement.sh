@@ -29,8 +29,8 @@ sudo snap install core
 sudo snap install android-adb --edge --devmode
 pip3 install pure-python-adb
 
-
-
+#-------------Speech Recog Module--------------------------
+pip3 install SpeechRecognition
 
 
 

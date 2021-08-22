@@ -4,9 +4,9 @@ import mysql.connector
 #---------LOCAL DATABASE CREDENTIAL-------------------
 mydb = mysql.connector.connect(
   host="localhost",
-  user="pi",
-  password="Pi@REX123#",
-  database="rex_db"
+  user="db_admin",
+  password="Admin@HIRA123#",
+  database="hira_db"
 )
 #----------------------------------------------------
 
