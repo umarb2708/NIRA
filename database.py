@@ -41,7 +41,11 @@ def insert_training_commands(values):
     mydb.commit()
     print(mycursor.rowcount, "record inserted.")
 
-
+def insert_raspi_info(values):
+    sql="UPDATE `raspi_info` SET `temp` = '"+values["temp"]+"', `cpu_load` = '"+values["cpu_load"]+"', `used_ram` = '"+values["used_ram"]+"', `used_mem` = '"+values["used_mem"]+"', `up_time` = '"+values["up_time"]+"' WHERE `raspi_info`.`id` = 1;"
+    mycursor.execute(sql)
+    mydb.commit()
+    return "Raspberry Info inserted"
 
 
 def search_cmd(st):
