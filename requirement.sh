@@ -32,5 +32,9 @@ pip3 install pure-python-adb
 #-------------Speech Recog Module--------------------------
 pip3 install SpeechRecognition
 
+#-------------Server Info Script---------------------------
+#This script should run in every boot: follow https://www.dexterindustries.com/howto/auto-run-python-programs-on-the-raspberry-pi 
+
+
 
 

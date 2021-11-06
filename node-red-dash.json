@@ -1,5 +1,250 @@
 [
     {
+        "id": "bba4aba8f9d733f3",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6c0f44bd30c92d5e",
+        "type": "mqtt-broker",
+        "name": "Living Room",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6f30803665e9cad9",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-custom",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#4B7930",
+                    "value": "#4B7930",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#4B7930",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#6db046",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#4b7930",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "2eb6931249ce8801",
+        "type": "ui_tab",
+        "name": "DashBoard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "89e77362bf3d129d",
+        "type": "ui_group",
+        "name": "Living Room",
+        "tab": "2eb6931249ce8801",
+        "order": 2,
+        "disp": true,
+        "width": 3,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e142be3b908952d6",
+        "type": "ui_group",
+        "name": "Time",
+        "tab": "2eb6931249ce8801",
+        "order": 3,
+        "disp": true,
+        "width": 3,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2ddb08f322596d3f",
+        "type": "ui_spacer",
+        "z": "bba4aba8f9d733f3",
+        "name": "spacer",
+        "group": "7918c1e9563a9bdf",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "33cd678f850fdfb4",
+        "type": "ui_spacer",
+        "z": "bba4aba8f9d733f3",
+        "name": "spacer",
+        "group": "7918c1e9563a9bdf",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "903903609bfcf4d9",
+        "type": "ui_spacer",
+        "z": "bba4aba8f9d733f3",
+        "name": "spacer",
+        "group": "7918c1e9563a9bdf",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c17950553dd53b9e",
+        "type": "ui_group",
+        "name": "Weather",
+        "tab": "2eb6931249ce8801",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7376444d6893b276",
+        "type": "ui_group",
+        "name": "Server Details",
+        "tab": "2eb6931249ce8801",
+        "order": 4,
+        "disp": true,
+        "width": 13,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f01641a799396672",
+        "type": "ui_spacer",
+        "z": "bba4aba8f9d733f3",
+        "name": "spacer",
+        "group": "c17950553dd53b9e",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "738629dad93fcaa6",
+        "type": "ui_spacer",
+        "z": "bba4aba8f9d733f3",
+        "name": "spacer",
+        "group": "7376444d6893b276",
+        "order": 6,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "dafdac5f3491cd58",
+        "type": "MySQLdatabase",
+        "name": "HIRA DB",
+        "host": "localhost",
+        "port": "3306",
+        "db": "hira_db",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
         "id": "fd494c0aecc2cb23",
         "type": "ui_switch",
         "z": "bba4aba8f9d733f3",
@@ -331,7 +576,7 @@
         "id": "179bbc6142328605",
         "type": "ui_gauge",
         "z": "bba4aba8f9d733f3",
-        "name": "",
+        "name": "Temp",
         "group": "7376444d6893b276",
         "order": 1,
         "width": 5,
@@ -341,7 +586,7 @@
         "label": "units",
         "format": "{{value}}",
         "min": 0,
-        "max": 10,
+        "max": "100",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -350,8 +595,8 @@
         "seg1": "",
         "seg2": "",
         "className": "",
-        "x": 330,
-        "y": 580,
+        "x": 650,
+        "y": 600,
         "wires": []
     },
     {
@@ -364,11 +609,11 @@
         "height": 1,
         "name": "memory",
         "label": "Memory",
-        "format": "{{msg.payload}}",
+        "format": "{{msg.payload}} %",
         "layout": "col-center",
         "className": "",
-        "x": 320,
-        "y": 660,
+        "x": 660,
+        "y": 740,
         "wires": []
     },
     {
@@ -381,10 +626,10 @@
         "height": 1,
         "name": "Ram",
         "label": "RAM",
-        "format": "{{msg.payload}}",
+        "format": "{{msg.payload}} %",
         "layout": "col-center",
         "className": "",
-        "x": 310,
+        "x": 650,
         "y": 700,
         "wires": []
     },
@@ -401,8 +646,8 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "x": 310,
-        "y": 740,
+        "x": 650,
+        "y": 780,
         "wires": []
     },
     {
@@ -421,8 +666,8 @@
         "interpolate": "linear",
         "nodata": "",
         "dot": false,
-        "ymin": "1",
-        "ymax": "100",
+        "ymin": "0",
+        "ymax": "50",
         "removeOlder": 1,
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
@@ -443,89 +688,80 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 330,
-        "y": 620,
+        "x": 670,
+        "y": 640,
         "wires": [
             []
         ]
     },
     {
-        "id": "89e77362bf3d129d",
-        "type": "ui_group",
-        "name": "Living Room",
-        "tab": "2eb6931249ce8801",
-        "order": 2,
-        "disp": true,
-        "width": 3,
-        "collapse": false,
-        "className": ""
+        "id": "5469a880315c92ec",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Server Info",
+        "x": 250,
+        "y": 660,
+        "wires": [
+            [
+                "23831eb2471188b4"
+            ]
+        ]
     },
     {
-        "id": "6c0f44bd30c92d5e",
-        "type": "mqtt-broker",
-        "name": "Living Room",
-        "broker": "localhost",
-        "port": "1883",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "sessionExpiry": ""
+        "id": "d377882d35aed45a",
+        "type": "inject",
+        "z": "bba4aba8f9d733f3",
+        "name": "Trigger DB",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM `raspi_info` WHERE id=1",
+        "x": 90,
+        "y": 660,
+        "wires": [
+            [
+                "5469a880315c92ec"
+            ]
+        ]
     },
     {
-        "id": "e142be3b908952d6",
-        "type": "ui_group",
-        "name": "Time",
-        "tab": "2eb6931249ce8801",
-        "order": 3,
-        "disp": true,
-        "width": 3,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "c17950553dd53b9e",
-        "type": "ui_group",
-        "name": "Weather",
-        "tab": "2eb6931249ce8801",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "7376444d6893b276",
-        "type": "ui_group",
-        "name": "Server Details",
-        "tab": "2eb6931249ce8801",
-        "order": 4,
-        "disp": true,
-        "width": 13,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "2eb6931249ce8801",
-        "type": "ui_tab",
-        "name": "DashBoard",
-        "icon": "dashboard",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
+        "id": "23831eb2471188b4",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "var msg1={payload:msg.payload[0][\"id\"]};\nvar msg2={payload:msg.payload[0][\"temp\"]};\nvar msg3={payload:msg.payload[0][\"cpu_load\"]};\nvar msg4={payload:msg.payload[0][\"used_ram\"]};\nvar msg5={payload:msg.payload[0][\"used_mem\"]};\nvar msg6={payload:msg.payload[0][\"up_time\"]};\nreturn [msg1,msg2,msg3,msg4,msg5,msg6];",
+        "outputs": 6,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 680,
+        "wires": [
+            [],
+            [
+                "179bbc6142328605"
+            ],
+            [
+                "37782628fd4e5164"
+            ],
+            [
+                "c7e4bd23a06aeeb9"
+            ],
+            [
+                "3c47d098530a6ac7"
+            ],
+            [
+                "4ed1b30bd0eaeb45"
+            ]
+        ]
     }
 ]

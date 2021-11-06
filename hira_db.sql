@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 02, 2021 at 12:24 PM
+-- Generation Time: Nov 06, 2021 at 09:27 AM
 -- Server version: 10.3.31-MariaDB-0+deb10u1
 -- PHP Version: 7.3.31-1~deb10u1
 
@@ -70,6 +70,18 @@ INSERT INTO `commands` (`sno`, `main_kw`, `action_file`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `commands_executed`
+--
+
+CREATE TABLE `commands_executed` (
+  `id` int(11) NOT NULL,
+  `command` varchar(30) NOT NULL,
+  `status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `home_automation`
 --
 
@@ -86,7 +98,7 @@ CREATE TABLE `home_automation` (
 --
 
 INSERT INTO `home_automation` (`id`, `floor`, `plac`, `component`, `status`) VALUES
-(4, 'first', 'living', 'Light', '0'),
+(4, 'first', 'living', 'Light', '1'),
 (5, 'first', 'living', 'Fan', '0'),
 (6, 'first', 'living', 'Lamp', '0'),
 (7, 'first', 'living', 'All', '0');
@@ -99,21 +111,19 @@ INSERT INTO `home_automation` (`id`, `floor`, `plac`, `component`, `status`) VAL
 
 CREATE TABLE `raspi_info` (
   `id` int(6) NOT NULL,
-  `cpu_load` float DEFAULT 0,
-  `tot_ram` varchar(20) DEFAULT '100',
-  `used_ram` float DEFAULT NULL,
-  `up_time` varchar(50) DEFAULT NULL,
-  `tot_mem` varchar(30) DEFAULT '14',
-  `used_mem` float DEFAULT NULL,
-  `temp` float DEFAULT NULL
+  `temp` float NOT NULL DEFAULT 0,
+  `cpu_load` float NOT NULL DEFAULT 0,
+  `used_ram` float NOT NULL DEFAULT 0,
+  `used_mem` float NOT NULL DEFAULT 0,
+  `up_time` varchar(30) NOT NULL DEFAULT '0 m'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `raspi_info`
 --
 
-INSERT INTO `raspi_info` (`id`, `cpu_load`, `tot_ram`, `used_ram`, `up_time`, `tot_mem`, `used_mem`, `temp`) VALUES
-(1, 9.2, '100', 42.7, '2 H, 25 M', '14.0', 4.99, 47.236);
+INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`) VALUES
+(1, 46.2, 2.5, 36.8, 28.8, '7 m');
 
 -- --------------------------------------------------------
 
@@ -129,6 +139,59 @@ CREATE TABLE `user_log` (
   `log_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `user_log`
+--
+
+INSERT INTO `user_log` (`id`, `user_name`, `ip_address`, `pid`, `log_time`) VALUES
+(1, 'pi', '', '22733', '2021-11-03 09:42:05'),
+(2, 'pi', '', '24074', '2021-11-03 09:45:13'),
+(3, 'pi', '', '25345', '2021-11-03 09:47:39'),
+(4, 'pi', '', '26071', '2021-11-03 09:48:27'),
+(5, 'pi', '', '26985', '2021-11-03 09:50:18'),
+(6, 'pi', '', '28701', '2021-11-03 09:54:04'),
+(7, 'pi', '', '32136', '2021-11-03 10:02:04'),
+(8, 'pi', '', '2748', '2021-11-03 10:08:43'),
+(9, 'pi', '', '3339', '2021-11-03 10:09:38'),
+(10, 'pi', '', '5387', '2021-11-03 10:14:03'),
+(11, 'pi', '', '6234', '2021-11-03 10:15:41');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `commands_executed`
+--
+ALTER TABLE `commands_executed`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `raspi_info`
+--
+ALTER TABLE `raspi_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_log`
+--
+ALTER TABLE `user_log`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `commands_executed`
+--
+ALTER TABLE `commands_executed`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `user_log`
+--
+ALTER TABLE `user_log`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
