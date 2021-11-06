@@ -37,7 +37,7 @@
         "id": "6f30803665e9cad9",
         "type": "ui_base",
         "theme": {
-            "name": "theme-custom",
+            "name": "theme-dark",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
@@ -49,7 +49,8 @@
                 "default": "#097479",
                 "baseColor": "#097479",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "customTheme": {
                 "name": "Untitled Theme 1",
@@ -60,12 +61,12 @@
             },
             "themeState": {
                 "base-color": {
-                    "default": "#4B7930",
-                    "value": "#4B7930",
+                    "default": "#097479",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#4B7930",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -77,7 +78,7 @@
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#6db046",
+                    "value": "#0eb8c0",
                     "edited": false
                 },
                 "group-borderColor": {
@@ -93,7 +94,7 @@
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#4b7930",
+                    "value": "#097479",
                     "edited": false
                 },
                 "widget-borderColor": {
@@ -215,7 +216,17 @@
         "className": ""
     },
     {
-        "id": "f01641a799396672",
+        "id": "dafdac5f3491cd58",
+        "type": "MySQLdatabase",
+        "name": "HIRA DB",
+        "host": "localhost",
+        "port": "3306",
+        "db": "hira_db",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "749372ed67d1f655",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
@@ -225,7 +236,7 @@
         "height": 1
     },
     {
-        "id": "738629dad93fcaa6",
+        "id": "386e837689e21665",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
@@ -233,16 +244,6 @@
         "order": 6,
         "width": 3,
         "height": 1
-    },
-    {
-        "id": "dafdac5f3491cd58",
-        "type": "MySQLdatabase",
-        "name": "HIRA DB",
-        "host": "localhost",
-        "port": "3306",
-        "db": "hira_db",
-        "tz": "",
-        "charset": "UTF8"
     },
     {
         "id": "fd494c0aecc2cb23",
@@ -262,12 +263,12 @@
         "style": "",
         "onvalue": "1",
         "onvalueType": "num",
-        "onicon": "",
-        "oncolor": "",
+        "onicon": "lightbulb_outline",
+        "oncolor": "green",
         "offvalue": "0",
         "offvalueType": "num",
-        "officon": "",
-        "offcolor": "",
+        "officon": "lightbulb_outline",
+        "offcolor": "yellow",
         "animate": false,
         "className": "",
         "x": 550,
@@ -297,12 +298,12 @@
         "style": "",
         "onvalue": "1",
         "onvalueType": "num",
-        "onicon": "",
-        "oncolor": "",
+        "onicon": "wb_sunny",
+        "oncolor": "lime",
         "offvalue": "0",
         "offvalueType": "num",
-        "officon": "",
-        "offcolor": "",
+        "officon": "wb_sunny",
+        "offcolor": "yellow",
         "animate": false,
         "className": "",
         "x": 550,
@@ -332,12 +333,12 @@
         "style": "",
         "onvalue": "1",
         "onvalueType": "num",
-        "onicon": "",
-        "oncolor": "",
+        "onicon": "fa-shower",
+        "oncolor": "lime",
         "offvalue": "0",
         "offvalueType": "num",
-        "officon": "",
-        "offcolor": "",
+        "officon": "fa-shower",
+        "offcolor": "yellow",
         "animate": false,
         "className": "",
         "x": 550,
@@ -672,7 +673,7 @@
         "ymin": "0",
         "ymax": "50",
         "removeOlder": 1,
-        "removeOlderPoints": "",
+        "removeOlderPoints": "20",
         "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
