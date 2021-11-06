@@ -260,21 +260,22 @@
         "topic": "topic",
         "topicType": "msg",
         "style": "",
-        "onvalue": "on",
-        "onvalueType": "str",
+        "onvalue": "1",
+        "onvalueType": "num",
         "onicon": "",
         "oncolor": "",
-        "offvalue": "off",
-        "offvalueType": "str",
+        "offvalue": "0",
+        "offvalueType": "num",
         "officon": "",
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 90,
-        "y": 40,
+        "x": 550,
+        "y": 140,
         "wires": [
             [
-                "5a0b86b52782922b"
+                "5a0b86b52782922b",
+                "14fb9a01a2604f17"
             ]
         ]
     },
@@ -294,21 +295,22 @@
         "topic": "topic",
         "topicType": "msg",
         "style": "",
-        "onvalue": "on",
-        "onvalueType": "str",
+        "onvalue": "1",
+        "onvalueType": "num",
         "onicon": "",
         "oncolor": "",
-        "offvalue": "off",
-        "offvalueType": "str",
+        "offvalue": "0",
+        "offvalueType": "num",
         "officon": "",
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 90,
-        "y": 80,
+        "x": 550,
+        "y": 180,
         "wires": [
             [
-                "2369e1e7c99494c2"
+                "2369e1e7c99494c2",
+                "bbd9f888ca668733"
             ]
         ]
     },
@@ -328,21 +330,22 @@
         "topic": "topic",
         "topicType": "msg",
         "style": "",
-        "onvalue": "on",
-        "onvalueType": "str",
+        "onvalue": "1",
+        "onvalueType": "num",
         "onicon": "",
         "oncolor": "",
-        "offvalue": "off",
-        "offvalueType": "str",
+        "offvalue": "0",
+        "offvalueType": "num",
         "officon": "",
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 90,
-        "y": 120,
+        "x": 550,
+        "y": 240,
         "wires": [
             [
-                "ce26fb55781987b4"
+                "ce26fb55781987b4",
+                "242ced2ffea91886"
             ]
         ]
     },
@@ -360,8 +363,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6c0f44bd30c92d5e",
-        "x": 310,
-        "y": 40,
+        "x": 770,
+        "y": 60,
         "wires": []
     },
     {
@@ -378,8 +381,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6c0f44bd30c92d5e",
-        "x": 310,
-        "y": 80,
+        "x": 770,
+        "y": 160,
         "wires": []
     },
     {
@@ -396,8 +399,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6c0f44bd30c92d5e",
-        "x": 310,
-        "y": 120,
+        "x": 770,
+        "y": 240,
         "wires": []
     },
     {
@@ -411,8 +414,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 230,
-        "y": 240,
+        "x": 250,
+        "y": 880,
         "wires": [
             [
                 "9f0a29836fe25c2b",
@@ -440,8 +443,8 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 80,
-        "y": 240,
+        "x": 100,
+        "y": 880,
         "wires": [
             [
                 "d4ba43a001d7cfcf"
@@ -461,8 +464,8 @@
         "format": "{{msg.date}}",
         "layout": "col-center",
         "className": "",
-        "x": 430,
-        "y": 240,
+        "x": 450,
+        "y": 880,
         "wires": []
     },
     {
@@ -478,8 +481,8 @@
         "format": "{{msg.time}}",
         "layout": "col-center",
         "className": "",
-        "x": 430,
-        "y": 280,
+        "x": 450,
+        "y": 920,
         "wires": []
     },
     {
@@ -493,8 +496,8 @@
         "city": "Thrissur",
         "country": "India",
         "language": "en",
-        "x": 130,
-        "y": 320,
+        "x": 150,
+        "y": 960,
         "wires": [
             [
                 "7ed079e6140868d4",
@@ -517,8 +520,8 @@
         "format": "{{msg.payload.tempc}} °C",
         "layout": "col-center",
         "className": "",
-        "x": 330,
-        "y": 320,
+        "x": 350,
+        "y": 960,
         "wires": []
     },
     {
@@ -534,8 +537,8 @@
         "format": "{{msg.payload.humidity}} %",
         "layout": "col-center",
         "className": "",
-        "x": 340,
-        "y": 360,
+        "x": 360,
+        "y": 1000,
         "wires": []
     },
     {
@@ -551,8 +554,8 @@
         "format": "{{msg.payload.weather}}",
         "layout": "col-center",
         "className": "",
-        "x": 340,
-        "y": 420,
+        "x": 360,
+        "y": 1060,
         "wires": []
     },
     {
@@ -568,8 +571,8 @@
         "format": "{{msg.payload.location}}",
         "layout": "col-center",
         "className": "",
-        "x": 340,
-        "y": 480,
+        "x": 360,
+        "y": 1120,
         "wires": []
     },
     {
@@ -595,8 +598,8 @@
         "seg1": "",
         "seg2": "",
         "className": "",
-        "x": 650,
-        "y": 600,
+        "x": 670,
+        "y": 1240,
         "wires": []
     },
     {
@@ -612,8 +615,8 @@
         "format": "{{msg.payload}} %",
         "layout": "col-center",
         "className": "",
-        "x": 660,
-        "y": 740,
+        "x": 680,
+        "y": 1380,
         "wires": []
     },
     {
@@ -629,8 +632,8 @@
         "format": "{{msg.payload}} %",
         "layout": "col-center",
         "className": "",
-        "x": 650,
-        "y": 700,
+        "x": 670,
+        "y": 1340,
         "wires": []
     },
     {
@@ -646,8 +649,8 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "x": 650,
-        "y": 780,
+        "x": 670,
+        "y": 1420,
         "wires": []
     },
     {
@@ -688,8 +691,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 670,
-        "y": 640,
+        "x": 690,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -700,8 +703,8 @@
         "z": "bba4aba8f9d733f3",
         "mydb": "dafdac5f3491cd58",
         "name": "Server Info",
-        "x": 250,
-        "y": 660,
+        "x": 270,
+        "y": 1300,
         "wires": [
             [
                 "23831eb2471188b4"
@@ -724,8 +727,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "SELECT * FROM `raspi_info` WHERE id=1",
-        "x": 90,
-        "y": 660,
+        "x": 110,
+        "y": 1300,
         "wires": [
             [
                 "5469a880315c92ec"
@@ -743,8 +746,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
-        "y": 680,
+        "x": 470,
+        "y": 1320,
         "wires": [
             [],
             [
@@ -761,6 +764,138 @@
             ],
             [
                 "4ed1b30bd0eaeb45"
+            ]
+        ]
+    },
+    {
+        "id": "2db3b759300393f1",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Autoamtion",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "51b16989ac9063b3"
+            ]
+        ]
+    },
+    {
+        "id": "1195649c42f9469c",
+        "type": "inject",
+        "z": "bba4aba8f9d733f3",
+        "name": "Trigger DB",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM `home_automation` WHERE plac=\"living\" AND floor=\"first\"",
+        "x": 70,
+        "y": 180,
+        "wires": [
+            [
+                "2db3b759300393f1"
+            ]
+        ]
+    },
+    {
+        "id": "51b16989ac9063b3",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "var msg1={payload:msg.payload[0][\"status\"]};\nvar msg2={payload:msg.payload[1][\"status\"]};\nvar msg3={payload:msg.payload[2][\"status\"]};\nreturn [msg1,msg2,msg3];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "fd494c0aecc2cb23"
+            ],
+            [
+                "310082557ad83fd0"
+            ],
+            [
+                "4837312bc800e8e4"
+            ]
+        ]
+    },
+    {
+        "id": "14fb9a01a2604f17",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=4;\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 120,
+        "wires": [
+            [
+                "2676fe142f4e896b"
+            ]
+        ]
+    },
+    {
+        "id": "2676fe142f4e896b",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Home Automation",
+        "x": 1010,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bbd9f888ca668733",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=5;\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 200,
+        "wires": [
+            [
+                "2676fe142f4e896b"
+            ]
+        ]
+    },
+    {
+        "id": "242ced2ffea91886",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=6;\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 280,
+        "wires": [
+            [
+                "2676fe142f4e896b"
             ]
         ]
     }
