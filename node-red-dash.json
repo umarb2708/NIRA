@@ -37,7 +37,7 @@
         "id": "6f30803665e9cad9",
         "type": "ui_base",
         "theme": {
-            "name": "theme-custom",
+            "name": "theme-dark",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
@@ -49,7 +49,8 @@
                 "default": "#097479",
                 "baseColor": "#097479",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": false,
+                "reset": false
             },
             "customTheme": {
                 "name": "Untitled Theme 1",
@@ -60,12 +61,12 @@
             },
             "themeState": {
                 "base-color": {
-                    "default": "#4B7930",
-                    "value": "#4B7930",
-                    "edited": false
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#4B7930",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -77,7 +78,7 @@
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#6db046",
+                    "value": "#0eb8c0",
                     "edited": false
                 },
                 "group-borderColor": {
@@ -93,7 +94,7 @@
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#4b7930",
+                    "value": "#097479",
                     "edited": false
                 },
                 "widget-borderColor": {
@@ -147,7 +148,7 @@
         "tab": "2eb6931249ce8801",
         "order": 2,
         "disp": true,
-        "width": 3,
+        "width": "3",
         "collapse": false,
         "className": ""
     },
@@ -215,7 +216,28 @@
         "className": ""
     },
     {
-        "id": "f01641a799396672",
+        "id": "dafdac5f3491cd58",
+        "type": "MySQLdatabase",
+        "name": "HIRA DB",
+        "host": "localhost",
+        "port": "3306",
+        "db": "hira_db",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "99dacc30770bf274",
+        "type": "ui_group",
+        "name": "Internet",
+        "tab": "2eb6931249ce8801",
+        "order": 5,
+        "disp": true,
+        "width": 5,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "89dc20e70e78eb11",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
@@ -225,24 +247,14 @@
         "height": 1
     },
     {
-        "id": "738629dad93fcaa6",
+        "id": "56bbc86a2e11d658",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
         "group": "7376444d6893b276",
-        "order": 6,
-        "width": 3,
+        "order": 7,
+        "width": 8,
         "height": 1
-    },
-    {
-        "id": "dafdac5f3491cd58",
-        "type": "MySQLdatabase",
-        "name": "HIRA DB",
-        "host": "localhost",
-        "port": "3306",
-        "db": "hira_db",
-        "tz": "",
-        "charset": "UTF8"
     },
     {
         "id": "fd494c0aecc2cb23",
@@ -260,21 +272,22 @@
         "topic": "topic",
         "topicType": "msg",
         "style": "",
-        "onvalue": "on",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "off",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "lightbulb_outline",
+        "oncolor": "green",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "lightbulb_outline",
+        "offcolor": "yellow",
         "animate": false,
         "className": "",
-        "x": 90,
-        "y": 40,
+        "x": 550,
+        "y": 140,
         "wires": [
             [
-                "5a0b86b52782922b"
+                "5a0b86b52782922b",
+                "14fb9a01a2604f17"
             ]
         ]
     },
@@ -294,21 +307,22 @@
         "topic": "topic",
         "topicType": "msg",
         "style": "",
-        "onvalue": "on",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "off",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "wb_sunny",
+        "oncolor": "lime",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "wb_sunny",
+        "offcolor": "yellow",
         "animate": false,
         "className": "",
-        "x": 90,
-        "y": 80,
+        "x": 550,
+        "y": 180,
         "wires": [
             [
-                "2369e1e7c99494c2"
+                "2369e1e7c99494c2",
+                "bbd9f888ca668733"
             ]
         ]
     },
@@ -328,21 +342,22 @@
         "topic": "topic",
         "topicType": "msg",
         "style": "",
-        "onvalue": "on",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "off",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "fa-shower",
+        "oncolor": "lime",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "fa-shower",
+        "offcolor": "yellow",
         "animate": false,
         "className": "",
-        "x": 90,
-        "y": 120,
+        "x": 550,
+        "y": 240,
         "wires": [
             [
-                "ce26fb55781987b4"
+                "ce26fb55781987b4",
+                "242ced2ffea91886"
             ]
         ]
     },
@@ -360,8 +375,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6c0f44bd30c92d5e",
-        "x": 310,
-        "y": 40,
+        "x": 770,
+        "y": 60,
         "wires": []
     },
     {
@@ -378,8 +393,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6c0f44bd30c92d5e",
-        "x": 310,
-        "y": 80,
+        "x": 770,
+        "y": 160,
         "wires": []
     },
     {
@@ -396,8 +411,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6c0f44bd30c92d5e",
-        "x": 310,
-        "y": 120,
+        "x": 770,
+        "y": 240,
         "wires": []
     },
     {
@@ -405,18 +420,19 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "date",
-        "func": "var d=new Date();\nvar day=d.getDate()  //day as a number 0 -31\nvar weekday=d.getDay()  //-weekday as a number  0-6\nvar month=d.getMonth() // month as a number 0-11\nmonth=month+1;\nvar year=d.getFullYear() //year as a four digit number (yyyy)\nvar hours=d.getHours() //the hour (0-23)\nvar minutes=d.getMinutes() //-the minute (0-59)\nvar seconds=d.getSeconds() //-the seconds (0-59)\nmsg.date=day+\":\"+month+\":\"+year;\nmsg.time=hours+\":\"+minutes+\":\"+seconds;\nreturn msg;",
+        "func": "var d=new Date();\nvar day=d.getDate()  //day as a number 0 -31\nvar weekday=d.getDay()  //-weekday as a number  0-6\nvar month=d.getMonth() // month as a number 0-11\nmonth=month+1;\nvar year=d.getFullYear() //year as a four digit number (yyyy)\nvar hours=d.getHours() //the hour (0-23)\nvar minutes=d.getMinutes() //-the minute (0-59)\nvar seconds=d.getSeconds() //-the seconds (0-59)\nmsg.date=day+\"/\"+month+\"/\"+year;\nswitch (weekday)\n{\n  case 0:\n    wday = \"Sunday\";\n    break;\n  case 1:\n    wday = \"Monday\";\n    break;\n  case 2:\n     wday = \"Tuesday\";\n    break;\n  case 3:\n    wday = \"Wednesday\";\n    break;\n  case 4:\n    wday = \"Thursday\";\n    break;\n  case 5:\n    wday = \"Friday\";\n    break;\n  case 6:\n    wday = \"Saturday\";\n}\nmsg.wday=wday;\nmsg.time=hours+\":\"+minutes+\":\"+seconds;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 230,
-        "y": 240,
+        "x": 250,
+        "y": 880,
         "wires": [
             [
                 "9f0a29836fe25c2b",
-                "f0ca0905e53b6662"
+                "f0ca0905e53b6662",
+                "bbf655ca85956ddc"
             ]
         ]
     },
@@ -440,8 +456,8 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 80,
-        "y": 240,
+        "x": 100,
+        "y": 880,
         "wires": [
             [
                 "d4ba43a001d7cfcf"
@@ -462,7 +478,7 @@
         "layout": "col-center",
         "className": "",
         "x": 430,
-        "y": 240,
+        "y": 820,
         "wires": []
     },
     {
@@ -470,7 +486,7 @@
         "type": "ui_text",
         "z": "bba4aba8f9d733f3",
         "group": "e142be3b908952d6",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "name": "time",
@@ -478,8 +494,8 @@
         "format": "{{msg.time}}",
         "layout": "col-center",
         "className": "",
-        "x": 430,
-        "y": 280,
+        "x": 450,
+        "y": 920,
         "wires": []
     },
     {
@@ -493,8 +509,8 @@
         "city": "Thrissur",
         "country": "India",
         "language": "en",
-        "x": 130,
-        "y": 320,
+        "x": 150,
+        "y": 960,
         "wires": [
             [
                 "7ed079e6140868d4",
@@ -517,8 +533,8 @@
         "format": "{{msg.payload.tempc}} °C",
         "layout": "col-center",
         "className": "",
-        "x": 330,
-        "y": 320,
+        "x": 350,
+        "y": 960,
         "wires": []
     },
     {
@@ -534,8 +550,8 @@
         "format": "{{msg.payload.humidity}} %",
         "layout": "col-center",
         "className": "",
-        "x": 340,
-        "y": 360,
+        "x": 360,
+        "y": 1000,
         "wires": []
     },
     {
@@ -551,8 +567,8 @@
         "format": "{{msg.payload.weather}}",
         "layout": "col-center",
         "className": "",
-        "x": 340,
-        "y": 420,
+        "x": 360,
+        "y": 1060,
         "wires": []
     },
     {
@@ -568,8 +584,8 @@
         "format": "{{msg.payload.location}}",
         "layout": "col-center",
         "className": "",
-        "x": 340,
-        "y": 480,
+        "x": 360,
+        "y": 1120,
         "wires": []
     },
     {
@@ -580,7 +596,7 @@
         "group": "7376444d6893b276",
         "order": 1,
         "width": 5,
-        "height": 4,
+        "height": 3,
         "gtype": "gage",
         "title": "Temperature",
         "label": "units",
@@ -595,8 +611,8 @@
         "seg1": "",
         "seg2": "",
         "className": "",
-        "x": 650,
-        "y": 600,
+        "x": 670,
+        "y": 1240,
         "wires": []
     },
     {
@@ -612,8 +628,8 @@
         "format": "{{msg.payload}} %",
         "layout": "col-center",
         "className": "",
-        "x": 660,
-        "y": 740,
+        "x": 680,
+        "y": 1380,
         "wires": []
     },
     {
@@ -629,8 +645,8 @@
         "format": "{{msg.payload}} %",
         "layout": "col-center",
         "className": "",
-        "x": 650,
-        "y": 700,
+        "x": 670,
+        "y": 1340,
         "wires": []
     },
     {
@@ -646,8 +662,8 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "x": 650,
-        "y": 780,
+        "x": 670,
+        "y": 1420,
         "wires": []
     },
     {
@@ -658,7 +674,7 @@
         "group": "7376444d6893b276",
         "order": 2,
         "width": 5,
-        "height": 4,
+        "height": 3,
         "label": "Cpu Load",
         "chartType": "line",
         "legend": "false",
@@ -669,7 +685,7 @@
         "ymin": "0",
         "ymax": "50",
         "removeOlder": 1,
-        "removeOlderPoints": "",
+        "removeOlderPoints": "20",
         "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
@@ -688,8 +704,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 670,
-        "y": 640,
+        "x": 690,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -700,8 +716,8 @@
         "z": "bba4aba8f9d733f3",
         "mydb": "dafdac5f3491cd58",
         "name": "Server Info",
-        "x": 250,
-        "y": 660,
+        "x": 270,
+        "y": 1300,
         "wires": [
             [
                 "23831eb2471188b4"
@@ -724,8 +740,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "SELECT * FROM `raspi_info` WHERE id=1",
-        "x": 90,
-        "y": 660,
+        "x": 110,
+        "y": 1300,
         "wires": [
             [
                 "5469a880315c92ec"
@@ -737,14 +753,14 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "",
-        "func": "var msg1={payload:msg.payload[0][\"id\"]};\nvar msg2={payload:msg.payload[0][\"temp\"]};\nvar msg3={payload:msg.payload[0][\"cpu_load\"]};\nvar msg4={payload:msg.payload[0][\"used_ram\"]};\nvar msg5={payload:msg.payload[0][\"used_mem\"]};\nvar msg6={payload:msg.payload[0][\"up_time\"]};\nreturn [msg1,msg2,msg3,msg4,msg5,msg6];",
-        "outputs": 6,
+        "func": "var msg1={payload:msg.payload[0][\"id\"]};\nvar msg2={payload:msg.payload[0][\"temp\"]};\nvar msg3={payload:msg.payload[0][\"cpu_load\"]};\nvar msg4={payload:msg.payload[0][\"used_ram\"]};\nvar msg5={payload:msg.payload[0][\"used_mem\"]};\nvar msg6={payload:msg.payload[0][\"up_time\"]};\nvar msg7;\nif (msg.payload[0][\"connection\"]==1)\n    msg7={payload:\"UP\",colour:\"green\"};\nelse\n    msg7={payload:\"DOWN\",colour:\"red\"};\nreturn [msg1,msg2,msg3,msg4,msg5,msg6,msg7];",
+        "outputs": 7,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
-        "y": 680,
+        "x": 470,
+        "y": 1320,
         "wires": [
             [],
             [
@@ -761,7 +777,185 @@
             ],
             [
                 "4ed1b30bd0eaeb45"
+            ],
+            [
+                "490898eaa15336ad"
             ]
+        ]
+    },
+    {
+        "id": "2db3b759300393f1",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Autoamtion",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "51b16989ac9063b3"
+            ]
+        ]
+    },
+    {
+        "id": "1195649c42f9469c",
+        "type": "inject",
+        "z": "bba4aba8f9d733f3",
+        "name": "Trigger DB",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM `home_automation` WHERE plac=\"living\" AND floor=\"first\"",
+        "x": 70,
+        "y": 180,
+        "wires": [
+            [
+                "2db3b759300393f1"
+            ]
+        ]
+    },
+    {
+        "id": "51b16989ac9063b3",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "var msg1={payload:msg.payload[0][\"status\"]};\nvar msg2={payload:msg.payload[1][\"status\"]};\nvar msg3={payload:msg.payload[2][\"status\"]};\nreturn [msg1,msg2,msg3];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "fd494c0aecc2cb23"
+            ],
+            [
+                "310082557ad83fd0"
+            ],
+            [
+                "4837312bc800e8e4"
+            ]
+        ]
+    },
+    {
+        "id": "14fb9a01a2604f17",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=4;\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 120,
+        "wires": [
+            [
+                "2676fe142f4e896b"
+            ]
+        ]
+    },
+    {
+        "id": "2676fe142f4e896b",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Home Automation",
+        "x": 1010,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bbd9f888ca668733",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=5;\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 200,
+        "wires": [
+            [
+                "2676fe142f4e896b"
+            ]
+        ]
+    },
+    {
+        "id": "242ced2ffea91886",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=6;\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 280,
+        "wires": [
+            [
+                "2676fe142f4e896b"
+            ]
+        ]
+    },
+    {
+        "id": "bbf655ca85956ddc",
+        "type": "ui_text",
+        "z": "bba4aba8f9d733f3",
+        "group": "e142be3b908952d6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Date",
+        "label": "",
+        "format": "{{msg.wday}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 430,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "490898eaa15336ad",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "group": "7376444d6893b276",
+        "order": 6,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "{{payload}}",
+        "tooltip": "",
+        "color": "{{colour}}",
+        "bgcolor": "rgb(51,51,51)",
+        "className": "",
+        "icon": "wifi",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 680,
+        "y": 1560,
+        "wires": [
+            []
         ]
     }
 ]
