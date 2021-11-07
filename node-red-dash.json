@@ -49,7 +49,7 @@
                 "default": "#097479",
                 "baseColor": "#097479",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
+                "edited": false,
                 "reset": false
             },
             "customTheme": {
@@ -63,7 +63,7 @@
                 "base-color": {
                     "default": "#097479",
                     "value": "#097479",
-                    "edited": false
+                    "edited": true
                 },
                 "page-titlebar-backgroundColor": {
                     "value": "#097479",
@@ -148,7 +148,7 @@
         "tab": "2eb6931249ce8801",
         "order": 2,
         "disp": true,
-        "width": 3,
+        "width": "3",
         "collapse": false,
         "className": ""
     },
@@ -226,7 +226,18 @@
         "charset": "UTF8"
     },
     {
-        "id": "749372ed67d1f655",
+        "id": "99dacc30770bf274",
+        "type": "ui_group",
+        "name": "Internet",
+        "tab": "2eb6931249ce8801",
+        "order": 5,
+        "disp": true,
+        "width": 5,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "89dc20e70e78eb11",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
@@ -236,13 +247,13 @@
         "height": 1
     },
     {
-        "id": "386e837689e21665",
+        "id": "56bbc86a2e11d658",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
         "group": "7376444d6893b276",
-        "order": 6,
-        "width": 3,
+        "order": 7,
+        "width": 8,
         "height": 1
     },
     {
@@ -409,7 +420,7 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "date",
-        "func": "var d=new Date();\nvar day=d.getDate()  //day as a number 0 -31\nvar weekday=d.getDay()  //-weekday as a number  0-6\nvar month=d.getMonth() // month as a number 0-11\nmonth=month+1;\nvar year=d.getFullYear() //year as a four digit number (yyyy)\nvar hours=d.getHours() //the hour (0-23)\nvar minutes=d.getMinutes() //-the minute (0-59)\nvar seconds=d.getSeconds() //-the seconds (0-59)\nmsg.date=day+\":\"+month+\":\"+year;\nmsg.time=hours+\":\"+minutes+\":\"+seconds;\nreturn msg;",
+        "func": "var d=new Date();\nvar day=d.getDate()  //day as a number 0 -31\nvar weekday=d.getDay()  //-weekday as a number  0-6\nvar month=d.getMonth() // month as a number 0-11\nmonth=month+1;\nvar year=d.getFullYear() //year as a four digit number (yyyy)\nvar hours=d.getHours() //the hour (0-23)\nvar minutes=d.getMinutes() //-the minute (0-59)\nvar seconds=d.getSeconds() //-the seconds (0-59)\nmsg.date=day+\"/\"+month+\"/\"+year;\nswitch (weekday)\n{\n  case 0:\n    wday = \"Sunday\";\n    break;\n  case 1:\n    wday = \"Monday\";\n    break;\n  case 2:\n     wday = \"Tuesday\";\n    break;\n  case 3:\n    wday = \"Wednesday\";\n    break;\n  case 4:\n    wday = \"Thursday\";\n    break;\n  case 5:\n    wday = \"Friday\";\n    break;\n  case 6:\n    wday = \"Saturday\";\n}\nmsg.wday=wday;\nmsg.time=hours+\":\"+minutes+\":\"+seconds;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -420,7 +431,8 @@
         "wires": [
             [
                 "9f0a29836fe25c2b",
-                "f0ca0905e53b6662"
+                "f0ca0905e53b6662",
+                "bbf655ca85956ddc"
             ]
         ]
     },
@@ -465,8 +477,8 @@
         "format": "{{msg.date}}",
         "layout": "col-center",
         "className": "",
-        "x": 450,
-        "y": 880,
+        "x": 430,
+        "y": 820,
         "wires": []
     },
     {
@@ -474,7 +486,7 @@
         "type": "ui_text",
         "z": "bba4aba8f9d733f3",
         "group": "e142be3b908952d6",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "name": "time",
@@ -584,7 +596,7 @@
         "group": "7376444d6893b276",
         "order": 1,
         "width": 5,
-        "height": 4,
+        "height": 3,
         "gtype": "gage",
         "title": "Temperature",
         "label": "units",
@@ -662,7 +674,7 @@
         "group": "7376444d6893b276",
         "order": 2,
         "width": 5,
-        "height": 4,
+        "height": 3,
         "label": "Cpu Load",
         "chartType": "line",
         "legend": "false",
@@ -741,8 +753,8 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "",
-        "func": "var msg1={payload:msg.payload[0][\"id\"]};\nvar msg2={payload:msg.payload[0][\"temp\"]};\nvar msg3={payload:msg.payload[0][\"cpu_load\"]};\nvar msg4={payload:msg.payload[0][\"used_ram\"]};\nvar msg5={payload:msg.payload[0][\"used_mem\"]};\nvar msg6={payload:msg.payload[0][\"up_time\"]};\nreturn [msg1,msg2,msg3,msg4,msg5,msg6];",
-        "outputs": 6,
+        "func": "var msg1={payload:msg.payload[0][\"id\"]};\nvar msg2={payload:msg.payload[0][\"temp\"]};\nvar msg3={payload:msg.payload[0][\"cpu_load\"]};\nvar msg4={payload:msg.payload[0][\"used_ram\"]};\nvar msg5={payload:msg.payload[0][\"used_mem\"]};\nvar msg6={payload:msg.payload[0][\"up_time\"]};\nvar msg7;\nif (msg.payload[0][\"connection\"]==1)\n    msg7={payload:\"UP\",colour:\"green\"};\nelse\n    msg7={payload:\"DOWN\",colour:\"red\"};\nreturn [msg1,msg2,msg3,msg4,msg5,msg6,msg7];",
+        "outputs": 7,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -765,6 +777,9 @@
             ],
             [
                 "4ed1b30bd0eaeb45"
+            ],
+            [
+                "490898eaa15336ad"
             ]
         ]
     },
@@ -898,6 +913,49 @@
             [
                 "2676fe142f4e896b"
             ]
+        ]
+    },
+    {
+        "id": "bbf655ca85956ddc",
+        "type": "ui_text",
+        "z": "bba4aba8f9d733f3",
+        "group": "e142be3b908952d6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Date",
+        "label": "",
+        "format": "{{msg.wday}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 430,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "490898eaa15336ad",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "group": "7376444d6893b276",
+        "order": 6,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "{{payload}}",
+        "tooltip": "",
+        "color": "{{colour}}",
+        "bgcolor": "rgb(51,51,51)",
+        "className": "",
+        "icon": "wifi",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 680,
+        "y": 1560,
+        "wires": [
+            []
         ]
     }
 ]
