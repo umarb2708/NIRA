@@ -1,21 +1,32 @@
 import import_file as f
-
+dev_num=0
 bulb_list=["bulb","light","lamp"]
 
 
 def turn_on_device(command):
-    for x in bulb_list:
-        if x in command:
-            print("Turning on light")
-            f.db.update_automation_table(4,"1")
-            return "Lights turned on::OK"
-            break
+    print("Turning on light")
+    f.db.update_automation_table(find_device(command),1)
+    return "Device:"+str(find_device(command))+" turned on::OK"
 
 def turn_off_dev(command):
+    print("Turning off Device")
+    f.db.update_automation_table(find_device(command),0)
+    return "Device:"+str(find_device(command))+" turned off::OK"
+
+
+def find_device(command):
+
     for x in bulb_list:
         if x in command:
-            print("Turning off light")
-            f.db.update_automation_table(4,"0")
-            return "Lights turned off::OK"
+            dev_num=4
             break
+
+    if "fan" in command:
+            dev_num=5
+
+    if "lamp" in command:
+            dev_num=6
+    else
+            dev_num=7
+    return dev_num
 

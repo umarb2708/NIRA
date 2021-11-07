@@ -16,6 +16,7 @@ import os
 #Variables
 commands=""
 sleep=0
+debug_mode=1
 def initialize():
     global inpt
     #This Function for initialize PI when Start Up  or Restart
@@ -35,8 +36,6 @@ def initialize():
 def exec_commands():
     global sleep,inpt
     while sleep==0:
-        res=f.db.insert_raspi_info(f.info.server_details())#Login details to Database
-        f.out.txt_out(res,1,1,0)
         commands=f.cmd.get_input()
         if "Hira" in commands or "hey darling" in commands or "hira" in commands :
             commands.replace("Hira","").replace("hey darling","").replace("hira","")
@@ -71,7 +70,8 @@ def exec_commands():
 #-----------------------------------------------------------
 #               MAIN LOGIC
 #-----------------------------------------------------------
-initialize()
+if debug_mode == 0:
+    initialize()
 exec_commands()
 #thread1 = threading.Thread(target=exec_commands)
 ##thread2 = threading.Thread(target=handle_db_data)

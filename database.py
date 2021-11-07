@@ -69,7 +69,7 @@ def insert_cmd_executed(cmd,status):
     mydb.commit()
     #print(mycursor.rowcount, "record inserted.")
 def update_automation_table(dev_id,status):
-    sql="UPDATE home_automation SET status = '"+status+"' WHERE id="+str(dev_id)+";"
+    sql="UPDATE home_automation SET status = '"+str(status)+"' WHERE id="+str(dev_id)+";"
     mycursor.execute(sql)
     mydb.commit()
     return "ok"
