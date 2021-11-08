@@ -26,7 +26,7 @@ def find_device(command):
 
     if "lamp" in command:
             dev_num=6
-    else
+    else :
             dev_num=7
     return dev_num
 
