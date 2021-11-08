@@ -35,6 +35,9 @@ pip3 install SpeechRecognition
 #-------------Server Info Script---------------------------
 #This script should run in every boot: follow https://www.dexterindustries.com/howto/auto-run-python-programs-on-the-raspberry-pi 
 
+#-------------Internet Speed Test--------------------------
+pip3 install speedtest-cli
+
 
 
 
