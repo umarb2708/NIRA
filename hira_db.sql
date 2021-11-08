@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 06, 2021 at 09:27 AM
+-- Generation Time: Nov 08, 2021 at 03:03 PM
 -- Server version: 10.3.31-MariaDB-0+deb10u1
 -- PHP Version: 7.3.31-1~deb10u1
 
@@ -79,6 +79,41 @@ CREATE TABLE `commands_executed` (
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `commands_executed`
+--
+
+INSERT INTO `commands_executed` (`id`, `command`, `status`) VALUES
+(2, 'hira turn off bulb', '1'),
+(3, 'hira turn on fan', '1'),
+(4, 'hira turn off fan', '1'),
+(5, 'hira turn on fan', '1'),
+(6, 'hira turn off fan', '1'),
+(7, 'hira turn on lamp', '1'),
+(8, 'hira turn on bulb', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hira_info`
+--
+
+CREATE TABLE `hira_info` (
+  `id` int(11) NOT NULL,
+  `pid` varchar(30) NOT NULL,
+  `tty` varchar(30) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT 0,
+  `init` int(1) NOT NULL DEFAULT 0,
+  `input_mode` int(1) NOT NULL DEFAULT 2
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hira_info`
+--
+
+INSERT INTO `hira_info` (`id`, `pid`, `tty`, `status`, `init`, `input_mode`) VALUES
+(1, '0', 'pts/0', 0, 0, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -87,21 +122,22 @@ CREATE TABLE `commands_executed` (
 
 CREATE TABLE `home_automation` (
   `id` int(6) NOT NULL,
+  `room_id` int(5) NOT NULL,
   `floor` varchar(30) NOT NULL,
   `plac` varchar(30) NOT NULL,
   `component` varchar(10) NOT NULL DEFAULT 'light',
-  `status` varchar(6) NOT NULL
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `home_automation`
 --
 
-INSERT INTO `home_automation` (`id`, `floor`, `plac`, `component`, `status`) VALUES
-(4, 'first', 'living', 'Light', '1'),
-(5, 'first', 'living', 'Fan', '0'),
-(6, 'first', 'living', 'Lamp', '0'),
-(7, 'first', 'living', 'All', '0');
+INSERT INTO `home_automation` (`id`, `room_id`, `floor`, `plac`, `component`, `status`) VALUES
+(4, 0, 'first', 'living', 'Light', 0),
+(5, 0, 'first', 'living', 'Fan', 0),
+(6, 0, 'first', 'living', 'Lamp', 0),
+(7, 0, 'first', 'living', 'All', 0);
 
 -- --------------------------------------------------------
 
@@ -115,15 +151,16 @@ CREATE TABLE `raspi_info` (
   `cpu_load` float NOT NULL DEFAULT 0,
   `used_ram` float NOT NULL DEFAULT 0,
   `used_mem` float NOT NULL DEFAULT 0,
-  `up_time` varchar(30) NOT NULL DEFAULT '0 m'
+  `up_time` varchar(30) NOT NULL DEFAULT '0 m',
+  `connection` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `raspi_info`
 --
 
-INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`) VALUES
-(1, 46.2, 2.5, 36.8, 28.8, '7 m');
+INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`, `connection`) VALUES
+(1, 43.5, 24.4, 37.1, 28.8, '1 minute', 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +191,9 @@ INSERT INTO `user_log` (`id`, `user_name`, `ip_address`, `pid`, `log_time`) VALU
 (8, 'pi', '', '2748', '2021-11-03 10:08:43'),
 (9, 'pi', '', '3339', '2021-11-03 10:09:38'),
 (10, 'pi', '', '5387', '2021-11-03 10:14:03'),
-(11, 'pi', '', '6234', '2021-11-03 10:15:41');
+(11, 'pi', '', '6234', '2021-11-03 10:15:41'),
+(12, 'pi', '', '15476', '2021-11-06 09:50:44'),
+(13, 'pi', '', '16380', '2021-11-06 09:52:17');
 
 --
 -- Indexes for dumped tables
@@ -164,6 +203,12 @@ INSERT INTO `user_log` (`id`, `user_name`, `ip_address`, `pid`, `log_time`) VALU
 -- Indexes for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hira_info`
+--
+ALTER TABLE `hira_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -186,12 +231,17 @@ ALTER TABLE `user_log`
 -- AUTO_INCREMENT for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `hira_info`
+--
+ALTER TABLE `hira_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
