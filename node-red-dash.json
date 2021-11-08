@@ -49,7 +49,7 @@
                 "default": "#097479",
                 "baseColor": "#097479",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false,
+                "edited": true,
                 "reset": false
             },
             "customTheme": {
@@ -211,7 +211,7 @@
         "tab": "2eb6931249ce8801",
         "order": 4,
         "disp": true,
-        "width": 13,
+        "width": 12,
         "collapse": false,
         "className": ""
     },
@@ -228,32 +228,22 @@
     {
         "id": "99dacc30770bf274",
         "type": "ui_group",
-        "name": "Internet",
+        "name": "Power",
         "tab": "2eb6931249ce8801",
         "order": 5,
         "disp": true,
-        "width": 5,
+        "width": 2,
         "collapse": false,
         "className": ""
     },
     {
-        "id": "89dc20e70e78eb11",
+        "id": "2a2813632051de4e",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
         "group": "c17950553dd53b9e",
         "order": 3,
         "width": 6,
-        "height": 1
-    },
-    {
-        "id": "56bbc86a2e11d658",
-        "type": "ui_spacer",
-        "z": "bba4aba8f9d733f3",
-        "name": "spacer",
-        "group": "7376444d6893b276",
-        "order": 7,
-        "width": 8,
         "height": 1
     },
     {
@@ -426,8 +416,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 250,
-        "y": 880,
+        "x": 330,
+        "y": 420,
         "wires": [
             [
                 "9f0a29836fe25c2b",
@@ -456,8 +446,8 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 100,
-        "y": 880,
+        "x": 180,
+        "y": 420,
         "wires": [
             [
                 "d4ba43a001d7cfcf"
@@ -477,8 +467,8 @@
         "format": "{{msg.date}}",
         "layout": "col-center",
         "className": "",
-        "x": 430,
-        "y": 820,
+        "x": 470,
+        "y": 380,
         "wires": []
     },
     {
@@ -494,8 +484,8 @@
         "format": "{{msg.time}}",
         "layout": "col-center",
         "className": "",
-        "x": 450,
-        "y": 920,
+        "x": 470,
+        "y": 460,
         "wires": []
     },
     {
@@ -509,8 +499,8 @@
         "city": "Thrissur",
         "country": "India",
         "language": "en",
-        "x": 150,
-        "y": 960,
+        "x": 220,
+        "y": 580,
         "wires": [
             [
                 "7ed079e6140868d4",
@@ -533,8 +523,8 @@
         "format": "{{msg.payload.tempc}} °C",
         "layout": "col-center",
         "className": "",
-        "x": 350,
-        "y": 960,
+        "x": 430,
+        "y": 500,
         "wires": []
     },
     {
@@ -550,8 +540,8 @@
         "format": "{{msg.payload.humidity}} %",
         "layout": "col-center",
         "className": "",
-        "x": 360,
-        "y": 1000,
+        "x": 440,
+        "y": 540,
         "wires": []
     },
     {
@@ -567,8 +557,8 @@
         "format": "{{msg.payload.weather}}",
         "layout": "col-center",
         "className": "",
-        "x": 360,
-        "y": 1060,
+        "x": 440,
+        "y": 600,
         "wires": []
     },
     {
@@ -584,8 +574,8 @@
         "format": "{{msg.payload.location}}",
         "layout": "col-center",
         "className": "",
-        "x": 360,
-        "y": 1120,
+        "x": 440,
+        "y": 660,
         "wires": []
     },
     {
@@ -595,11 +585,11 @@
         "name": "Temp",
         "group": "7376444d6893b276",
         "order": 1,
-        "width": 5,
+        "width": 6,
         "height": 3,
         "gtype": "gage",
         "title": "Temperature",
-        "label": "units",
+        "label": "celsius",
         "format": "{{value}}",
         "min": 0,
         "max": "100",
@@ -611,8 +601,8 @@
         "seg1": "",
         "seg2": "",
         "className": "",
-        "x": 670,
-        "y": 1240,
+        "x": 730,
+        "y": 740,
         "wires": []
     },
     {
@@ -624,12 +614,12 @@
         "width": 3,
         "height": 1,
         "name": "memory",
-        "label": "Memory",
+        "label": "memory",
         "format": "{{msg.payload}} %",
         "layout": "col-center",
         "className": "",
-        "x": 680,
-        "y": 1380,
+        "x": 740,
+        "y": 860,
         "wires": []
     },
     {
@@ -645,8 +635,8 @@
         "format": "{{msg.payload}} %",
         "layout": "col-center",
         "className": "",
-        "x": 670,
-        "y": 1340,
+        "x": 730,
+        "y": 820,
         "wires": []
     },
     {
@@ -658,12 +648,12 @@
         "width": 3,
         "height": 1,
         "name": "uptime",
-        "label": "Uptime",
+        "label": "uptime",
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "x": 670,
-        "y": 1420,
+        "x": 730,
+        "y": 900,
         "wires": []
     },
     {
@@ -673,7 +663,7 @@
         "name": "CPU Load",
         "group": "7376444d6893b276",
         "order": 2,
-        "width": 5,
+        "width": 6,
         "height": 3,
         "label": "Cpu Load",
         "chartType": "line",
@@ -704,8 +694,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 690,
-        "y": 1280,
+        "x": 750,
+        "y": 780,
         "wires": [
             []
         ]
@@ -716,8 +706,8 @@
         "z": "bba4aba8f9d733f3",
         "mydb": "dafdac5f3491cd58",
         "name": "Server Info",
-        "x": 270,
-        "y": 1300,
+        "x": 350,
+        "y": 840,
         "wires": [
             [
                 "23831eb2471188b4"
@@ -740,8 +730,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "SELECT * FROM `raspi_info` WHERE id=1",
-        "x": 110,
-        "y": 1300,
+        "x": 190,
+        "y": 840,
         "wires": [
             [
                 "5469a880315c92ec"
@@ -759,8 +749,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 1320,
+        "x": 550,
+        "y": 860,
         "wires": [
             [],
             [
@@ -923,23 +913,23 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "name": "Date",
+        "name": "Week day",
         "label": "",
         "format": "{{msg.wday}}",
         "layout": "col-center",
         "className": "",
-        "x": 430,
-        "y": 860,
+        "x": 480,
+        "y": 420,
         "wires": []
     },
     {
         "id": "490898eaa15336ad",
         "type": "ui_button",
         "z": "bba4aba8f9d733f3",
-        "name": "",
+        "name": "Wifi",
         "group": "7376444d6893b276",
         "order": 6,
-        "width": 5,
+        "width": 2,
         "height": 1,
         "passthru": false,
         "label": "{{payload}}",
@@ -952,10 +942,322 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 680,
-        "y": 1560,
+        "x": 730,
+        "y": 940,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "8c0fb537ad46bc78",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "shutdown",
+        "group": "99dacc30770bf274",
+        "order": 1,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Off",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "fa-power-off",
+        "payload": "sudo shutdown -h now",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 660,
+        "y": 1100,
+        "wires": [
+            [
+                "c9e9fba9db398f83"
+            ]
+        ]
+    },
+    {
+        "id": "acfdf1b1b02be9f6",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "Reboot",
+        "group": "99dacc30770bf274",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "reboot",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "fa-repeat",
+        "payload": "sudo reboot",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 660,
+        "y": 1140,
+        "wires": [
+            [
+                "c9e9fba9db398f83"
+            ]
+        ]
+    },
+    {
+        "id": "c9e9fba9db398f83",
+        "type": "exec",
+        "z": "bba4aba8f9d733f3",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 830,
+        "y": 1120,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e43c91b805928a6d",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "Wake Up",
+        "group": "99dacc30770bf274",
+        "order": 3,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "{{label}}",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "blue",
+        "className": "",
+        "icon": "fa-bolt",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 540,
+        "y": 1180,
+        "wires": [
+            [
+                "8e92bf416a540e5f"
+            ]
+        ]
+    },
+    {
+        "id": "688f3aae3b80d53c",
+        "type": "exec",
+        "z": "bba4aba8f9d733f3",
+        "command": "/opt/vc/bin/vcgencmd get_throttled",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Voltage",
+        "x": 440,
+        "y": 980,
+        "wires": [
+            [
+                "557bd28380b9431c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4e1058699589a482",
+        "type": "inject",
+        "z": "bba4aba8f9d733f3",
+        "name": "Battery Trigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 980,
+        "wires": [
+            [
+                "688f3aae3b80d53c"
+            ]
+        ]
+    },
+    {
+        "id": "557bd28380b9431c",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "msg.hex_val=msg.payload.replace(\"throttled=\",\"\").replace(\"\\n\",\"\");\nif(msg.hex_val==\"0x0\")\n{\n    msg.payload=\"green\"\n}\nelse\n{\n    msg.payload=\"red\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 980,
+        "wires": [
+            [
+                "cb825d759526b792"
+            ]
+        ]
+    },
+    {
+        "id": "cb825d759526b792",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "power",
+        "group": "7376444d6893b276",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "{{payload}}",
+        "bgcolor": "rgb(51,51,51)",
+        "className": "",
+        "icon": "battery_charging_full",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 730,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d677b334d341a69d",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Server Info",
+        "x": 250,
+        "y": 1180,
+        "wires": [
+            [
+                "c5a7652d2c044a59"
+            ]
+        ]
+    },
+    {
+        "id": "272b1f837bec2b1e",
+        "type": "inject",
+        "z": "bba4aba8f9d733f3",
+        "name": "Trigger DB",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM `hira_info` WHERE id=1",
+        "x": 90,
+        "y": 1180,
+        "wires": [
+            [
+                "d677b334d341a69d"
+            ]
+        ]
+    },
+    {
+        "id": "c5a7652d2c044a59",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "\nif (msg.payload[0][\"status\"]==1)\n    msg={label:\"sleep\",topic:\"kill \"+msg.payload[0][\"pid\"]};\nelse\n    msg={label:\"wake\",topic:\"export DISPLAY=:0 && lxterminal -e \\\"python3 /home/pi/HIRA/hira.py\\\"\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1180,
+        "wires": [
+            [
+                "e43c91b805928a6d"
+            ]
+        ]
+    },
+    {
+        "id": "06eed8d76688a7d0",
+        "type": "debug",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "74fc66da1cc7fef2",
+        "type": "exec",
+        "z": "bba4aba8f9d733f3",
+        "command": "",
+        "addpay": "topic",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 910,
+        "y": 1180,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8e92bf416a540e5f",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "var msg1\nif(msg.payload==1)\n{\n    msg1={topic:msg.topic}\n}\nelse\n{\n    msg1={topic:null}\n}\nreturn msg1;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1180,
+        "wires": [
+            [
+                "74fc66da1cc7fef2"
+            ]
         ]
     }
 ]
