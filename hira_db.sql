@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 08, 2021 at 03:03 PM
+-- Generation Time: Nov 09, 2021 at 09:59 AM
 -- Server version: 10.3.31-MariaDB-0+deb10u1
 -- PHP Version: 7.3.31-1~deb10u1
 
@@ -90,7 +90,23 @@ INSERT INTO `commands_executed` (`id`, `command`, `status`) VALUES
 (5, 'hira turn on fan', '1'),
 (6, 'hira turn off fan', '1'),
 (7, 'hira turn on lamp', '1'),
-(8, 'hira turn on bulb', '1');
+(8, 'hira turn on bulb', '1'),
+(9, 'automation.turn_on_device', '1'),
+(10, 'turn on', '1'),
+(11, 'turn on', '1'),
+(12, 'turn off', '1'),
+(13, 'turn on', '1'),
+(14, 'turn on', '1'),
+(15, 'turn on', '1'),
+(16, 'turn on', '1'),
+(17, 'turn on', '1'),
+(18, 'automation.turn_off_dev', '1'),
+(19, 'automation.turn_on_device', '1'),
+(20, 'automation.turn_on_device', '1'),
+(21, 'automation.turn_off_dev', '1'),
+(22, 'automation.turn_on_device', '1'),
+(23, 'automation.turn_on_device', '1'),
+(24, 'automation.turn_off_dev', '1');
 
 -- --------------------------------------------------------
 
@@ -112,7 +128,7 @@ CREATE TABLE `hira_info` (
 --
 
 INSERT INTO `hira_info` (`id`, `pid`, `tty`, `status`, `init`, `input_mode`) VALUES
-(1, '0', 'pts/0', 0, 0, 2);
+(1, '0', 'pts/0', 0, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -137,7 +153,7 @@ INSERT INTO `home_automation` (`id`, `room_id`, `floor`, `plac`, `component`, `s
 (4, 0, 'first', 'living', 'Light', 0),
 (5, 0, 'first', 'living', 'Fan', 0),
 (6, 0, 'first', 'living', 'Lamp', 0),
-(7, 0, 'first', 'living', 'All', 0);
+(7, 0, 'first', 'living', 'All', 1);
 
 -- --------------------------------------------------------
 
@@ -160,7 +176,27 @@ CREATE TABLE `raspi_info` (
 --
 
 INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`, `connection`) VALUES
-(1, 43.5, 24.4, 37.1, 28.8, '1 minute', 1);
+(1, 46.2, 7.3, 39.5, 28.8, '1 h, 16 m', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `run_commands`
+--
+
+CREATE TABLE `run_commands` (
+  `id` int(1) NOT NULL,
+  `command` text NOT NULL,
+  `frm` varchar(30) NOT NULL DEFAULT 'node-red',
+  `exec` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `run_commands`
+--
+
+INSERT INTO `run_commands` (`id`, `command`, `frm`, `exec`) VALUES
+(1, 'hira turn on light', 'node-red', 0);
 
 -- --------------------------------------------------------
 
@@ -212,9 +248,21 @@ ALTER TABLE `hira_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `home_automation`
+--
+ALTER TABLE `home_automation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `raspi_info`
 --
 ALTER TABLE `raspi_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `run_commands`
+--
+ALTER TABLE `run_commands`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -231,12 +279,17 @@ ALTER TABLE `user_log`
 -- AUTO_INCREMENT for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `hira_info`
 --
 ALTER TABLE `hira_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `run_commands`
+--
+ALTER TABLE `run_commands`
+  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user_log`
 --
