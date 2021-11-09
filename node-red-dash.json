@@ -146,7 +146,7 @@
         "type": "ui_group",
         "name": "Living Room",
         "tab": "2eb6931249ce8801",
-        "order": 2,
+        "order": 3,
         "disp": true,
         "width": "3",
         "collapse": false,
@@ -157,7 +157,7 @@
         "type": "ui_group",
         "name": "Time",
         "tab": "2eb6931249ce8801",
-        "order": 3,
+        "order": 4,
         "disp": true,
         "width": 3,
         "collapse": false,
@@ -198,7 +198,7 @@
         "type": "ui_group",
         "name": "Weather",
         "tab": "2eb6931249ce8801",
-        "order": 1,
+        "order": 2,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -209,7 +209,7 @@
         "type": "ui_group",
         "name": "Server Details",
         "tab": "2eb6931249ce8801",
-        "order": 4,
+        "order": 5,
         "disp": true,
         "width": 12,
         "collapse": false,
@@ -230,14 +230,36 @@
         "type": "ui_group",
         "name": "Power",
         "tab": "2eb6931249ce8801",
-        "order": 5,
+        "order": 6,
         "disp": true,
         "width": 2,
         "collapse": false,
         "className": ""
     },
     {
-        "id": "0b931676ae707888",
+        "id": "657060290e649c17",
+        "type": "ui_group",
+        "name": "commands",
+        "tab": "2eb6931249ce8801",
+        "order": 7,
+        "disp": true,
+        "width": 5,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c0bc059bdcfb6afb",
+        "type": "ui_group",
+        "name": "Myself",
+        "tab": "2eb6931249ce8801",
+        "order": 1,
+        "disp": true,
+        "width": 3,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e34bafd9ebf26749",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
@@ -265,7 +287,7 @@
         "onvalue": "1",
         "onvalueType": "num",
         "onicon": "lightbulb_outline",
-        "oncolor": "green",
+        "oncolor": "lime",
         "offvalue": "0",
         "offvalueType": "num",
         "officon": "lightbulb_outline",
@@ -416,8 +438,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 420,
+        "x": 530,
+        "y": 400,
         "wires": [
             [
                 "9f0a29836fe25c2b",
@@ -446,8 +468,8 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 180,
-        "y": 420,
+        "x": 380,
+        "y": 400,
         "wires": [
             [
                 "d4ba43a001d7cfcf"
@@ -467,8 +489,8 @@
         "format": "{{msg.date}}",
         "layout": "col-center",
         "className": "",
-        "x": 470,
-        "y": 380,
+        "x": 730,
+        "y": 360,
         "wires": []
     },
     {
@@ -484,8 +506,8 @@
         "format": "{{msg.time}}",
         "layout": "col-center",
         "className": "",
-        "x": 470,
-        "y": 460,
+        "x": 730,
+        "y": 440,
         "wires": []
     },
     {
@@ -499,7 +521,7 @@
         "city": "Thrissur",
         "country": "India",
         "language": "en",
-        "x": 220,
+        "x": 460,
         "y": 580,
         "wires": [
             [
@@ -523,8 +545,8 @@
         "format": "{{msg.payload.tempc}} °C",
         "layout": "col-center",
         "className": "",
-        "x": 430,
-        "y": 500,
+        "x": 670,
+        "y": 520,
         "wires": []
     },
     {
@@ -540,8 +562,8 @@
         "format": "{{msg.payload.humidity}} %",
         "layout": "col-center",
         "className": "",
-        "x": 440,
-        "y": 540,
+        "x": 680,
+        "y": 560,
         "wires": []
     },
     {
@@ -557,7 +579,7 @@
         "format": "{{msg.payload.weather}}",
         "layout": "col-center",
         "className": "",
-        "x": 440,
+        "x": 680,
         "y": 600,
         "wires": []
     },
@@ -574,8 +596,8 @@
         "format": "{{msg.payload.location}}",
         "layout": "col-center",
         "className": "",
-        "x": 440,
-        "y": 660,
+        "x": 680,
+        "y": 640,
         "wires": []
     },
     {
@@ -614,7 +636,7 @@
         "width": 3,
         "height": 1,
         "name": "memory",
-        "label": "memory",
+        "label": "<span class=\"material-icons-outlined\"> memory </span>",
         "format": "{{msg.payload}} %",
         "layout": "col-center",
         "className": "",
@@ -752,7 +774,9 @@
         "x": 550,
         "y": 860,
         "wires": [
-            [],
+            [
+                "2fa90ede4335287d"
+            ],
             [
                 "179bbc6142328605"
             ],
@@ -918,8 +942,8 @@
         "format": "{{msg.wday}}",
         "layout": "col-center",
         "className": "",
-        "x": 480,
-        "y": 420,
+        "x": 740,
+        "y": 400,
         "wires": []
     },
     {
@@ -968,7 +992,7 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 660,
+        "x": 540,
         "y": 1100,
         "wires": [
             [
@@ -996,7 +1020,7 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 660,
+        "x": 540,
         "y": 1140,
         "wires": [
             [
@@ -1016,7 +1040,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 830,
+        "x": 710,
         "y": 1120,
         "wires": [
             [],
@@ -1113,7 +1137,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
+        "x": 580,
         "y": 980,
         "wires": [
             [
@@ -1152,8 +1176,8 @@
         "type": "mysql",
         "z": "bba4aba8f9d733f3",
         "mydb": "dafdac5f3491cd58",
-        "name": "Server Info",
-        "x": 250,
+        "name": "Hira Info",
+        "x": 240,
         "y": 1180,
         "wires": [
             [
@@ -1205,23 +1229,6 @@
         ]
     },
     {
-        "id": "06eed8d76688a7d0",
-        "type": "debug",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 640,
-        "y": 1300,
-        "wires": []
-    },
-    {
         "id": "74fc66da1cc7fef2",
         "type": "exec",
         "z": "bba4aba8f9d733f3",
@@ -1233,7 +1240,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 910,
+        "x": 810,
         "y": 1180,
         "wires": [
             [],
@@ -1252,12 +1259,397 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
+        "x": 680,
         "y": 1180,
         "wires": [
             [
                 "74fc66da1cc7fef2"
             ]
         ]
+    },
+    {
+        "id": "2fa90ede4335287d",
+        "type": "debug",
+        "z": "bba4aba8f9d733f3",
+        "name": "Server Info",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "07432162cca09982",
+        "type": "ui_text_input",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "label": "send commands",
+        "tooltip": "",
+        "group": "657060290e649c17",
+        "order": 1,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "msg",
+        "x": 330,
+        "y": 1440,
+        "wires": [
+            [
+                "0ae520ee92a33793"
+            ]
+        ]
+    },
+    {
+        "id": "cd3be629d550eb7b",
+        "type": "ui_text",
+        "z": "bba4aba8f9d733f3",
+        "group": "657060290e649c17",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "recent commands",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 710,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "0ae520ee92a33793",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "msg={topic:\"UPDATE run_commands SET command = '\"+msg.payload+\"',frm='node-red',exec=0 WHERE id=1;\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1440,
+        "wires": [
+            [
+                "cf845f827b15f3f9",
+                "98b084d3fc966160"
+            ]
+        ]
+    },
+    {
+        "id": "cf845f827b15f3f9",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Hira Info",
+        "x": 680,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "98b084d3fc966160",
+        "type": "debug",
+        "z": "bba4aba8f9d733f3",
+        "name": "send_cmd_d",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "27495435d29892c1",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Hira Info",
+        "x": 380,
+        "y": 1500,
+        "wires": [
+            [
+                "1049d361d67a635e"
+            ]
+        ]
+    },
+    {
+        "id": "c413ee7c42763c67",
+        "type": "inject",
+        "z": "bba4aba8f9d733f3",
+        "name": "Trigger DB",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM `commands_executed` WHERE id=(SELECT max(id) FROM commands_executed)",
+        "x": 210,
+        "y": 1500,
+        "wires": [
+            [
+                "27495435d29892c1"
+            ]
+        ]
+    },
+    {
+        "id": "f07c9b54b8e8adb1",
+        "type": "debug",
+        "z": "bba4aba8f9d733f3",
+        "name": "exectd_cmd_d",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "dcff32508114b098",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "cmd_status",
+        "group": "657060290e649c17",
+        "order": 3,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "{{colour}}",
+        "bgcolor": "",
+        "className": "",
+        "icon": "{{icon}}",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 690,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1049d361d67a635e",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "\nif (msg.payload[0][\"status\"]==\"1\")\n    msg={icon:\"check\",colour:\"lime\",payload:msg.payload[0][\"command\"]};\nelse\n    msg={icon:\"cross\",colour:\"red\",payload:msg.payload[0][\"command\"]};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1500,
+        "wires": [
+            [
+                "cd3be629d550eb7b",
+                "dcff32508114b098",
+                "f07c9b54b8e8adb1"
+            ]
+        ]
+    },
+    {
+        "id": "2876403e142620df",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "Left",
+        "group": "657060290e649c17",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "keyboard_arrow_left",
+        "payload": "left",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 1840,
+        "wires": [
+            [
+                "4d5661aa06ee5653"
+            ]
+        ]
+    },
+    {
+        "id": "232878d59d05be67",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "up",
+        "group": "657060290e649c17",
+        "order": 6,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "keyboard_arrow_up",
+        "payload": "up",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 1720,
+        "wires": [
+            [
+                "4d5661aa06ee5653"
+            ]
+        ]
+    },
+    {
+        "id": "8682e5ef94b9c2b3",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "down",
+        "group": "657060290e649c17",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "keyboard_arrow_down",
+        "payload": "down",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 1800,
+        "wires": [
+            [
+                "4d5661aa06ee5653"
+            ]
+        ]
+    },
+    {
+        "id": "b6f3a25f7f9d0b4a",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "right",
+        "group": "657060290e649c17",
+        "order": 9,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "keyboard_arrow_right",
+        "payload": "right",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 1680,
+        "wires": [
+            [
+                "4d5661aa06ee5653"
+            ]
+        ]
+    },
+    {
+        "id": "0a56061556661bee",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "stop",
+        "group": "657060290e649c17",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "stop",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 1760,
+        "wires": [
+            [
+                "4d5661aa06ee5653"
+            ]
+        ]
+    },
+    {
+        "id": "4d5661aa06ee5653",
+        "type": "ui_text",
+        "z": "bba4aba8f9d733f3",
+        "group": "657060290e649c17",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "name": "car control",
+        "label": "controll: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 710,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "d4ad8c76152f9c6a",
+        "type": "ui_text",
+        "z": "bba4aba8f9d733f3",
+        "group": "c0bc059bdcfb6afb",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "name": "",
+        "label": "HIRA",
+        "format": "",
+        "layout": "col-center",
+        "className": "",
+        "x": 620,
+        "y": 2000,
+        "wires": []
     }
 ]
