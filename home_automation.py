@@ -16,15 +16,11 @@ def turn_off_dev(command):
 
 def find_device(command):
 
-    for x in bulb_list:
-        if x in command:
-            dev_num=4
-            break
-
-    if "fan" in command:
+    if "light" in command:
+        dev_num=4
+    elif "fan" in command:
             dev_num=5
-
-    if "lamp" in command:
+    elif "lamp" in command:
             dev_num=6
     else :
             dev_num=7

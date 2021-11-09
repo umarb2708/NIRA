@@ -49,17 +49,31 @@ def insert_raspi_info(values):
 
 
 def search_cmd(st):
-    lis=""
+    lis={}
     mycursor.execute("SELECT * FROM commands")
     myresult = mycursor.fetchall()
     mydb.commit()
     for x in myresult:
         if(x[1] in st):
-            lis=x[2]
+            lis["cmd"]=x[2]
+            lis["kw"]=x[1]
             break
 
     return lis
 
+def get_dash_cmd():
+    lis={}
+    mycursor.execute("SELECT * FROM run_commands")
+    myresult = mycursor.fetchall()
+    mydb.commit()
+    for x in myresult:
+        if(x[3] == 0 ):
+            lis["cmd"]=x[1]
+            lis["frm"]=x[2]
+            lis["exec"]=x[3]
+            break
+
+    return lis
 
 
 def insert_cmd_executed(cmd,status):
