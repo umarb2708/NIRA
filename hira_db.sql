@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 09, 2021 at 09:59 AM
+-- Generation Time: Nov 15, 2021 at 01:22 PM
 -- Server version: 10.3.31-MariaDB-0+deb10u1
 -- PHP Version: 7.3.31-1~deb10u1
 
@@ -84,29 +84,7 @@ CREATE TABLE `commands_executed` (
 --
 
 INSERT INTO `commands_executed` (`id`, `command`, `status`) VALUES
-(2, 'hira turn off bulb', '1'),
-(3, 'hira turn on fan', '1'),
-(4, 'hira turn off fan', '1'),
-(5, 'hira turn on fan', '1'),
-(6, 'hira turn off fan', '1'),
-(7, 'hira turn on lamp', '1'),
-(8, 'hira turn on bulb', '1'),
-(9, 'automation.turn_on_device', '1'),
-(10, 'turn on', '1'),
-(11, 'turn on', '1'),
-(12, 'turn off', '1'),
-(13, 'turn on', '1'),
-(14, 'turn on', '1'),
-(15, 'turn on', '1'),
-(16, 'turn on', '1'),
-(17, 'turn on', '1'),
-(18, 'automation.turn_off_dev', '1'),
-(19, 'automation.turn_on_device', '1'),
-(20, 'automation.turn_on_device', '1'),
-(21, 'automation.turn_off_dev', '1'),
-(22, 'automation.turn_on_device', '1'),
-(23, 'automation.turn_on_device', '1'),
-(24, 'automation.turn_off_dev', '1');
+(34, 'automation.turn_on_device', '1');
 
 -- --------------------------------------------------------
 
@@ -128,7 +106,7 @@ CREATE TABLE `hira_info` (
 --
 
 INSERT INTO `hira_info` (`id`, `pid`, `tty`, `status`, `init`, `input_mode`) VALUES
-(1, '0', 'pts/0', 0, 1, 2);
+(1, '0', 'pts/0', 0, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -142,18 +120,19 @@ CREATE TABLE `home_automation` (
   `floor` varchar(30) NOT NULL,
   `plac` varchar(30) NOT NULL,
   `component` varchar(10) NOT NULL DEFAULT 'light',
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  `param` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `home_automation`
 --
 
-INSERT INTO `home_automation` (`id`, `room_id`, `floor`, `plac`, `component`, `status`) VALUES
-(4, 0, 'first', 'living', 'Light', 0),
-(5, 0, 'first', 'living', 'Fan', 0),
-(6, 0, 'first', 'living', 'Lamp', 0),
-(7, 0, 'first', 'living', 'All', 1);
+INSERT INTO `home_automation` (`id`, `room_id`, `floor`, `plac`, `component`, `status`, `param`) VALUES
+(4, 0, 'first', 'living', 'Light', 0, 0),
+(5, 0, 'first', 'living', 'Fan', 1, 3),
+(6, 0, 'first', 'living', 'Lamp', 1, 2),
+(7, 0, 'first', 'living', 'All', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -176,7 +155,7 @@ CREATE TABLE `raspi_info` (
 --
 
 INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`, `connection`) VALUES
-(1, 46.2, 7.3, 39.5, 28.8, '1 h, 16 m', 1);
+(1, 48.3, 19.1, 43.4, 29.8, '24 m', 1);
 
 -- --------------------------------------------------------
 
@@ -196,7 +175,7 @@ CREATE TABLE `run_commands` (
 --
 
 INSERT INTO `run_commands` (`id`, `command`, `frm`, `exec`) VALUES
-(1, 'hira turn on light', 'node-red', 0);
+(1, 'hira turn on the light', 'node-red', 0);
 
 -- --------------------------------------------------------
 
@@ -229,7 +208,9 @@ INSERT INTO `user_log` (`id`, `user_name`, `ip_address`, `pid`, `log_time`) VALU
 (10, 'pi', '', '5387', '2021-11-03 10:14:03'),
 (11, 'pi', '', '6234', '2021-11-03 10:15:41'),
 (12, 'pi', '', '15476', '2021-11-06 09:50:44'),
-(13, 'pi', '', '16380', '2021-11-06 09:52:17');
+(13, 'pi', '', '16380', '2021-11-06 09:52:17'),
+(14, 'pi', '', '6212', '2021-11-11 06:23:02'),
+(15, 'pi', '', '3378', '2021-11-12 15:45:43');
 
 --
 -- Indexes for dumped tables
@@ -279,7 +260,7 @@ ALTER TABLE `user_log`
 -- AUTO_INCREMENT for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `hira_info`
 --
@@ -294,7 +275,7 @@ ALTER TABLE `run_commands`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
