@@ -16,7 +16,7 @@ import os
 #Variables
 commands=""
 sleep=0
-debug_mode=1
+debug_mode=0
 def initialize():
     global inpt
     #This Function for initialize PI when Start Up  or Restart
@@ -33,6 +33,8 @@ def initialize():
     time.sleep(10)
     str="Hi I am Hi ra . Human Intelligent Robo Assistant. Command me preceeding with hi ra"
     f.out.txt_out(str,1,1,1)
+
+    
 def exec_commands():
     global sleep,inpt
     while sleep==0:
