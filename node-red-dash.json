@@ -8,6 +8,22 @@
         "env": []
     },
     {
+        "id": "e2016417672d6d0e",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "27da521ba39d28a3",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "6c0f44bd30c92d5e",
         "type": "mqtt-broker",
         "name": "Living Room",
@@ -259,7 +275,27 @@
         "className": ""
     },
     {
-        "id": "e34bafd9ebf26749",
+        "id": "00826fa185595be1",
+        "type": "ui_tab",
+        "name": "Home Automation",
+        "icon": "home",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "caf3190480098eb9",
+        "type": "ui_group",
+        "name": "Room-1 ",
+        "tab": "00826fa185595be1",
+        "order": 1,
+        "disp": true,
+        "width": 2,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6e4c11409a711ec3",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
@@ -269,163 +305,24 @@
         "height": 1
     },
     {
-        "id": "fd494c0aecc2cb23",
-        "type": "ui_switch",
+        "id": "6d44d572309e1e93",
+        "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
-        "name": "",
-        "label": "Light",
-        "tooltip": "",
-        "group": "89e77362bf3d129d",
-        "order": 1,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "num",
-        "onicon": "lightbulb_outline",
-        "oncolor": "lime",
-        "offvalue": "0",
-        "offvalueType": "num",
-        "officon": "lightbulb_outline",
-        "offcolor": "yellow",
-        "animate": false,
-        "className": "",
-        "x": 550,
-        "y": 140,
-        "wires": [
-            [
-                "5a0b86b52782922b",
-                "14fb9a01a2604f17"
-            ]
-        ]
-    },
-    {
-        "id": "310082557ad83fd0",
-        "type": "ui_switch",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "label": "Fan",
-        "tooltip": "",
+        "name": "spacer",
         "group": "89e77362bf3d129d",
         "order": 2,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "num",
-        "onicon": "wb_sunny",
-        "oncolor": "lime",
-        "offvalue": "0",
-        "offvalueType": "num",
-        "officon": "wb_sunny",
-        "offcolor": "yellow",
-        "animate": false,
-        "className": "",
-        "x": 550,
-        "y": 180,
-        "wires": [
-            [
-                "2369e1e7c99494c2",
-                "bbd9f888ca668733"
-            ]
-        ]
+        "width": 1,
+        "height": 1
     },
     {
-        "id": "4837312bc800e8e4",
-        "type": "ui_switch",
+        "id": "9faf83a6edacb9a5",
+        "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
-        "name": "",
-        "label": "Lamp",
-        "tooltip": "",
+        "name": "spacer",
         "group": "89e77362bf3d129d",
-        "order": 3,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "num",
-        "onicon": "fa-shower",
-        "oncolor": "lime",
-        "offvalue": "0",
-        "offvalueType": "num",
-        "officon": "fa-shower",
-        "offcolor": "yellow",
-        "animate": false,
-        "className": "",
-        "x": 550,
-        "y": 240,
-        "wires": [
-            [
-                "ce26fb55781987b4",
-                "242ced2ffea91886"
-            ]
-        ]
-    },
-    {
-        "id": "5a0b86b52782922b",
-        "type": "mqtt out",
-        "z": "bba4aba8f9d733f3",
-        "name": "ESP1-LIGHT",
-        "topic": "first/living/light",
-        "qos": "2",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "6c0f44bd30c92d5e",
-        "x": 770,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "2369e1e7c99494c2",
-        "type": "mqtt out",
-        "z": "bba4aba8f9d733f3",
-        "name": "ESP1-FAN",
-        "topic": "first/living/fan",
-        "qos": "2",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "6c0f44bd30c92d5e",
-        "x": 770,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "ce26fb55781987b4",
-        "type": "mqtt out",
-        "z": "bba4aba8f9d733f3",
-        "name": "ESP1-LAMP",
-        "topic": "first/living/lamp",
-        "qos": "2",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "6c0f44bd30c92d5e",
-        "x": 770,
-        "y": 240,
-        "wires": []
+        "order": 6,
+        "width": 1,
+        "height": 1
     },
     {
         "id": "d4ba43a001d7cfcf",
@@ -518,7 +415,7 @@
         "wtype": "current",
         "lon": "",
         "lat": "",
-        "city": "Thrissur",
+        "city": "Thrissur,kerala",
         "country": "India",
         "language": "en",
         "x": 460,
@@ -798,138 +695,6 @@
         ]
     },
     {
-        "id": "2db3b759300393f1",
-        "type": "mysql",
-        "z": "bba4aba8f9d733f3",
-        "mydb": "dafdac5f3491cd58",
-        "name": "Autoamtion",
-        "x": 230,
-        "y": 180,
-        "wires": [
-            [
-                "51b16989ac9063b3"
-            ]
-        ]
-    },
-    {
-        "id": "1195649c42f9469c",
-        "type": "inject",
-        "z": "bba4aba8f9d733f3",
-        "name": "Trigger DB",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "3",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "SELECT * FROM `home_automation` WHERE plac=\"living\" AND floor=\"first\"",
-        "x": 70,
-        "y": 180,
-        "wires": [
-            [
-                "2db3b759300393f1"
-            ]
-        ]
-    },
-    {
-        "id": "51b16989ac9063b3",
-        "type": "function",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "func": "var msg1={payload:msg.payload[0][\"status\"]};\nvar msg2={payload:msg.payload[1][\"status\"]};\nvar msg3={payload:msg.payload[2][\"status\"]};\nreturn [msg1,msg2,msg3];",
-        "outputs": 3,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 180,
-        "wires": [
-            [
-                "fd494c0aecc2cb23"
-            ],
-            [
-                "310082557ad83fd0"
-            ],
-            [
-                "4837312bc800e8e4"
-            ]
-        ]
-    },
-    {
-        "id": "14fb9a01a2604f17",
-        "type": "function",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=4;\"}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 120,
-        "wires": [
-            [
-                "2676fe142f4e896b"
-            ]
-        ]
-    },
-    {
-        "id": "2676fe142f4e896b",
-        "type": "mysql",
-        "z": "bba4aba8f9d733f3",
-        "mydb": "dafdac5f3491cd58",
-        "name": "Home Automation",
-        "x": 1010,
-        "y": 200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bbd9f888ca668733",
-        "type": "function",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=5;\"}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 200,
-        "wires": [
-            [
-                "2676fe142f4e896b"
-            ]
-        ]
-    },
-    {
-        "id": "242ced2ffea91886",
-        "type": "function",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=6;\"}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 280,
-        "wires": [
-            [
-                "2676fe142f4e896b"
-            ]
-        ]
-    },
-    {
         "id": "bbf655ca85956ddc",
         "type": "ui_text",
         "z": "bba4aba8f9d733f3",
@@ -1196,7 +961,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "3",
+        "repeat": "1",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -1386,7 +1151,8 @@
         "y": 1500,
         "wires": [
             [
-                "1049d361d67a635e"
+                "1049d361d67a635e",
+                "f07c9b54b8e8adb1"
             ]
         ]
     },
@@ -1419,7 +1185,7 @@
         "type": "debug",
         "z": "bba4aba8f9d733f3",
         "name": "exectd_cmd_d",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1473,8 +1239,7 @@
         "wires": [
             [
                 "cd3be629d550eb7b",
-                "dcff32508114b098",
-                "f07c9b54b8e8adb1"
+                "dcff32508114b098"
             ]
         ]
     },
@@ -1498,11 +1263,12 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 490,
-        "y": 1840,
+        "x": 190,
+        "y": 1880,
         "wires": [
             [
-                "4d5661aa06ee5653"
+                "4d5661aa06ee5653",
+                "0954da6943d62b3c"
             ]
         ]
     },
@@ -1526,11 +1292,12 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 490,
-        "y": 1720,
+        "x": 190,
+        "y": 1760,
         "wires": [
             [
-                "4d5661aa06ee5653"
+                "4d5661aa06ee5653",
+                "0954da6943d62b3c"
             ]
         ]
     },
@@ -1554,11 +1321,12 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 490,
-        "y": 1800,
+        "x": 190,
+        "y": 1840,
         "wires": [
             [
-                "4d5661aa06ee5653"
+                "4d5661aa06ee5653",
+                "0954da6943d62b3c"
             ]
         ]
     },
@@ -1582,11 +1350,12 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 490,
-        "y": 1680,
+        "x": 190,
+        "y": 1720,
         "wires": [
             [
-                "4d5661aa06ee5653"
+                "4d5661aa06ee5653",
+                "0954da6943d62b3c"
             ]
         ]
     },
@@ -1610,11 +1379,12 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 490,
-        "y": 1760,
+        "x": 190,
+        "y": 1800,
         "wires": [
             [
-                "4d5661aa06ee5653"
+                "4d5661aa06ee5653",
+                "0954da6943d62b3c"
             ]
         ]
     },
@@ -1631,8 +1401,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "",
-        "x": 710,
-        "y": 1760,
+        "x": 350,
+        "y": 1980,
         "wires": []
     },
     {
@@ -1640,16 +1410,937 @@
         "type": "ui_text",
         "z": "bba4aba8f9d733f3",
         "group": "c0bc059bdcfb6afb",
-        "order": 0,
-        "width": "3",
-        "height": "3",
+        "order": 1,
+        "width": 3,
+        "height": 3,
         "name": "",
         "label": "HIRA",
         "format": "",
         "layout": "col-center",
         "className": "",
-        "x": 620,
+        "x": 270,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "4e9b3112a7768f33",
+        "type": "rpi-gpio out",
+        "z": "bba4aba8f9d733f3",
+        "name": "in1",
+        "pin": "33",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 730,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "0954da6943d62b3c",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "var msg1;\nvar msg2;\nvar msg3;\nvar msg4;\n\n\n\nswitch (msg.payload)\n{\n    case \"right\":   msg1={payload:0};\n                    msg2={payload:1};\n                    msg3={payload:0};\n                    msg4={payload:1};\n                    msg5={payload:0};\n                    msg6={payload:1};\n                \n                    break;\n    case \"left\":    msg1={payload:1};\n                    msg2={payload:0};\n                    msg3={payload:1};\n                    msg4={payload:0};\n                    msg5={payload:1};\n                    msg6={payload:0};\n                    break;\n    case \"up\":      msg1={payload:0};\n                    msg2={payload:1};\n                    msg3={payload:1};\n                    msg4={payload:0};\n                    msg5={payload:1};\n                    msg6={payload:1};\n                    break;\n    case \"down\":    msg1={payload:1};\n                    msg2={payload:0};\n                    msg3={payload:0};\n                    msg4={payload:1};\n                    msg5={payload:1};\n                    msg6={payload:1};\n                    break;\n    case \"stop\":    msg1={payload:0};\n                    msg2={payload:0};\n                    msg3={payload:0};\n                    msg4={payload:0};\n                    msg5={payload:0};\n                    msg6={payload:0};\n                    break;\n}\nreturn [msg1,msg2,msg3,msg4,msg5,msg6];",
+        "outputs": 6,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1880,
+        "wires": [
+            [
+                "4e9b3112a7768f33"
+            ],
+            [
+                "09d3d70ddb0efa58"
+            ],
+            [
+                "7f1ee4f9bd87e3f8"
+            ],
+            [
+                "f5334b7cea8769a1"
+            ],
+            [
+                "89222674736b65fc"
+            ],
+            [
+                "19778b77373d7861"
+            ]
+        ]
+    },
+    {
+        "id": "09d3d70ddb0efa58",
+        "type": "rpi-gpio out",
+        "z": "bba4aba8f9d733f3",
+        "name": "in2",
+        "pin": "35",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 730,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "7f1ee4f9bd87e3f8",
+        "type": "rpi-gpio out",
+        "z": "bba4aba8f9d733f3",
+        "name": "in3",
+        "pin": "38",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 730,
+        "y": 1880,
+        "wires": []
+    },
+    {
+        "id": "f5334b7cea8769a1",
+        "type": "rpi-gpio out",
+        "z": "bba4aba8f9d733f3",
+        "name": "in4",
+        "pin": "40",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 730,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "89222674736b65fc",
+        "type": "rpi-gpio out",
+        "z": "bba4aba8f9d733f3",
+        "name": "En1",
+        "pin": "37",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 710,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "19778b77373d7861",
+        "type": "rpi-gpio out",
+        "z": "bba4aba8f9d733f3",
+        "name": "En2",
+        "pin": "36",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 710,
         "y": 2000,
         "wires": []
+    },
+    {
+        "id": "2c6442d3c2333b74",
+        "type": "mqtt in",
+        "z": "bba4aba8f9d733f3",
+        "name": "ESP-ROOM-I",
+        "topic": "ESP-ROOM-I",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6c0f44bd30c92d5e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 300,
+        "wires": [
+            [
+                "584c58449ed00295"
+            ]
+        ]
+    },
+    {
+        "id": "584c58449ed00295",
+        "type": "debug",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9ef4e7db872b1671",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Autoamtion",
+        "x": 270,
+        "y": 120,
+        "wires": [
+            [
+                "e973af26c9941368"
+            ]
+        ]
+    },
+    {
+        "id": "e973af26c9941368",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "var msg1={\n    payload:msg.payload[0][\"status\"]\n};\nvar msg2={\n    payload:msg.payload[1][\"status\"]\n};\nvar msg3={\n    payload:msg.payload[2][\"status\"],\n    topic:msg.payload[2][\"param\"],\n    colour:(msg.payload[2][\"param\"]==0)?\"red\":\n        (msg.payload[2][\"param\"]==1?\"green\":\"blue\")\n    \n};\nreturn [msg1,msg2,msg3];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "2d4d8649b4ee3129"
+            ],
+            [
+                "b2d41efbe1646b22"
+            ],
+            [
+                "c41825af886d1634",
+                "4526c041f2f5d91a"
+            ]
+        ]
+    },
+    {
+        "id": "bc6af45d665668c2",
+        "type": "ui_slider",
+        "z": "bba4aba8f9d733f3",
+        "name": "fan speed",
+        "label": "",
+        "tooltip": "",
+        "group": "89e77362bf3d129d",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "5",
+        "step": 1,
+        "className": "",
+        "x": 600,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d9a484e70764652c",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=4;\",payload:st}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 60,
+        "wires": [
+            [
+                "f42003b33f36c27f",
+                "ce534f52efc674c8"
+            ]
+        ]
+    },
+    {
+        "id": "fce906dc769099fd",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=5;\",payload:st}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 100,
+        "wires": [
+            [
+                "649da980bf31d785",
+                "f42003b33f36c27f"
+            ]
+        ]
+    },
+    {
+        "id": "4ec27e9b16710955",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=6;\",payload:st}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 140,
+        "wires": [
+            [
+                "f42003b33f36c27f",
+                "f28edc50fa447366"
+            ]
+        ]
+    },
+    {
+        "id": "ce534f52efc674c8",
+        "type": "mqtt out",
+        "z": "bba4aba8f9d733f3",
+        "name": "ESP1-LIGHT",
+        "topic": "first/living/light",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c0f44bd30c92d5e",
+        "x": 1010,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "649da980bf31d785",
+        "type": "mqtt out",
+        "z": "bba4aba8f9d733f3",
+        "name": "ESP1-FAN",
+        "topic": "first/living/fan",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c0f44bd30c92d5e",
+        "x": 1010,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f28edc50fa447366",
+        "type": "mqtt out",
+        "z": "bba4aba8f9d733f3",
+        "name": "ESP1-LAMP",
+        "topic": "first/living/lamp",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c0f44bd30c92d5e",
+        "x": 1010,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "955c34be6db2a113",
+        "type": "mqtt out",
+        "z": "bba4aba8f9d733f3",
+        "name": "ESP1_1-CLR",
+        "topic": "first/living/clr",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c0f44bd30c92d5e",
+        "x": 1020,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "2d4d8649b4ee3129",
+        "type": "ui_switch",
+        "z": "bba4aba8f9d733f3",
+        "name": "Light",
+        "label": "",
+        "tooltip": "",
+        "group": "89e77362bf3d129d",
+        "order": 1,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "lightbulb_outline",
+        "oncolor": "lime",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "lightbulb_outline",
+        "offcolor": "yellow",
+        "animate": false,
+        "className": "",
+        "x": 590,
+        "y": 60,
+        "wires": [
+            [
+                "d9a484e70764652c"
+            ]
+        ]
+    },
+    {
+        "id": "b2d41efbe1646b22",
+        "type": "ui_switch",
+        "z": "bba4aba8f9d733f3",
+        "name": "Fan",
+        "label": "",
+        "tooltip": "",
+        "group": "89e77362bf3d129d",
+        "order": 3,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "0",
+        "onvalueType": "num",
+        "onicon": "toys",
+        "oncolor": "lime",
+        "offvalue": "1",
+        "offvalueType": "num",
+        "officon": "toys",
+        "offcolor": "yellow",
+        "animate": false,
+        "className": "",
+        "x": 590,
+        "y": 100,
+        "wires": [
+            [
+                "fce906dc769099fd"
+            ]
+        ]
+    },
+    {
+        "id": "c41825af886d1634",
+        "type": "ui_switch",
+        "z": "bba4aba8f9d733f3",
+        "name": "night lamp",
+        "label": "",
+        "tooltip": "",
+        "group": "89e77362bf3d129d",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "0",
+        "onvalueType": "num",
+        "onicon": "fa-moon-o",
+        "oncolor": "lime",
+        "offvalue": "1",
+        "offvalueType": "num",
+        "officon": "fa-moon-o",
+        "offcolor": "yellow",
+        "animate": false,
+        "className": "",
+        "x": 610,
+        "y": 140,
+        "wires": [
+            [
+                "4ec27e9b16710955"
+            ]
+        ]
+    },
+    {
+        "id": "4526c041f2f5d91a",
+        "type": "ui_button",
+        "z": "bba4aba8f9d733f3",
+        "name": "RGB",
+        "group": "89e77362bf3d129d",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "{{colour}}",
+        "bgcolor": "rgb(55,55,55)",
+        "className": "",
+        "icon": "opacity",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 590,
+        "y": 180,
+        "wires": [
+            [
+                "a74931a5d7d1c0db"
+            ]
+        ]
+    },
+    {
+        "id": "a74931a5d7d1c0db",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "clr=msg.topic;\nif(clr==2)\n{\n    clr=0;\n}\nelse\n{\n    clr=clr+1;\n}\nmsg={topic:\"UPDATE home_automation SET param = \"+clr.toString()+\" WHERE id=6;\",payload:clr};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 180,
+        "wires": [
+            [
+                "955c34be6db2a113",
+                "f42003b33f36c27f"
+            ]
+        ]
+    },
+    {
+        "id": "18864d158ff53cc6",
+        "type": "inject",
+        "z": "bba4aba8f9d733f3",
+        "name": "Trigger DB",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM `home_automation` WHERE plac=\"living\" AND floor=\"first\"",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "9ef4e7db872b1671"
+            ]
+        ]
+    },
+    {
+        "id": "f42003b33f36c27f",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Home Automation",
+        "x": 1030,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed9b285aa406e8eb",
+        "type": "inject",
+        "z": "e2016417672d6d0e",
+        "name": "Trigger DB",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM `home_automation` WHERE plac=\"living\" AND floor=\"first\"",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "7fdd3a2d98c906c6"
+            ]
+        ]
+    },
+    {
+        "id": "7fdd3a2d98c906c6",
+        "type": "mysql",
+        "z": "e2016417672d6d0e",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Autoamtion",
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "7339b306126ce68b"
+            ]
+        ]
+    },
+    {
+        "id": "7339b306126ce68b",
+        "type": "function",
+        "z": "e2016417672d6d0e",
+        "name": "",
+        "func": "var msg1={\n    payload:msg.payload[0][\"status\"]\n};\nvar msg2={\n    payload:msg.payload[1][\"status\"]\n};\nvar msg3={\n    payload:msg.payload[2][\"status\"],\n    topic:msg.payload[2][\"param\"],\n    colour:(msg.payload[2][\"param\"]==0)?\"red\":\n        (msg.payload[2][\"param\"]==1?\"green\":\"blue\")\n    \n};\nreturn [msg1,msg2,msg3];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "e7e40d22d62c7355"
+            ],
+            [
+                "46529ec12d66ef24"
+            ],
+            [
+                "aa5b0870752fd1d4",
+                "e8801a3edd8c889f"
+            ]
+        ]
+    },
+    {
+        "id": "1b0c0470cb0b1356",
+        "type": "ui_slider",
+        "z": "e2016417672d6d0e",
+        "name": "fan speed",
+        "label": "",
+        "tooltip": "",
+        "group": "caf3190480098eb9",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "5",
+        "step": 1,
+        "className": "",
+        "x": 660,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "564ec0aa16fb8389",
+        "type": "function",
+        "z": "e2016417672d6d0e",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=4;\",payload:st}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 60,
+        "wires": [
+            [
+                "7654ed9732f34d7a",
+                "caa74c4e75bb2039"
+            ]
+        ]
+    },
+    {
+        "id": "d2e68a6fdaa5a42a",
+        "type": "function",
+        "z": "e2016417672d6d0e",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=5;\",payload:st}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 100,
+        "wires": [
+            [
+                "6df0acd19db54297",
+                "7654ed9732f34d7a"
+            ]
+        ]
+    },
+    {
+        "id": "bbb009eda1a317c1",
+        "type": "function",
+        "z": "e2016417672d6d0e",
+        "name": "",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=6;\",payload:st}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 140,
+        "wires": [
+            [
+                "7654ed9732f34d7a",
+                "47af208b4b3115cf"
+            ]
+        ]
+    },
+    {
+        "id": "7654ed9732f34d7a",
+        "type": "mysql",
+        "z": "e2016417672d6d0e",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Home Automation",
+        "x": 1030,
+        "y": 20,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "caa74c4e75bb2039",
+        "type": "mqtt out",
+        "z": "e2016417672d6d0e",
+        "name": "ESP1-LIGHT",
+        "topic": "first/living/light",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c0f44bd30c92d5e",
+        "x": 1010,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "6df0acd19db54297",
+        "type": "mqtt out",
+        "z": "e2016417672d6d0e",
+        "name": "ESP1-FAN",
+        "topic": "first/living/fan",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c0f44bd30c92d5e",
+        "x": 1010,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "47af208b4b3115cf",
+        "type": "mqtt out",
+        "z": "e2016417672d6d0e",
+        "name": "ESP1-LAMP",
+        "topic": "first/living/lamp",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c0f44bd30c92d5e",
+        "x": 1010,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e70f84c317a8e584",
+        "type": "mqtt out",
+        "z": "e2016417672d6d0e",
+        "name": "ESP1_1-CLR",
+        "topic": "first/living/clr",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c0f44bd30c92d5e",
+        "x": 1000,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e7e40d22d62c7355",
+        "type": "ui_switch",
+        "z": "e2016417672d6d0e",
+        "name": "Light",
+        "label": "",
+        "tooltip": "",
+        "group": "caf3190480098eb9",
+        "order": 1,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "lightbulb_outline",
+        "oncolor": "lime",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "lightbulb_outline",
+        "offcolor": "yellow",
+        "animate": false,
+        "className": "",
+        "x": 590,
+        "y": 60,
+        "wires": [
+            [
+                "564ec0aa16fb8389"
+            ]
+        ]
+    },
+    {
+        "id": "46529ec12d66ef24",
+        "type": "ui_switch",
+        "z": "e2016417672d6d0e",
+        "name": "Fan",
+        "label": "",
+        "tooltip": "",
+        "group": "caf3190480098eb9",
+        "order": 3,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "0",
+        "onvalueType": "num",
+        "onicon": "toys",
+        "oncolor": "lime",
+        "offvalue": "1",
+        "offvalueType": "num",
+        "officon": "toys",
+        "offcolor": "yellow",
+        "animate": false,
+        "className": "",
+        "x": 590,
+        "y": 100,
+        "wires": [
+            [
+                "d2e68a6fdaa5a42a"
+            ]
+        ]
+    },
+    {
+        "id": "aa5b0870752fd1d4",
+        "type": "ui_switch",
+        "z": "e2016417672d6d0e",
+        "name": "night lamp",
+        "label": "",
+        "tooltip": "",
+        "group": "caf3190480098eb9",
+        "order": 4,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "0",
+        "onvalueType": "num",
+        "onicon": "fa-moon-o",
+        "oncolor": "lime",
+        "offvalue": "1",
+        "offvalueType": "num",
+        "officon": "fa-moon-o",
+        "offcolor": "yellow",
+        "animate": false,
+        "className": "",
+        "x": 610,
+        "y": 140,
+        "wires": [
+            [
+                "bbb009eda1a317c1"
+            ]
+        ]
+    },
+    {
+        "id": "e8801a3edd8c889f",
+        "type": "ui_button",
+        "z": "e2016417672d6d0e",
+        "name": "RGB",
+        "group": "caf3190480098eb9",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "{{colour}}",
+        "bgcolor": "rgb(55,55,55)",
+        "className": "",
+        "icon": "opacity",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 610,
+        "y": 200,
+        "wires": [
+            [
+                "b33371b9924c18cd"
+            ]
+        ]
+    },
+    {
+        "id": "b33371b9924c18cd",
+        "type": "function",
+        "z": "e2016417672d6d0e",
+        "name": "",
+        "func": "clr=msg.topic;\nif(clr==2)\n{\n    clr=0;\n}\nelse\n{\n    clr=clr+1;\n}\nmsg={topic:\"UPDATE home_automation SET param = \"+clr.toString()+\" WHERE id=6;\",payload:clr};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 200,
+        "wires": [
+            [
+                "e70f84c317a8e584",
+                "7654ed9732f34d7a"
+            ]
+        ]
     }
 ]
