@@ -75,6 +75,23 @@ def get_dash_cmd():
 
     return lis
 
+def get_contact(person):
+    val={
+            "found":0
+            }
+    mycursor.execute("SELECT * FROM contacts")
+    myresult = mycursor.fetchall()
+    mydb.commit()
+    for res in  myresult:
+        if res[1] in person:
+            val["found"]=1
+            val["name"]=res[1]
+            val["phone"]=res[2]
+            val["email"]=res[3]
+            val["Address"]=res[4]
+    return val
+
+
 
 def insert_cmd_executed(cmd,status):
     sql = "INSERT INTO commands_executed (command,status) VALUES (%s, %s)"
