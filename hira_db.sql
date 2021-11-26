@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 26, 2021 at 04:43 AM
+-- Generation Time: Nov 26, 2021 at 06:24 AM
 -- Server version: 10.3.31-MariaDB-0+deb10u1
 -- PHP Version: 7.3.31-1~deb10u1
 
@@ -50,27 +50,19 @@ INSERT INTO `climate_info` (`id`, `temp`, `humidity`, `pressure`, `place`, `wind
 --
 
 CREATE TABLE `commands` (
-  `sno` int(6) NOT NULL,
-  `main_kw` varchar(50) NOT NULL,
-  `action_file` varchar(50) NOT NULL DEFAULT 'action_not_found',
-  `keywords` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int(1) NOT NULL,
+  `command` text NOT NULL,
+  `priority` varchar(4) NOT NULL DEFAULT 'low',
+  `frm` varchar(30) NOT NULL DEFAULT 'node-red',
+  `exec` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `commands`
 --
 
-INSERT INTO `commands` (`sno`, `main_kw`, `action_file`, `keywords`) VALUES
-(4, 'turn on', 'automation.turn_on_device', ''),
-(5, 'turn off', 'automation.turn_off_dev', ''),
-(6, 'move forward', 'mov.forward', ''),
-(7, 'training', 'train.train_rex', ''),
-(8, 'wiki', 'wiki.search_in_wiki', ''),
-(9, 'search', 'web.search_from_net', ''),
-(10, 'open youtube', 'yt.open_youtube', ''),
-(11, 'close youtube', 'yt.close_youtube', ''),
-(12, 'colour', 'automation.change_colour', 'change,red,blue,green'),
-(13, 'email', 'mail.send_email', 'send,to,mail,');
+INSERT INTO `commands` (`id`, `command`, `priority`, `frm`, `exec`) VALUES
+(1, 'hira turn on the light', 'low', 'node-red', 0);
 
 -- --------------------------------------------------------
 
@@ -90,6 +82,35 @@ CREATE TABLE `commands_executed` (
 
 INSERT INTO `commands_executed` (`id`, `command`, `status`) VALUES
 (42, 'mail.send_email', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `command_centre`
+--
+
+CREATE TABLE `command_centre` (
+  `sno` int(6) NOT NULL,
+  `main_kw` varchar(50) NOT NULL,
+  `action_file` varchar(50) NOT NULL DEFAULT 'action_not_found',
+  `keywords` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `command_centre`
+--
+
+INSERT INTO `command_centre` (`sno`, `main_kw`, `action_file`, `keywords`) VALUES
+(4, 'turn on', 'automation.turn_on_device', ''),
+(5, 'turn off', 'automation.turn_off_dev', ''),
+(6, 'move forward', 'mov.forward', ''),
+(7, 'training', 'train.train_rex', ''),
+(8, 'wiki', 'wiki.search_in_wiki', ''),
+(9, 'search', 'web.search_from_net', ''),
+(10, 'open youtube', 'yt.open_youtube', ''),
+(11, 'close youtube', 'yt.close_youtube', ''),
+(12, 'colour', 'automation.change_colour', 'change,red,blue,green'),
+(13, 'email', 'mail.send_email', 'send,to,mail,');
 
 -- --------------------------------------------------------
 
@@ -158,7 +179,7 @@ CREATE TABLE `home_automation` (
 INSERT INTO `home_automation` (`id`, `room_id`, `floor`, `plac`, `component`, `status`, `param`) VALUES
 (4, 0, 'first', 'living', 'Light', 0, 0),
 (5, 0, 'first', 'living', 'Fan', 0, 0),
-(6, 0, 'first', 'living', 'Lamp', 1, 1),
+(6, 0, 'first', 'living', 'Lamp', 1, 3),
 (7, 0, 'first', 'living', 'All', 1, 1);
 
 -- --------------------------------------------------------
@@ -182,27 +203,7 @@ CREATE TABLE `raspi_info` (
 --
 
 INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`, `connection`) VALUES
-(1, 50.5, 25, 41.9, 30.2, '42 m', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `run_commands`
---
-
-CREATE TABLE `run_commands` (
-  `id` int(1) NOT NULL,
-  `command` text NOT NULL,
-  `frm` varchar(30) NOT NULL DEFAULT 'node-red',
-  `exec` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `run_commands`
---
-
-INSERT INTO `run_commands` (`id`, `command`, `frm`, `exec`) VALUES
-(1, 'hira turn on the light', 'node-red', 0);
+(1, 50.5, 6.1, 44.9, 30.2, '36 m', 1);
 
 -- --------------------------------------------------------
 
@@ -254,13 +255,19 @@ INSERT INTO `user_log` (`id`, `user_name`, `ip_address`, `pid`, `log_time`) VALU
 -- Indexes for table `commands`
 --
 ALTER TABLE `commands`
-  ADD PRIMARY KEY (`sno`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `command_centre`
+--
+ALTER TABLE `command_centre`
+  ADD PRIMARY KEY (`sno`);
 
 --
 -- Indexes for table `contacts`
@@ -287,12 +294,6 @@ ALTER TABLE `raspi_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `run_commands`
---
-ALTER TABLE `run_commands`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `user_log`
 --
 ALTER TABLE `user_log`
@@ -306,12 +307,17 @@ ALTER TABLE `user_log`
 -- AUTO_INCREMENT for table `commands`
 --
 ALTER TABLE `commands`
-  MODIFY `sno` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+--
+-- AUTO_INCREMENT for table `command_centre`
+--
+ALTER TABLE `command_centre`
+  MODIFY `sno` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `contacts`
 --
@@ -322,11 +328,6 @@ ALTER TABLE `contacts`
 --
 ALTER TABLE `hira_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `run_commands`
---
-ALTER TABLE `run_commands`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user_log`
 --
