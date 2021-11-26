@@ -13,5 +13,6 @@ import android_adb as adb
 import youtube as yt
 import output as out
 import raspi_info as info
+import smtp as mail
 #import init_hira as init
 #import exec_commands as exe
