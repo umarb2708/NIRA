@@ -14,5 +14,7 @@ import youtube as yt
 import output as out
 import raspi_info as info
 import smtp as mail
+import errors as err
+import number_convertion as conv
 #import init_hira as init
 #import exec_commands as exe
