@@ -49,8 +49,11 @@ def insert_raspi_info(values):
 
 
 def search_cmd(st):
-    lis={}
-    mycursor.execute("SELECT * FROM commands")
+    lis={
+            "cmd":"not found",
+            "kw" :"err.cmd_not_found"
+            }
+    mycursor.execute("SELECT * FROM command_centre")
     myresult = mycursor.fetchall()
     mydb.commit()
     for x in myresult:
