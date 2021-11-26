@@ -1,6 +1,7 @@
 import import_file as f
 
-def txt_out(str,ser,ter,t2s):
+def txt_out(str,mode):
+    
     if ser:
         f.ser.ser_write(str)
     if ter:
