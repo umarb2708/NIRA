@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 15, 2021 at 01:22 PM
+-- Generation Time: Nov 26, 2021 at 04:43 AM
 -- Server version: 10.3.31-MariaDB-0+deb10u1
 -- PHP Version: 7.3.31-1~deb10u1
 
@@ -52,20 +52,25 @@ INSERT INTO `climate_info` (`id`, `temp`, `humidity`, `pressure`, `place`, `wind
 CREATE TABLE `commands` (
   `sno` int(6) NOT NULL,
   `main_kw` varchar(50) NOT NULL,
-  `action_file` varchar(50) NOT NULL DEFAULT 'action_not_found'
+  `action_file` varchar(50) NOT NULL DEFAULT 'action_not_found',
+  `keywords` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `commands`
 --
 
-INSERT INTO `commands` (`sno`, `main_kw`, `action_file`) VALUES
-(4, 'turn on', 'automation.turn_on_device'),
-(5, 'turn off', 'automation.turn_off_dev'),
-(6, 'move forward', 'mov.forward'),
-(7, 'training', 'train.train_rex'),
-(8, 'wiki', 'wiki.search_in_wiki'),
-(9, 'search', 'web.search_from_net');
+INSERT INTO `commands` (`sno`, `main_kw`, `action_file`, `keywords`) VALUES
+(4, 'turn on', 'automation.turn_on_device', ''),
+(5, 'turn off', 'automation.turn_off_dev', ''),
+(6, 'move forward', 'mov.forward', ''),
+(7, 'training', 'train.train_rex', ''),
+(8, 'wiki', 'wiki.search_in_wiki', ''),
+(9, 'search', 'web.search_from_net', ''),
+(10, 'open youtube', 'yt.open_youtube', ''),
+(11, 'close youtube', 'yt.close_youtube', ''),
+(12, 'colour', 'automation.change_colour', 'change,red,blue,green'),
+(13, 'email', 'mail.send_email', 'send,to,mail,');
 
 -- --------------------------------------------------------
 
@@ -84,7 +89,29 @@ CREATE TABLE `commands_executed` (
 --
 
 INSERT INTO `commands_executed` (`id`, `command`, `status`) VALUES
-(34, 'automation.turn_on_device', '1');
+(42, 'mail.send_email', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `sno` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `email` text NOT NULL,
+  `Address` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`sno`, `name`, `phone`, `email`, `Address`) VALUES
+(1, 'umar', '7034221248', 'umarthottathil1996@gmail.com', 'Thottathil, Maleshamangalam, Thrissur'),
+(2, 'sumayya', '9074345928', 'sumayyasamad64@gmail.com', 'manaladi');
 
 -- --------------------------------------------------------
 
@@ -130,9 +157,9 @@ CREATE TABLE `home_automation` (
 
 INSERT INTO `home_automation` (`id`, `room_id`, `floor`, `plac`, `component`, `status`, `param`) VALUES
 (4, 0, 'first', 'living', 'Light', 0, 0),
-(5, 0, 'first', 'living', 'Fan', 1, 3),
-(6, 0, 'first', 'living', 'Lamp', 1, 2),
-(7, 0, 'first', 'living', 'All', 1, 0);
+(5, 0, 'first', 'living', 'Fan', 0, 0),
+(6, 0, 'first', 'living', 'Lamp', 1, 1),
+(7, 0, 'first', 'living', 'All', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -155,7 +182,7 @@ CREATE TABLE `raspi_info` (
 --
 
 INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`, `connection`) VALUES
-(1, 48.3, 19.1, 43.4, 29.8, '24 m', 1);
+(1, 50.5, 25, 41.9, 30.2, '42 m', 1);
 
 -- --------------------------------------------------------
 
@@ -210,17 +237,36 @@ INSERT INTO `user_log` (`id`, `user_name`, `ip_address`, `pid`, `log_time`) VALU
 (12, 'pi', '', '15476', '2021-11-06 09:50:44'),
 (13, 'pi', '', '16380', '2021-11-06 09:52:17'),
 (14, 'pi', '', '6212', '2021-11-11 06:23:02'),
-(15, 'pi', '', '3378', '2021-11-12 15:45:43');
+(15, 'pi', '', '3378', '2021-11-12 15:45:43'),
+(16, 'pi', '', '27180', '2021-11-15 14:47:44'),
+(17, 'pi', '', '7827', '2021-11-15 15:06:22'),
+(18, 'pi', '', '11960', '2021-11-16 17:03:20'),
+(19, 'pi', '', '13380', '2021-11-16 17:05:28'),
+(20, 'pi', '', '30826', '2021-11-16 18:31:05'),
+(21, 'pi', '', '4196', '2021-11-17 16:18:01'),
+(22, 'pi', '', '21626', '2021-11-17 16:47:07');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `commands`
+--
+ALTER TABLE `commands`
+  ADD PRIMARY KEY (`sno`);
+
+--
 -- Indexes for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`sno`);
 
 --
 -- Indexes for table `hira_info`
@@ -257,10 +303,20 @@ ALTER TABLE `user_log`
 --
 
 --
+-- AUTO_INCREMENT for table `commands`
+--
+ALTER TABLE `commands`
+  MODIFY `sno` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
 -- AUTO_INCREMENT for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+--
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `hira_info`
 --
@@ -275,7 +331,8 @@ ALTER TABLE `run_commands`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
