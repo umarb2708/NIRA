@@ -1,20 +1,29 @@
-import date_time as dt
-import commands as cmd
+#processing files
+import exec_commands as exe 
 import database as db
-import user_details as user
+import commands as cmd
+
+#output files
 import text2speech as tts
-import serial_com as ser
-import home_automation as automation
-import wikipedia_search as wiki
-import train_rex as train
-import weather
-import speech_recog as sprc
-import android_adb as adb
-import youtube as yt
 import output as out
-import raspi_info as info
-import smtp as mail
 import errors as err
+
+#input files
+import speech_recog as sprc
+import input_cmd as inp
+
+#communication files
+import serial_com as ser
+import android_adb as adb
+
+#Feature files
+import home_automation as aut
+
+
+
+
+
+#misc files
 import number_convertion as conv
-#import init_hira as init
-#import exec_commands as exe
+import user_details as user
+
