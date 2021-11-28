@@ -25,7 +25,7 @@ print(mydb)
 
 mycursor = mydb.cursor()
 
-
+#Insert Login Info 
 def insert_login_details(values):
     sql = "INSERT INTO user_log (user_name,ip_address,pid) VALUES (%s, %s, %s)"
     val = (values["user"],values["ip_address"],values["pid"])
@@ -33,21 +33,27 @@ def insert_login_details(values):
     mydb.commit()
     return "Login details USER:"+values["user"]+" IP:"+values["ip_address"]+" PID:"+values["pid"]
 
-
+#insert Training commands
 def insert_training_commands(values):
-    sql = "INSERT INTO commands (main_kw,action_file) VALUES (%s, %s)"
+    sql = "INSERT INTO command_centre (main_kw,action_file) VALUES (%s, %s)"
     val = (values["main_kw"],values["action_file"])
     mycursor.execute(sql, val)
     mydb.commit()
-    print(mycursor.rowcount, "record inserted.")
 
+def insert_commands(values):
+    sql = "INSERT INTO commands (command,priority,frm) VALUES (%s, %s,%s)"
+    val = (values["command"],values["priority"],values["from"])
+    mycursor.execute(sql, val)
+    mydb.commit()
+  
+#update server details
 def insert_raspi_info(values):
     sql="UPDATE `raspi_info` SET `temp` = '"+values["temp"]+"', `cpu_load` = '"+values["cpu_load"]+"', `used_ram` = '"+values["used_ram"]+"', `used_mem` = '"+values["used_mem"]+"', `up_time` = '"+values["up_time"]+"' WHERE `raspi_info`.`id` = 1;"
     mycursor.execute(sql)
     mydb.commit()
     return "Raspberry Info inserted"
 
-
+#Seach commands from command centr
 def search_cmd(st):
     lis={
             "cmd":"not found",
@@ -64,17 +70,30 @@ def search_cmd(st):
 
     return lis
 
-def get_dash_cmd():
-    lis={}
-    mycursor.execute("SELECT * FROM run_commands")
+def get_commands():
+    n=0
+    lis=[]
+    l={}
+    lis.append({
+            "id"    :0,
+            "cmd"   :"null",
+            "priority":"low",
+            "frm"   : "hira",
+            "exec"  : 0
+            })
+    mycursor.execute("SELECT * FROM commands WHERE exec = 0")
     myresult = mycursor.fetchall()
     mydb.commit()
     for x in myresult:
-        if(x[3] == 0 ):
-            lis["cmd"]=x[1]
-            lis["frm"]=x[2]
-            lis["exec"]=x[3]
-            break
+        if n==0:
+            lis.pop(0)
+        l["id"]=x[0]
+        l["cmd"]=x[1]
+        l["priority"]=x[2]
+        l["frm"]=x[3]
+        l["exec"]=x[4]
+        n=n+1
+        lis.append(l)
 
     return lis
 
@@ -107,6 +126,12 @@ def update_automation_table(dev_id,status):
     mycursor.execute(sql)
     mydb.commit()
     return "ok"
+def update_cmd_table(n):
+    sql="UPDATE commands SET exec = 1 WHERE id="+str(n)+";"
+    mycursor.execute(sql)
+    mydb.commit()
+
+
 def del_cmd_entries():
     sql="DELETE FROM commands_executed"
     mycursor.execute(sql)
