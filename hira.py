@@ -5,70 +5,21 @@
 #--------------------------------------------------------------------------------------------------------------
 #                                Design and Developed by UMAR B
 #--------------------------------------------------------------------------------------------------------------
-# Rex is a python based Humanoid robot.
+# HIRA is a python based Humanoid robot. This robot will do all kind of human activities and also can be used 
+# as a assistant instead of all other available AI in the market.
 #==============================================================================================================
 
 #import Files and handles
 import import_file as f
-import time
-import threading
-import os
-#Variables
-commands=""
-sleep=0
-debug_mode=0
-def initialize():
-    global inpt
-    #This Function for initialize PI when Start Up  or Restart
-    str="-------Welcome to the world of AI Next Generation computers-----\n"
-    f.out.txt_out(str,1,1,0)
-    str="Hi "+f.dt.wishme()+" sir. Please wait while initial check going on"
-    f.out.txt_out(str,1,1,1)
-    #-----------------------All the Initialisation done here-----------------------------------------
-    res=f.db.insert_login_details(f.user.login_details())#Login details to Database
-    f.out.txt_out(res,1,1,0)
-    f.db.del_cmd_entries() #delete recent commands table
-    f.adb.connect_android()  #initialize Android
-    #-----------------------------------------------------------------------------------------------
-    time.sleep(10)
-    str="Hi I am Hi ra . Human Intelligent Robo Assistant. Command me preceeding with hi ra"
-    f.out.txt_out(str,1,1,1)
 
-    
-def exec_commands():
-    global sleep,inpt
-    while sleep==0:
-        commands=f.cmd.get_input()
-        if "Hira" in commands or "hey darling" in commands or "hira" in commands :
-            commands.replace("Hira","").replace("hey darling","").replace("hira","")
-            if(len(commands)<=4):#if Previous command is only wake word
-                str="yes sir."
-                f.out.txt_out(str,1,1,1)
-                commands=f.cmd.get_input()#getting input
-            x=f.db.search_cmd(commands)#searching DB commands
-            commands=commands.replace("\n","")
-            f.out.txt_out("cmd:"+commands+"  exec:"+x["cmd"],1,1,0)
-            result=eval("f."+x["cmd"]+"('"+commands+"')")
-            res=result.replace("::OK","").replace("::FAIL","")
-            f.out.txt_out(res,1,1,1)
-            insert_exec_cmd(result,x)
-        else:
-            f.out.txt_out(commands,1,1,1)
-        
-def insert_exec_cmd(result,x):
-    if "::OK" in result :
-        f.db.insert_cmd_executed(x["cmd"],1)
-    else :
-        f.db.insert_cmd_executed(x["cmd"],0)
+#Variables
+init_done=0
 
 
 #-----------------------------------------------------------
 #               MAIN LOGIC
 #-----------------------------------------------------------
-if debug_mode == 0:
-    initialize()
-exec_commands()
-#thread1 = threading.Thread(target=exec_commands)
-##thread2 = threading.Thread(target=handle_db_data)
-#thread1.start()
-##thread2.start()
+while 1:
+
+    f.inp.insert_cmd()
+    f.cmd.start_exe()
