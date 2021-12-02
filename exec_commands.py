@@ -31,9 +31,9 @@ def exec_commands(command):
 
         result=eval("f."+cmd["cmd"]+"('"+rcvd_cmd+"')")
         if result :
-           f.out.txt_out("Command Successfull",6)
+           f.out.txt_out("Command Successfull",'011')
         else:
-           f.out.txt_out("Internal error occured",6)
+           f.out.txt_out("Internal error occured",'011')
 
 
         
