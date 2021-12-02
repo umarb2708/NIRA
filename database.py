@@ -24,7 +24,7 @@ mydb = mysql.connector.connect(
 print(mydb)
 
 mycursor = mydb.cursor()
-
+#-----------------------------------INSERT INTO QUERY---------------------------------------
 #Insert Login Info 
 def insert_login_details(values):
     sql = "INSERT INTO user_log (user_name,ip_address,pid) VALUES (%s, %s, %s)"
@@ -53,6 +53,17 @@ def insert_raspi_info(values):
     mydb.commit()
     return "Raspberry Info inserted"
 
+def insert_cmd_executed(cmd,status):
+    sql = "INSERT INTO commands_executed (command,status) VALUES (%s, %s)"
+    val = (cmd,status)
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+
+
+
+
+#-----------------------------------SELECT QUERY---------------------------------------
 #Seach commands from command centr
 def search_cmd(st):
     lis={
@@ -73,7 +84,6 @@ def search_cmd(st):
 def get_commands():
     n=0
     lis=[]
-    l={}
     lis.append({
             "id"    :0,
             "cmd"   :"null",
@@ -84,15 +94,15 @@ def get_commands():
     mycursor.execute("SELECT * FROM commands WHERE exec = 0")
     myresult = mycursor.fetchall()
     mydb.commit()
+    if len(myresult)>0:
+        lis.pop(0)
     for x in myresult:
-        if n==0:
-            lis.pop(0)
+        l={}
         l["id"]=x[0]
         l["cmd"]=x[1]
         l["priority"]=x[2]
         l["frm"]=x[3]
         l["exec"]=x[4]
-        n=n+1
         lis.append(l)
 
     return lis
@@ -113,25 +123,45 @@ def get_contact(person):
             val["Address"]=res[4]
     return val
 
-
-
-def insert_cmd_executed(cmd,status):
-    sql = "INSERT INTO commands_executed (command,status) VALUES (%s, %s)"
-    val = (cmd,status)
-    mycursor.execute(sql, val)
+def get_hira_info():
+    val={}
+    mycursor.execute("SELECT * FROM hira_info WHERE id=1")
+    myresult = mycursor.fetchall()
     mydb.commit()
-    #print(mycursor.rowcount, "record inserted.")
-def update_automation_table(dev_id,status):
+    for res in myresult:
+        val["pid"]=res[1]
+        val["tty"]=res[2]
+        val["status"]=res[3]
+        val["init"]=res[4]
+        val["adb"]=res[5]
+        val["sleep"]=res[6]
+    return val
+
+
+
+
+#-----------------------------------UPDATE QUERY---------------------------------------
+def update_dev_status(dev_id,status):
     sql="UPDATE home_automation SET status = '"+str(status)+"' WHERE id="+str(dev_id)+";"
     mycursor.execute(sql)
     mydb.commit()
     return "ok"
+
+def update_dev_param(dev_id,param):
+    sql="UPDATE home_automation SET param = '"+str(param)+"' WHERE id="+str(dev_id)+";"
+    mycursor.execute(sql)
+    mydb.commit()
+    return "ok"
+
 def update_cmd_table(n):
     sql="UPDATE commands SET exec = 1 WHERE id="+str(n)+";"
     mycursor.execute(sql)
     mydb.commit()
 
 
+
+
+#-----------------------------------DELETE QUERY---------------------------------------
 def del_cmd_entries():
     sql="DELETE FROM commands_executed"
     mycursor.execute(sql)
