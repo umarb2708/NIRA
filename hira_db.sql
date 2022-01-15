@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 26, 2021 at 06:24 AM
+-- Generation Time: Dec 03, 2021 at 12:29 PM
 -- Server version: 10.3.31-MariaDB-0+deb10u1
 -- PHP Version: 7.3.31-1~deb10u1
 
@@ -54,7 +54,7 @@ CREATE TABLE `commands` (
   `command` text NOT NULL,
   `priority` varchar(4) NOT NULL DEFAULT 'low',
   `frm` varchar(30) NOT NULL DEFAULT 'node-red',
-  `exec` int(11) NOT NULL
+  `exec` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `commands` (
 --
 
 INSERT INTO `commands` (`id`, `command`, `priority`, `frm`, `exec`) VALUES
-(1, 'hira turn on the light', 'low', 'node-red', 0);
+(79, 'hira turn on the light', 'med', 'hira', 1);
 
 -- --------------------------------------------------------
 
@@ -81,7 +81,8 @@ CREATE TABLE `commands_executed` (
 --
 
 INSERT INTO `commands_executed` (`id`, `command`, `status`) VALUES
-(42, 'mail.send_email', '1');
+(130, 'initialisation', '1'),
+(131, 'turn on the light', '1');
 
 -- --------------------------------------------------------
 
@@ -101,16 +102,35 @@ CREATE TABLE `command_centre` (
 --
 
 INSERT INTO `command_centre` (`sno`, `main_kw`, `action_file`, `keywords`) VALUES
-(4, 'turn on', 'automation.turn_on_device', ''),
-(5, 'turn off', 'automation.turn_off_dev', ''),
+(4, 'turn on', 'aut.turn_on_device', ''),
+(5, 'turn off', 'aut.turn_off_device', ''),
 (6, 'move forward', 'mov.forward', ''),
 (7, 'training', 'train.train_rex', ''),
 (8, 'wiki', 'wiki.search_in_wiki', ''),
 (9, 'search', 'web.search_from_net', ''),
 (10, 'open youtube', 'yt.open_youtube', ''),
 (11, 'close youtube', 'yt.close_youtube', ''),
-(12, 'colour', 'automation.change_colour', 'change,red,blue,green'),
-(13, 'email', 'mail.send_email', 'send,to,mail,');
+(12, 'change colour', 'aut.change_colour', 'change,red,blue,green'),
+(13, 'email', 'mail.send_email', 'send,to,mail,'),
+(14, 'play', 'mdc.play_pause', ''),
+(15, 'pause', 'mdc.play_pause', ''),
+(16, 'play next', 'mdc.next', ''),
+(17, 'paly previous', 'mdc.previous', ''),
+(18, 'stop media', 'mdc.stop', ''),
+(19, 'weather today', 'wth.weather_info', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `configuration`
+--
+
+CREATE TABLE `configuration` (
+  `id` int(11) NOT NULL,
+  `version` int(11) NOT NULL,
+  `test_en` int(11) NOT NULL DEFAULT 0,
+  `input_mode` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -142,19 +162,20 @@ INSERT INTO `contacts` (`sno`, `name`, `phone`, `email`, `Address`) VALUES
 
 CREATE TABLE `hira_info` (
   `id` int(11) NOT NULL,
-  `pid` varchar(30) NOT NULL,
-  `tty` varchar(30) NOT NULL,
+  `pid` varchar(30) NOT NULL DEFAULT '0',
+  `tty` varchar(30) NOT NULL DEFAULT '0',
   `status` int(1) NOT NULL DEFAULT 0,
   `init` int(1) NOT NULL DEFAULT 0,
-  `input_mode` int(1) NOT NULL DEFAULT 2
+  `adb` int(11) NOT NULL DEFAULT 0,
+  `sleep` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hira_info`
 --
 
-INSERT INTO `hira_info` (`id`, `pid`, `tty`, `status`, `init`, `input_mode`) VALUES
-(1, '0', 'pts/0', 0, 0, 2);
+INSERT INTO `hira_info` (`id`, `pid`, `tty`, `status`, `init`, `adb`, `sleep`) VALUES
+(1, '0', 'pts/0', 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -177,9 +198,9 @@ CREATE TABLE `home_automation` (
 --
 
 INSERT INTO `home_automation` (`id`, `room_id`, `floor`, `plac`, `component`, `status`, `param`) VALUES
-(4, 0, 'first', 'living', 'Light', 0, 0),
+(4, 0, 'first', 'living', 'Light', 1, 0),
 (5, 0, 'first', 'living', 'Fan', 0, 0),
-(6, 0, 'first', 'living', 'Lamp', 1, 3),
+(6, 0, 'first', 'living', 'Lamp', 0, 1),
 (7, 0, 'first', 'living', 'All', 1, 1);
 
 -- --------------------------------------------------------
@@ -203,7 +224,7 @@ CREATE TABLE `raspi_info` (
 --
 
 INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`, `connection`) VALUES
-(1, 50.5, 6.1, 44.9, 30.2, '36 m', 1);
+(1, 47.2, 5.8, 42.7, 30.2, '9 m', 1);
 
 -- --------------------------------------------------------
 
@@ -270,6 +291,12 @@ ALTER TABLE `command_centre`
   ADD PRIMARY KEY (`sno`);
 
 --
+-- Indexes for table `configuration`
+--
+ALTER TABLE `configuration`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
@@ -307,17 +334,22 @@ ALTER TABLE `user_log`
 -- AUTO_INCREMENT for table `commands`
 --
 ALTER TABLE `commands`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 --
 -- AUTO_INCREMENT for table `command_centre`
 --
 ALTER TABLE `command_centre`
-  MODIFY `sno` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `sno` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `configuration`
+--
+ALTER TABLE `configuration`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `contacts`
 --
@@ -336,4 +368,3 @@ ALTER TABLE `user_log`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
