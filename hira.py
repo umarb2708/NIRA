@@ -11,15 +11,32 @@
 
 #import Files and handles
 import import_file as f
+import time
+import threading
+class start_exe(object):
+    def __init__(self, interval=1):
+        self.interval = interval
+
+        thread = threading.Thread(target=self.run, args=())
+        thread.daemon = True
+        thread.start()
+
+    def run(self):
+        while True:
+            # More statements comes here
+            f.cmd.start_exe()
+            time.sleep(self.interval)
 
 #Variables
 init_done=0
+f.init.initialize()
+tr = start_exe()
 
 
 #-----------------------------------------------------------
 #               MAIN LOGIC
 #-----------------------------------------------------------
 while 1:
-
     f.inp.insert_cmd()
-    f.cmd.start_exe()
+    time.sleep(1)
+    
