@@ -1,5 +1,6 @@
 import requests, json
-url = 'https://api.openweathermap.org/data/2.5/weather?q=thrissur&appid=77bd683c4059c1ba2f440bf32d6c3b31'#Open api link here
+import import_file as f
+url = 'https://api.openweathermap.org/data/2.5/weather?q=thrissur&appid=753b203a4081430106aa585083e7523f'#Open api link here
 values={
         "SNO":1
         }
@@ -26,7 +27,9 @@ def get_weather_info():
     return values;
     #print (values)
 #get_weather_info()
-def speak_weather_info():
+def weather_info(cmd):
     val=get_weather_info()
-    speak_str=val["temp"]+" degree temperature and "+val["humidity"]+" percent humidity with "+val["wind"]+" wind speed at "+val["city"]+". Overall the climate is "+val["overall"]+" today."
-    return speak_str
+    weather=val["temp"]+" degree temperature and "+val["humidity"]+" percent humidity at "+val["city"]+". Overall the climate is "+val["overall"]+" today."
+    f.out.txt_out(weather,'111')
+    f.db.insert_cmd_executed("weather","1")#insert init done to DB
+    return 1
