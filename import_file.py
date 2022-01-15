@@ -2,6 +2,7 @@
 import exec_commands as exe 
 import database as db
 import commands as cmd
+import init_hira as init
 
 #output files
 import text2speech as tts
@@ -18,6 +19,12 @@ import android_adb as adb
 
 #Feature files
 import home_automation as aut
+import date_time as dt
+import youtube as yt
+import media_centre as mdc
+import weather as wth
+import power_mgnt as pwr
+import smtp as mail
 
 
 
