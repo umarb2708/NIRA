@@ -1097,7 +1097,7 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "",
-        "func": "msg={topic:\"UPDATE run_commands SET command = '\"+msg.payload+\"',frm='node-red',exec=0 WHERE id=1;\"}\nreturn msg;",
+        "func": "msg={topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( '\"+msg.payload+\"', 'low', 'dashboard', '0');\"}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1415,7 +1415,7 @@
         "height": 3,
         "name": "",
         "label": "HIRA",
-        "format": "V 0.1",
+        "format": "V 0.2",
         "layout": "col-center",
         "className": "",
         "x": 270,
@@ -2347,4 +2347,3 @@
         ]
     }
 ]
-
