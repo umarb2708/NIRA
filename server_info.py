@@ -106,8 +106,8 @@ def insert_hira_info():
 while 1:
     server_details()
     insert_raspi_info()
-    get_hira_details()
-    insert_hira_info()
+    #get_hira_details()
+    #insert_hira_info()
     time.sleep(10)
 
 
