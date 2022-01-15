@@ -11,6 +11,10 @@ def check_who():
     cmd="zgrep sshd /var/log/auth.log* | grep rhost | sed -re 's/.*rhost=([^ ]+).*/\\1/' | sort -u"
     who=os.popen(cmd).read()[:-1]
     return who
+def get_tty():
+    cmd="tty"
+    tty=os.popen(cmd).read()[:-1]
+    return tty
 
 def login_details():
     values["user"]=str(get_user())
@@ -18,3 +22,7 @@ def login_details():
     values["pid"]=str(curr_pid())
     #print (values)
     return values
+
+
+
+
