@@ -13,9 +13,9 @@ yt_param={
 
 
 def open_youtube(command):
-    str="which video you want"
-    f.tts.speak(str)
-    search_word=f.cmd.get_input().replace(" ","+")
+    say="which video you want"
+    f.out.txt_out(say,'100')
+    search_word=f.inp.get_cmd("Search Keyword").replace(" ","+")
     #print("YT DEBUG:Search Command:"+search_word)
 
     #adb_cmd="start com.google.android.youtube"
@@ -23,17 +23,22 @@ def open_youtube(command):
     
     re=f.adb.exec_adb_am_shell(adb_cmd)
     if re:
-        return "Youtube opened::OK"
+        
+        f.db.insert_cmd_executed("open youtube","1")#insert init done to DB
+        return 1
     else:
-        return "Error occured while opening youtube::FAIL"
+        f.db.insert_cmd_executed("open youtube","0")#insert init done to DB
+        return 0
 
 
 def close_youtube(command):
     adb_cmd="force-stop com.google.android.youtube"
     re=f.adb.exec_adb_am_shell(adb_cmd)
     if re:
-        return "Youtube close::OK"
+        f.db.insert_cmd_executed("close youtube","1")#insert init done to DB
+        return 1
     else:
-        return "Error occured while opening youtube::FAIL"
+        f.db.insert_cmd_executed("close youtube","0")#insert init done to DB
+        return 0
 
 
