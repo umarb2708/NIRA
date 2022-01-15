@@ -11,35 +11,43 @@ def get_list_sz(lis):
 def start_exe():
     lis=fetch_frm_db()
     list_len=get_list_sz(lis)
-    if  list_len > 0 and lis[0]["id"] !=0:
-        #for High priority 
-        for n in range (list_len):
-            if lis[n]["priority"]=="high":
-                f.exe.exec_commands(lis[n]["cmd"]) #executing high priority command 
-                f.db.update_cmd_table(lis[n]["id"]) #making command as executed
-                lis.pop(n) #deleting command from fetch list
-                list_len=get_list_sz(lis)
+    h_lis=[]
+    m_lis=[]
+    l_lis=[]
 
+    
+    #for High priority 
+    for n in range (list_len):
+        if lis[n]["priority"]=="high":
+            h_lis.append(lis[n])
 
+    #for MED priority 
+    for n in range (list_len):
+        if lis[n]["priority"]=="med":
+            m_lis.append(lis[n])
+    #for Low priority 
+    for n in range (list_len):
+        if lis[n]["priority"]=="low":
+            l_lis.append(lis[n])
+
+            
+    #for High priority 
+    for cmd in h_lis:
+        f.exe.exec_commands(cmd["cmd"]) #executing high priority command 
+        f.db.update_cmd_table(cmd["id"]) #making command as executed
+    
+    val=f.db.get_hira_info()
+    if val["sleep"]==0: 
         #for MED priority 
-        for n in range (list_len):
-            if lis[n]["priority"]=="med":
-                print("Executing <MED> command with ID->"+str(lis[n]["id"]))
-                f.exe.exec_commands(lis[n]["cmd"]) #executing high priority command 
-                f.db.update_cmd_table(lis[n]["id"]) #making command as executed
-                lis.pop(n) #deleting command from fetch list
-                list_len=get_list_sz(lis)
+        for cmd in m_lis:
+            f.exe.exec_commands(cmd["cmd"]) #executing med priority command 
+            f.db.update_cmd_table(cmd["id"]) #making command as executed
 
 
         #for Low priority 
-        for n in range (list_len):
-            if lis[n]["priority"]=="low":
-                print("Executing <LOW> command with ID->"+str(lis[n]["id"]))
-                f.exe.exec_commands(lis[n]["cmd"]) #executing high priority command 
-                f.db.update_cmd_table(lis[n]["id"]) #making command as executed
-                lis.pop(n) #deleting command from fetch list
-                list_len=get_list_sz(lis)
-
+        for cmd in l_lis:
+            f.exe.exec_commands(cmd["cmd"]) #executing low priority command 
+            f.db.update_cmd_table(cmd["id"]) #making command as executed
             
     
 
