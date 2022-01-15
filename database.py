@@ -87,7 +87,7 @@ def get_commands():
     lis.append({
             "id"    :0,
             "cmd"   :"null",
-            "priority":"low",
+            "priority":"na",
             "frm"   : "hira",
             "exec"  : 0
             })
@@ -158,7 +158,10 @@ def update_cmd_table(n):
     mycursor.execute(sql)
     mydb.commit()
 
-
+def update_hira_info(val):
+    sql="UPDATE hira_info SET pid = '"+str(val["pid"])+"',tty = '"+str(val["tty"])+"',status ="+str(val["status"])+",init="+str(val["init"])+" ,adb="+str(val["adb"])+",sleep="+str(val["sleep"])+" WHERE id=1"
+    mycursor.execute(sql)
+    mydb.commit()
 
 
 #-----------------------------------DELETE QUERY---------------------------------------
@@ -167,3 +170,9 @@ def del_cmd_entries():
     mycursor.execute(sql)
     mydb.commit()
     return "ok"
+
+def del_cmd():
+    sql="DELETE FROM commands"
+    mycursor.execute(sql)
+    mydb.commit()
+    return 1
