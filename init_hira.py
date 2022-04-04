@@ -20,7 +20,8 @@ def initialize():
             "pid":0,
             "tty":"0",
             "sleep":0,
-            "adb":0    
+            "adb":0,
+            "remote":0
             }
 
     st="-------Welcome to the world of AI Next Generation computers-----\n"

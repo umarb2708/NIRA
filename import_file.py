@@ -25,6 +25,7 @@ import media_centre as mdc
 import weather as wth
 import power_mgnt as pwr
 import smtp as mail
+import http_method as http
 
 
 

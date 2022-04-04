@@ -40,6 +40,9 @@ pip3 install pyaudio
 #-------------Internet Speed Test--------------------------
 pip3 install speedtest-cli
 
+#-------------NGROK for remote DASH------------------------
+pip3 install pyngrok
+
 
 
 

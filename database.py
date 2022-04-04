@@ -12,17 +12,18 @@ mydb = mysql.connector.connect(
 
 #---------REMOTE DATABASE CREDENTIAL-------------------
 #mydb = mysql.connector.connect(
-#  host="151.106.117.51",
-#  user="u556004652_rex_admin",
-#  password="Rex@HOSTING123#",
-#  database="u556004652_rex_db",
-#  connection_timeout=31536000
+#  host="51.210.156.16",
+#  user="innovize_wp823",
+#  password="-7S(e8g12p",
+#  database="innovize_wp823"
 #    )
 #----------------------------------------------------
 
 
-print(mydb)
-
+if mydb:
+    print("Successfully Conected to Database")
+else:
+    print(mydb)
 mycursor = mydb.cursor()
 #-----------------------------------INSERT INTO QUERY---------------------------------------
 #Insert Login Info 
