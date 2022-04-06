@@ -439,7 +439,7 @@
         "height": 1,
         "name": "temp",
         "label": "Temperature",
-        "format": "{{msg.payload.tempc}} Â°C",
+        "format": "{{msg.payload.tempc}} °C",
         "layout": "col-center",
         "className": "",
         "x": 670,
@@ -753,7 +753,7 @@
         "bgcolor": "red",
         "className": "",
         "icon": "fa-power-off",
-        "payload": "sudo shutdown -h now",
+        "payload": "hira shutdown",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
@@ -761,7 +761,7 @@
         "y": 1100,
         "wires": [
             [
-                "c9e9fba9db398f83"
+                "45aa6750d7b1674b"
             ]
         ]
     },
@@ -781,7 +781,7 @@
         "bgcolor": "green",
         "className": "",
         "icon": "fa-repeat",
-        "payload": "sudo reboot",
+        "payload": "hira restart",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
@@ -789,28 +789,8 @@
         "y": 1140,
         "wires": [
             [
-                "c9e9fba9db398f83"
+                "45aa6750d7b1674b"
             ]
-        ]
-    },
-    {
-        "id": "c9e9fba9db398f83",
-        "type": "exec",
-        "z": "bba4aba8f9d733f3",
-        "command": "",
-        "addpay": "payload",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 710,
-        "y": 1120,
-        "wires": [
-            [],
-            [],
-            []
         ]
     },
     {
@@ -829,15 +809,15 @@
         "bgcolor": "blue",
         "className": "",
         "icon": "fa-bolt",
-        "payload": "1",
-        "payloadType": "num",
+        "payload": "hira wake up",
+        "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
         "x": 540,
         "y": 1180,
         "wires": [
             [
-                "8e92bf416a540e5f"
+                "a160c2dff690c94b"
             ]
         ]
     },
@@ -979,7 +959,7 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "",
-        "func": "\nif (msg.payload[0][\"status\"]==1)\n    msg={label:\"sleep\",topic:\"kill \"+msg.payload[0][\"pid\"]};\nelse\n    msg={label:\"wake\",topic:\"export DISPLAY=:0 && lxterminal -e \\\"python3 /home/pi/HIRA/hira.py\\\"\"};\nreturn msg;",
+        "func": "\nif (msg.payload[0][\"sleep\"]==1)\n    msg={label:\"wakeup\",\n        topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira wake up', 'high', 'dashboard', '0');\"\n    };\nelse\n    msg={label:\"sleep\",\n    topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira sleep', 'high', 'dashboard', '0');\"\n        \n    };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -990,45 +970,6 @@
         "wires": [
             [
                 "e43c91b805928a6d"
-            ]
-        ]
-    },
-    {
-        "id": "74fc66da1cc7fef2",
-        "type": "exec",
-        "z": "bba4aba8f9d733f3",
-        "command": "",
-        "addpay": "topic",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 810,
-        "y": 1180,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "8e92bf416a540e5f",
-        "type": "function",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "func": "var msg1\nif(msg.payload==1)\n{\n    msg1={topic:msg.topic}\n}\nelse\n{\n    msg1={topic:null}\n}\nreturn msg1;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 1180,
-        "wires": [
-            [
-                "74fc66da1cc7fef2"
             ]
         ]
     },
@@ -1690,8 +1631,8 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "",
-        "func": "st=msg.payload==1?\"1\":\"0\";\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=6;\",payload:st}\nreturn msg;",
-        "outputs": 1,
+        "func": "st=msg.payload==1?\"1\":\"0\";\ntag=msg.payload==1?\"turn_on\":\"turn_off\";\nsame_st=(st==context.get('hold'))?1:0;\nmsg={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=6;\",payload:st}\nmsg1={iftt:tag}\ncontext.set('hold', st);\nif (same_st)\n{\n    return msg;\n}\nelse\n{\n    return [msg,msg1];\n}",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -1700,8 +1641,11 @@
         "y": 140,
         "wires": [
             [
-                "f42003b33f36c27f",
-                "f28edc50fa447366"
+                "f42003b33f36c27f"
+            ],
+            [
+                "26d189607fa92f45",
+                "a1c87dda6e8dbbf3"
             ]
         ]
     },
@@ -1755,8 +1699,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6c0f44bd30c92d5e",
-        "x": 1010,
-        "y": 160,
+        "x": 1030,
+        "y": 260,
         "wires": []
     },
     {
@@ -1962,6 +1906,117 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "45aa6750d7b1674b",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "func": "msg={topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( '\"+msg.payload+\"', 'high', 'dashboard', '0');\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1140,
+        "wires": [
+            [
+                "a160c2dff690c94b"
+            ]
+        ]
+    },
+    {
+        "id": "a160c2dff690c94b",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Hira Info",
+        "x": 850,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ee01061aa9eb143e",
+        "type": "inject",
+        "z": "bba4aba8f9d733f3",
+        "name": "Battery Trigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1f9b62cfecc4be09",
+        "type": "debug",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "a1c87dda6e8dbbf3",
+        "type": "http request",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://maker.ifttt.com/trigger/{{{iftt}}}/with/key/npysqDB3YCzxfjxqIsjj41jJ2UrhJhxtprk_anWeb41",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 990,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26d189607fa92f45",
+        "type": "debug",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "iftt",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 220,
+        "wires": []
     },
     {
         "id": "ed9b285aa406e8eb",

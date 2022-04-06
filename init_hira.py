@@ -34,7 +34,7 @@ def initialize():
     cmd="rm -rf output_log.log"
     out=os.popen(cmd).read()[:-1]
 
-    val["adb"]=f.adb.connect_android()  #initialize Android
+    #val["adb"]=f.adb.connect_android()  #initialize Android
     val["pid"]=f.user.curr_pid()
     val["tty"]=f.user.get_tty().replace("/dev/pts/","")
     val["status"]=1
