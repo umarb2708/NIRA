@@ -1,5 +1,5 @@
 import import_file as f
-mode=1
+mode=1#0:voice input 1:Terminal input 2:Serial input--> Get this mode from GUI
 high_cmd=["sleep","wake up","wakeup","restart","reboot","shutdown","power off"]
 
 def get_term_cmd(st):
@@ -23,7 +23,7 @@ def get_cmd(st):
         in_cmd=get_term_cmd(st)
     elif mode ==2:
         in_cmd=get_ser_cmd()
-
+    
     return in_cmd
 
 
@@ -31,6 +31,10 @@ def get_cmd(st):
 def format_cmd():
     values={}
     values["command"]=get_cmd("Command")
+    if values["command"].lower() == "hira":
+        st="Yes sir"
+        f.out.txt_out(st,'100')
+        values["command"]="hira "+get_cmd("Command")
     values["priority"]="med"
     for x in high_cmd:
         if x in values["command"]:

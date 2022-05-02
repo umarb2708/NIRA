@@ -11,7 +11,7 @@
 import import_file as f
 import os
 
-wake_word=["Hira","hira","hey hira","Hey Hira","Hi Ra","hi ra","hey darling","wakeup hira"]
+wake_word=["Hira","hira","hey hira","Hey Hira","Hi Ra","hi ra","hey darling","wakeup hira","hey baby","Hey baby"]
 rcvd_cmd="no commands"
 
 def check_wake_word(cmd):

@@ -44,8 +44,3 @@ def connect_remote_dash(en_dash):
         connected=0 
     return connected
 
-
-
-
-if connect_remote_dash(1) == 1:
-    print ("DONE")

@@ -1,5 +1,5 @@
 import import_file as f
-mode=2#1:voice input 2:Terminal input 3:Serial input--> Get this mode from GUI
+mode=2
 
 
 def fetch_frm_db():

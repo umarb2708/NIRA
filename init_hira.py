@@ -23,6 +23,13 @@ def initialize():
             "adb":0,
             "remote":0
             }
+    http_query={
+                'dash':'f730-2409-4073-30d-ca9-d69c-81df-39fe-e334.ngrok.io',
+                'local':'192.168.15.2',
+                'adb':0,
+                'status':0,
+                'init':0
+            }
 
     st="-------Welcome to the world of AI Next Generation computers-----\n"
     f.out.txt_out(st,'011')
@@ -42,6 +49,15 @@ def initialize():
     print (val)
     
     f.db.update_hira_info(val)
+    http_query['api_key']='tPmAT5Ab3j7F9'
+    http_query['adb']=val["adb"]
+    http_query['status']=val["status"]
+    http_query['init']=val["init"]
+    http_query['dash']=f.remote.connect_ngrok()
+    http_query['local']=os.popen("hostname -I").read()[:-1]
+    website='https://hirarobot.innovize.in/get-rpi-data.php'
+    print(http_query)
+    print(f.http.post(website,http_query))
     #-----------------------------------------------------------------------------------------------
     time.sleep(10)
     str="Hi I am Hi ra . Human Intelligent Robo Assistant. Command me preceeding with hi ra"

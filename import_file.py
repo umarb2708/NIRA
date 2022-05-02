@@ -26,7 +26,7 @@ import weather as wth
 import power_mgnt as pwr
 import smtp as mail
 import http_method as http
-
+import remote_access as remote
 
 
 
@@ -34,4 +34,4 @@ import http_method as http
 #misc files
 import number_convertion as conv
 import user_details as user
-
+#import host
