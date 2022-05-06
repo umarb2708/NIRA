@@ -36,7 +36,9 @@ pip3 install pyaudio
 
 #-------------Server Info Script---------------------------
 #This script should run in every boot: follow https://www.dexterindustries.com/howto/auto-run-python-programs-on-the-raspberry-pi 
-
+#1. Type 'sudo crontab -e' in terminal
+#2. Type '@reboot python3 /home/pi/HIRA/server_info.py' at last lane
+#3. reboot your pi
 #-------------Internet Speed Test--------------------------
 pip3 install speedtest-cli
 
