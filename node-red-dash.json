@@ -295,7 +295,7 @@
         "className": ""
     },
     {
-        "id": "6e4c11409a711ec3",
+        "id": "2968a7c9150260b9",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
@@ -305,7 +305,7 @@
         "height": 1
     },
     {
-        "id": "6d44d572309e1e93",
+        "id": "33dadab2482a398b",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
@@ -315,11 +315,21 @@
         "height": 1
     },
     {
-        "id": "9faf83a6edacb9a5",
+        "id": "a63a6ddba25b6b93",
         "type": "ui_spacer",
         "z": "bba4aba8f9d733f3",
         "name": "spacer",
         "group": "89e77362bf3d129d",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e31cd7a11b9f81b1",
+        "type": "ui_spacer",
+        "z": "bba4aba8f9d733f3",
+        "name": "spacer",
+        "group": "7376444d6893b276",
         "order": 6,
         "width": 1,
         "height": 1
@@ -365,7 +375,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 380,
+        "x": 300,
         "y": 400,
         "wires": [
             [
@@ -530,7 +540,7 @@
         "z": "bba4aba8f9d733f3",
         "group": "7376444d6893b276",
         "order": 3,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "name": "memory",
         "label": "<span class=\"material-icons-outlined\"> memory </span>",
@@ -547,7 +557,7 @@
         "z": "bba4aba8f9d733f3",
         "group": "7376444d6893b276",
         "order": 5,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "name": "Ram",
         "label": "RAM",
@@ -662,8 +672,8 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "",
-        "func": "var msg1={payload:msg.payload[0][\"id\"]};\nvar msg2={payload:msg.payload[0][\"temp\"]};\nvar msg3={payload:msg.payload[0][\"cpu_load\"]};\nvar msg4={payload:msg.payload[0][\"used_ram\"]};\nvar msg5={payload:msg.payload[0][\"used_mem\"]};\nvar msg6={payload:msg.payload[0][\"up_time\"]};\nvar msg7;\nif (msg.payload[0][\"connection\"]==1)\n    msg7={payload:\"UP\",colour:\"green\"};\nelse\n    msg7={payload:\"DOWN\",colour:\"red\"};\nreturn [msg1,msg2,msg3,msg4,msg5,msg6,msg7];",
-        "outputs": 7,
+        "func": "var msg1={payload:msg.payload[0][\"id\"]};\nvar msg2={payload:msg.payload[0][\"temp\"]};\nvar msg3={payload:msg.payload[0][\"cpu_load\"]};\nvar msg4={payload:msg.payload[0][\"used_ram\"]};\nvar msg5={payload:msg.payload[0][\"used_mem\"]};\nvar msg6={payload:msg.payload[0][\"up_time\"]};\nvar msg7;\nif (msg.payload[0][\"devStat\"]==1)\n    msg7={payload:\"UP\",colour:\"green\"};\nelse\n    msg7={payload:\"DOWN\",colour:\"red\"};\n    \nvar msg8;\nif (msg.payload[0][\"battery\"]>90)\n    msg8={payload:msg.payload[0][\"battery\"],colour:\"green\"};\nelse if  (msg.payload[0][\"battery\"]<90 && msg.payload[0][\"battery\"]>50)\n    msg8={payload:msg.payload[0][\"battery\"],colour:\"yellow\"};\nelse\n    msg8={payload:msg.payload[0][\"battery\"],colour:\"red\"};\n\nreturn [msg1,msg2,msg3,msg4,msg5,msg6,msg7,msg8];",
+        "outputs": 8,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -691,6 +701,9 @@
             ],
             [
                 "490898eaa15336ad"
+            ],
+            [
+                "cb825d759526b792"
             ]
         ]
     },
@@ -717,7 +730,7 @@
         "z": "bba4aba8f9d733f3",
         "name": "Wifi",
         "group": "7376444d6893b276",
-        "order": 6,
+        "order": 7,
         "width": 2,
         "height": 1,
         "passthru": false,
@@ -822,87 +835,18 @@
         ]
     },
     {
-        "id": "688f3aae3b80d53c",
-        "type": "exec",
-        "z": "bba4aba8f9d733f3",
-        "command": "/opt/vc/bin/vcgencmd get_throttled",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Voltage",
-        "x": 440,
-        "y": 980,
-        "wires": [
-            [
-                "557bd28380b9431c"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "4e1058699589a482",
-        "type": "inject",
-        "z": "bba4aba8f9d733f3",
-        "name": "Battery Trigger",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 200,
-        "y": 980,
-        "wires": [
-            [
-                "688f3aae3b80d53c"
-            ]
-        ]
-    },
-    {
-        "id": "557bd28380b9431c",
-        "type": "function",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "func": "msg.hex_val=msg.payload.replace(\"throttled=\",\"\").replace(\"\\n\",\"\");\nif(msg.hex_val==\"0x0\")\n{\n    msg.payload=\"green\"\n}\nelse\n{\n    msg.payload=\"red\"\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 580,
-        "y": 980,
-        "wires": [
-            [
-                "cb825d759526b792"
-            ]
-        ]
-    },
-    {
         "id": "cb825d759526b792",
         "type": "ui_button",
         "z": "bba4aba8f9d733f3",
         "name": "power",
         "group": "7376444d6893b276",
-        "order": 7,
-        "width": 1,
+        "order": 8,
+        "width": 2,
         "height": 1,
         "passthru": false,
-        "label": "",
+        "label": "{{payload}}",
         "tooltip": "",
-        "color": "{{payload}}",
+        "color": "{{colour}}",
         "bgcolor": "rgb(51,51,51)",
         "className": "",
         "icon": "battery_charging_full",
@@ -921,8 +865,8 @@
         "type": "mysql",
         "z": "bba4aba8f9d733f3",
         "mydb": "dafdac5f3491cd58",
-        "name": "Hira Info",
-        "x": 240,
+        "name": "Server Info",
+        "x": 250,
         "y": 1180,
         "wires": [
             [
@@ -945,7 +889,7 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "SELECT * FROM `hira_info` WHERE id=1",
+        "topic": "SELECT * FROM `raspi_info` WHERE id=1",
         "x": 90,
         "y": 1180,
         "wires": [
@@ -959,7 +903,7 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "",
-        "func": "\nif (msg.payload[0][\"sleep\"]==1)\n    msg={label:\"wakeup\",\n        topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira wake up', 'high', 'dashboard', '0');\"\n    };\nelse\n    msg={label:\"sleep\",\n    topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira sleep', 'high', 'dashboard', '0');\"\n        \n    };\nreturn msg;",
+        "func": "\nif (msg.payload[0][\"hiraStat\"]==0)\n    msg={label:\"wakeup\",\n        topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira wake up', 'high', 'dashboard', '0');\"\n    };\nelse\n    msg={label:\"sleep\",\n    topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira sleep', 'high', 'dashboard', '0');\"\n        \n    };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1931,55 +1875,12 @@
         "type": "mysql",
         "z": "bba4aba8f9d733f3",
         "mydb": "dafdac5f3491cd58",
-        "name": "Hira Info",
-        "x": 850,
+        "name": "commands",
+        "x": 860,
         "y": 1140,
         "wires": [
             []
         ]
-    },
-    {
-        "id": "ee01061aa9eb143e",
-        "type": "inject",
-        "z": "bba4aba8f9d733f3",
-        "name": "Battery Trigger",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 260,
-        "y": 1040,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1f9b62cfecc4be09",
-        "type": "debug",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 840,
-        "y": 1020,
-        "wires": []
     },
     {
         "id": "a1c87dda6e8dbbf3",
