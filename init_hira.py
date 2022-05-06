@@ -49,15 +49,6 @@ def initialize():
     print (val)
     
     f.db.update_hira_info(val)
-    http_query['api_key']='tPmAT5Ab3j7F9'
-    http_query['adb']=val["adb"]
-    http_query['status']=val["status"]
-    http_query['init']=val["init"]
-    http_query['dash']=f.remote.connect_ngrok()
-    http_query['local']=os.popen("hostname -I").read()[:-1]
-    website='https://hirarobot.innovize.in/get-rpi-data.php'
-    print(http_query)
-    print(f.http.post(website,http_query))
     #-----------------------------------------------------------------------------------------------
     time.sleep(10)
     str="Hi I am Hi ra . Human Intelligent Robo Assistant. Command me preceeding with hi ra"
