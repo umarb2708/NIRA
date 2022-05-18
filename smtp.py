@@ -1,8 +1,12 @@
-import smtplib
+import smtplib, ssl
 import import_file as f
 
-sender_email="hirarobot@gmail.com"
-sender_password="Admin@HIRA123#"
+sender_email="hirarobot@innovize.in"
+sender_password="Hira@IES123#"
+smtp_link="server61.secureclouddns.net"
+port=465
+context = ssl.create_default_context()
+
 def get_person(command):
     person="umar"
     #function to find person in query or input
@@ -29,7 +33,7 @@ def send_email(command):
         msg=f.inp.get_cmd("Message")
 
         try:
-            mail = smtplib.SMTP('smtp.gmail.com', 587)
+            mail = smtplib.SMTP_SSL(smtp_link, port , context=context)
             mail.ehlo()
             mail.starttls()
             mail.login(sender_email, sender_password)

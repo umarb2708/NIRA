@@ -3,6 +3,7 @@ import psutil
 import mysql.connector
 import time
 import requests
+import datetime
 
 
 #---------LOCAL DATABASE CREDENTIAL-------------------
@@ -68,20 +69,21 @@ def get_LocalIP():
 
 def get_PublicIP():
     #currently using NGROK for public access
-    ngrok_started=0
-    pubIP="hira.local"  
+    global ngrok_started,pubIP 
 
     cmd="ps -aux | grep ngrok | grep 'sl\|Sl'"
     out=os.popen(cmd).readline()[:-1]
     if "./ngrok http 80 --log=stdout" in out:
+        #print("NGROK Already running")
         ngrok_started=1
-        f=open("/home/pi/HIRA/logs/server.log","r")
-        for lane in f:
-            lane.replace("\n","")
-            if "PublicIP" in lane:
-                l=lane.split(':')
-                pubIP=l[1]
+        #f=open("/home/pi/HIRA/logs/server.log","r")
+        #for lane in f:
+        #    lane.replace("\n","")
+        #    if "PublicIP" in lane:
+        #        l=lane.split(':')
+        #        pubIP=l[1]
     else:
+        #print("Starting NGROK")
         url="NACK"
         os.chdir("/home/pi/HIRA")
         ng=os.popen("./ngrok http 80 --log=stdout > logs/ngrok.log &").read()[:-1]
@@ -140,6 +142,8 @@ def display_info(values):
     print("Public:"+values["PublicIP"])
 
 def storeValues(values):
+    
+    global ngrok_started,pubIP 
     out_f=open("/home/pi/HIRA/logs/server.log",'w')
     out_f.write("Temperature:"+values["temp"]+"\n")
     out_f.write("CPU Load:"+values["cpu_load"]+"\n")
@@ -181,11 +185,13 @@ def get_hira_info():
 while 1:
     val=server_details()
     #display_info(val)
-    storeValues(val)
+    #storeValues(val)
     insert_raspi_info(val)
     res=send_to_website(val)
     if "Error:" in res:
         print(str(res))
+    else :
+        print( str(datetime.datetime.now().strftime("[%d:%m:%y:%I:%M:%S]  -> Success")))
     #insert_raspi_info()
     #get_hira_details()
     #insert_hira_info()
