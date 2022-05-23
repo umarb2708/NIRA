@@ -71,3 +71,9 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_EXAMPLES=OFF ..
 make –j4 #if gives fatal error then give make –j1
 sudo apt-get install libopencv-devpython-opencv
+
+
+
+#--------------------Whatsapp-------------------
+#create API with TWILIO and do the below
+pip3 install twilio
