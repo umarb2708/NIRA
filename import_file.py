@@ -27,6 +27,7 @@ import power_mgnt as pwr
 import smtp as mail
 import http_method as http
 import remote_access as remote
+import whatsapp
 
 
 
