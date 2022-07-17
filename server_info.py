@@ -16,11 +16,13 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-web="https://hirarobot.innovize.in/"
+web="https://hira.innovize.in"
 timeout=5
 connected=0;
 ngrok_started=0
-pubIP="hira.local"
+publicIP=""
+webLog=open("/home/pi/HIRA/logs/web.log","w")
+
 
 values={
         "SNO":1
@@ -29,6 +31,27 @@ hira={
         "id":1
     }
 init_dne=0
+
+#-----NGROK------------------------
+
+def startNgrok():
+    
+    pubIP=""
+    os.chdir("/home/pi/HIRA")
+    ng=os.popen("./ngrok http 80 --log=stdout > logs/ngrok.log &").read()[:-1]
+    time.sleep(10)
+            
+
+def killNgrok():
+    try:
+        pid=int(os.popen("pidof ./ngrok").read()[:-1])
+    except :
+        pid=0
+    if pid > 0:
+        os.popen("kill "+str(pid)).read()[:-1]
+
+#------------------------------------------
+
 def get_cpu_temp():
     cmd="vcgencmd measure_temp"
     temp=os.popen(cmd).read()[:-1]
@@ -43,22 +66,25 @@ def get_ram_usage():
     ram=psutil.virtual_memory()[2]
     return ram
 
-
 def get_mem_usage():
     mem=psutil.disk_usage('/')[3]
     return mem
+
 def get_uptime():
     cmd="uptime -p"
     uptime=os.popen(cmd).read()[:-1].replace("up ","").replace("weeks","w").replace("days","d").replace("hour","h").replace("minutes","m")
     return uptime
 
 def check_connectivity():
+    global web,timeout
     try:
         request = requests.get(web, timeout=timeout)
         connected=1
     except (requests.ConnectionError, requests.Timeout) as exception :
         connected=0
+
     return connected
+
 def get_battery_status():
     return 100
 
@@ -69,31 +95,13 @@ def get_LocalIP():
 
 def get_PublicIP():
     #currently using NGROK for public access
-    global ngrok_started,pubIP 
-
-    cmd="ps -aux | grep ngrok | grep 'sl\|Sl'"
-    out=os.popen(cmd).readline()[:-1]
-    if "./ngrok http 80 --log=stdout" in out:
-        #print("NGROK Already running")
-        ngrok_started=1
-        #f=open("/home/pi/HIRA/logs/server.log","r")
-        #for lane in f:
-        #    lane.replace("\n","")
-        #    if "PublicIP" in lane:
-        #        l=lane.split(':')
-        #        pubIP=l[1]
-    else:
-        #print("Starting NGROK")
-        url="NACK"
-        os.chdir("/home/pi/HIRA")
-        ng=os.popen("./ngrok http 80 --log=stdout > logs/ngrok.log &").read()[:-1]
-        time.sleep(10)
-        f=open("/home/pi/HIRA/logs/ngrok.log","r")
-        for lane in f:
-            if "https" in lane:
-                l=lane.split()
-                url=l[7].replace("url=https://","")
-                pubIP=url
+    pubIP=""
+    f=open("/home/pi/HIRA/logs/ngrok.log","r")
+    for lane in f:
+        if "https" in lane:
+            l=lane.split()
+            url=l[7].replace("url=https://","")
+            pubIP=url
     return pubIP
 
 def get_hiraStat():
@@ -127,10 +135,19 @@ def server_details():
     values["hiraStat"]=str(get_hiraStat())
     values["LocalIP"]=str(get_LocalIP())
     values["PublicIP"]=str(get_PublicIP())
-    values["user"]=str("hira_admin")
+    values["auth"]=str("DBD4TV7QP3X8DZ60Z30NW2AW")
     return values
 
-def display_info(values):
+
+def send_to_website(args):
+    global web
+    x = requests.post(web+"/rpi-local-data/get-from-rpi.php", data = args)
+    return x.text    
+
+
+
+
+def display_info(values,res):
     print("Temp:"+values["temp"])
     print("Load:"+values["cpu_load"])
     print("RAM :"+values["used_ram"])
@@ -140,8 +157,13 @@ def display_info(values):
     print("hira:"+values["hiraStat"])
     print("Local:"+values["LocalIP"])
     print("Public:"+values["PublicIP"])
+    print("Auth:"+values["auth"])
+    if "Error:" in res:
+        print(str(res))
+    else :
+        print( str(datetime.datetime.now().strftime("[%d:%m:%y:%I:%M:%S]  -> Success")))
 
-def storeValues(values):
+def storeValues(values,res):
     
     global ngrok_started,pubIP 
     out_f=open("/home/pi/HIRA/logs/server.log",'w')
@@ -153,15 +175,17 @@ def storeValues(values):
     out_f.write("dev Status :"+values["devStat"]+"\n")
     out_f.write("hira Status:"+values["hiraStat"]+"\n")
     out_f.write("LocalIP:"+values["LocalIP"]+"\n")
+    out_f.write("Auth:"+values["auth"]+"\n")
     out_f.write("PublicIP:"+values["PublicIP"]+"\n")
+    if "Error:" in res:
+        out_f.write(str(res))
+    else :
+        out_f.write( str(datetime.datetime.now().strftime("[%d:%m:%y:%I:%M:%S]  -> Success")))
 
-def send_to_website(args):
-    global web
-    x = requests.post(web+"/get-rpi-data.php", data = args)
-    return x.text    
 
 
-#Database Access
+
+#----------------------Database Access--------------------------------------------
 def insert_raspi_info(values):
     sql="UPDATE `raspi_info` SET `temp` = '"+values["temp"]+"', `cpu_load` = '"+values["cpu_load"]+"', `used_ram` = '"+values["used_ram"]+"', `used_mem` = '"+values["used_mem"]+"', `up_time` = '"+values["up_time"]+"', `devStat` = '"+values["devStat"]+"', `hiraStat` = '"+values["hiraStat"]+"', `LocalIP` = '"+values["LocalIP"]+"', `PublicIP` = '"+values["PublicIP"]+"' WHERE `raspi_info`.`id` = 1;"
     mycursor.execute(sql)
@@ -182,19 +206,20 @@ def get_hira_info():
         val["sleep"]=res[6]
     return val
 
+def initServer():
+    killNgrok()
+    startNgrok()
+    
+
+
+#--------------MAIN Logic---------------
+initServer()
 while 1:
     val=server_details()
-    #display_info(val)
-    #storeValues(val)
     insert_raspi_info(val)
     res=send_to_website(val)
-    if "Error:" in res:
-        print(str(res))
-    else :
-        print( str(datetime.datetime.now().strftime("[%d:%m:%y:%I:%M:%S]  -> Success")))
-    #insert_raspi_info()
-    #get_hira_details()
-    #insert_hira_info()
-    #time.sleep(10)
+    storeValues(val,res)
+    #display_info(val,res)
+    time.sleep(10)
 
 
