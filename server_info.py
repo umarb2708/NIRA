@@ -98,7 +98,7 @@ def get_PublicIP():
     pubIP=""
     f=open("/home/pi/HIRA/logs/ngrok.log","r")
     for lane in f:
-        if "https" in lane:
+        if "https" in lane and 'msg="started tunnel"' in lane:
             l=lane.split()
             url=l[7].replace("url=https://","")
             pubIP=url
