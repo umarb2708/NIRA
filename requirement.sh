@@ -77,3 +77,6 @@ sudo apt-get install libopencv-devpython-opencv
 #--------------------Whatsapp-------------------
 #create API with TWILIO and do the below
 pip3 install twilio
+
+#--------------------SFTP-------------------
+pip3 install pysftp
