@@ -1,9 +1,10 @@
 import smtplib, ssl
-import import_file as f
+#import import_file as f
 
+debug_module=1
 sender_email="hirarobot@innovize.in"
 sender_password="Hira@IES123#"
-smtp_link="server61.secureclouddns.net"
+smtp_link=""
 port=465
 context = ssl.create_default_context()
 
@@ -49,3 +50,13 @@ def send_email(command):
         reply=f.inp.get_cmd("Yes/No")
     return 1
 
+def server_sendEmail(email):
+    try:
+        s = smtplib.SMTP_SSL('mail.innovize.in',465)
+        s.login('hira@innovize.in', 'Hira@IES2096#')
+        s.sendmail('hira@innovize.in', email,"Test Mail Hurray" )
+        s.quit()
+    except smtplib.SMTPException:
+        print ("Error:"+str(sys.exc_info()[0]))
+if debug_module :
+    server_sendEmail("umarthottathil1996@gmail.com")
