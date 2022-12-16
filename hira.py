@@ -10,10 +10,16 @@
 #==============================================================================================================
 
 #import Files and handles
-import import_file as f
 import time
 import threading
-class startExecution(object):
+import import_file as f
+
+
+#Variables
+init_done=0
+
+
+class start_exe(object):
     def __init__(self, interval=1):
         self.interval = interval
 
@@ -27,8 +33,9 @@ class startExecution(object):
             f.cmd.start_exe()
             time.sleep(self.interval)
 
-#Variables
-init_done=0
+
+
+
 f.init.initialize()
 tr = startExecution()
 

@@ -1,0 +1,1 @@
+THis is a sample test file to check the FTP server upload
