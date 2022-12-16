@@ -75,9 +75,9 @@ def search_cmd(st):
     myresult = mycursor.fetchall()
     mydb.commit()
     for x in myresult:
-        if(x[1] in st):
-            lis["cmd"]=x[2]
-            lis["kw"]=x[1]
+        if(x[2] in st):
+            lis["cmd"]=x[3]
+            lis["kw"]=x[2]
             break
 
     return lis

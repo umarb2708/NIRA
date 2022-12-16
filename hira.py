@@ -13,7 +13,7 @@
 import import_file as f
 import time
 import threading
-class start_exe(object):
+class startExecution(object):
     def __init__(self, interval=1):
         self.interval = interval
 
@@ -30,7 +30,7 @@ class start_exe(object):
 #Variables
 init_done=0
 f.init.initialize()
-tr = start_exe()
+tr = startExecution()
 
 
 #-----------------------------------------------------------

@@ -61,7 +61,7 @@ if debugModule ==1 :
     host='hira.innovize.in'
     user='RpiFtpUser@hira.innovize.in'
     pswd='RpiFtp@HIRA123#'
-    filename='esthani.jpg'
+    filename='shobit.jpg'
     Spath='/FaceRecog/images/newface/'
-    Lpath="FtpIn/"
+    Lpath="media/"
     print(ftpupload(host,user,pswd,filename,Spath,Lpath))
