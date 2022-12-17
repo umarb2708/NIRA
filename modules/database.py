@@ -26,6 +26,14 @@ else:
     print(mydb)
 mycursor = mydb.cursor()
 #-----------------------------------INSERT INTO QUERY---------------------------------------
+#Insert Query
+def insertData(tableName,values):
+    col=
+
+
+
+    return 
+
 #Insert Login Info 
 def insert_login_details(values):
     sql = "INSERT INTO user_log (user_name,ip_address,pid) VALUES (%s, %s, %s)"
