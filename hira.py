@@ -10,33 +10,30 @@
 #==============================================================================================================
 
 #import Files and handles
-import import_file as f
 import time
 import threading
-class start_exe(object):
-    def __init__(self, interval=1):
-        self.interval = interval
+from modules import modulePkg as mPkg
+def StartExecution():
+    print("Starting Execution at "+str(mPkg.date.get_time()))
 
-        thread = threading.Thread(target=self.run, args=())
-        thread.daemon = True
-        thread.start()
+def getInput():
+    print("Time is "+str(mPkg.date.get_time()))
+    if (mPkg.date.get_hour()>15):
+        print("Good Afternoon yaaar")
+    elif(mPkg.date.get_hour()<15):
+        print("Arey its morning")
 
-    def run(self):
-        while True:
-            # More statements comes here
-            f.cmd.start_exe()
-            time.sleep(self.interval)
 
-#Variables
-init_done=0
-f.init.initialize()
-tr = start_exe()
+startExe=threading.Thread(target=StartExecution(), args=())
+getInp=threading.Thread(target=getInput(), args=())
+startExe.start
+getInp.start
 
 
 #-----------------------------------------------------------
 #               MAIN LOGIC
 #-----------------------------------------------------------
-while 1:
+while 0:
     f.inp.insert_cmd()
     time.sleep(1)
     

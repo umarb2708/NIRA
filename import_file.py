@@ -18,7 +18,7 @@ import serial_com as ser
 import android_adb as adb
 
 #Feature files
-import home_automation as aut
+import modules.home_automation as aut
 import modules.date_time as dt
 import youtube as yt
 import media_centre as mdc
