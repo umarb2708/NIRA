@@ -5,8 +5,8 @@ import import_file as pkg
 mydb = mysql.connector.connect(
   host="localhost",
   user="db_admin",
-  password="Admin@HIRA123#",
-  database="hira_db"
+  password="Admin@MDB123#",
+  database="hira_main"
 )
 #----------------------------------------------------
 
@@ -37,7 +37,6 @@ def insertData(tableName,values):
     return 1
 #Function for UPDATE query
 def UpdateData(tableName,values,condition):
-     
      setval=""
      for key in values:
         if("int" in str(type(values[key]))):
@@ -52,6 +51,14 @@ def UpdateData(tableName,values,condition):
     val = "("+pkg.parser.getData(values)+")"
     mycursor.execute(sql)
     mydb.commit()
+
+#Function for UPDATE query
+def SelectData(tableName,rowNames,condition):
+    query="SELECT "+rowNames+" FROM "+tableName+" "+condition
+    mycursor.execute(query)
+    myresult = mycursor.fetchall()
+    mydb.commit()
+    return myresult
 
 
 

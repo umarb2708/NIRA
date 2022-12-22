@@ -13,27 +13,34 @@
 import time
 import threading
 from modules import modulePkg as mPkg
-def StartExecution():
-    print("Starting Execution at "+str(mPkg.date.get_time()))
+count=0
 
-def getInput():
-    print("Time is "+str(mPkg.date.get_time()))
-    if (mPkg.date.get_hour()>15):
-        print("Good Afternoon yaaar")
-    elif(mPkg.date.get_hour()<15):
-        print("Arey its morning")
+class startExecution(object):
+    def __init__(self, interval=1):
+        self.interval = interval
+        thread = threading.Thread(target=self.run, args=())
+        thread.daemon = True
+        thread.start()
+
+    def run(self):
+        global count
+        while True:
+            # More statements comes here
+            count=count+1
+            time.sleep(self.interval)
 
 
-startExe=threading.Thread(target=StartExecution(), args=())
-getInp=threading.Thread(target=getInput(), args=())
-startExe.start
-getInp.start
+tr = startExecution()
+
+def showcount(count):
+    print("Counter="+str(count))
 
 
 #-----------------------------------------------------------
 #               MAIN LOGIC
 #-----------------------------------------------------------
-while 0:
-    f.inp.insert_cmd()
-    time.sleep(1)
+while 1:
+    mPkg.
+    showcount(count)
+    time.sleep(10)
     
