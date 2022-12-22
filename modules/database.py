@@ -1,5 +1,5 @@
 import mysql.connector
-import import_file as pkg
+from modules import modulePkg as pkg
 
 #---------LOCAL DATABASE CREDENTIAL-------------------
 mydb = mysql.connector.connect(
@@ -31,7 +31,9 @@ def insertData(tableName,values):
     Datatype=pkg.parser.getDataType(values)
     val=pkg.parser.getData(values)
     sql= "INSERT INTO "+tableName+" ("+col+") VALUES ("+Datatype+")"
-    values="("+val+")"
+    values=pkg.parser.getData(values)
+    print(sql)
+    print(values)
     mycursor.execute(sql, val)
     mydb.commit()
     return 1
@@ -40,7 +42,7 @@ def UpdateData(tableName,values,condition):
     setval=""
     for key in values:
         if("int" in str(type(values[key]))):
-            setval=setval+key+"="+"%d,"
+            setval=setval+key+"="+"%s,"
         elif("str" in str(type(values[key]))):
             setval=setval+key+"="+"%s,"
         elif("float" in str(type(values[key]))):
@@ -48,8 +50,10 @@ def UpdateData(tableName,values,condition):
     setval=setval[:-1]
 
     sql = "UPDATE "+tableName+" SET "+setval+" WHERE "+condition
-    val = "("+pkg.parser.getData(values)+")"
-    mycursor.execute(sql)
+    val = pkg.parser.getData(values)
+    print(sql)
+    print(val)    
+    mycursor.execute(sql,val)
     mydb.commit()
 
 #Function for UPDATE query

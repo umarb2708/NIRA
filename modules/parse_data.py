@@ -17,11 +17,11 @@ def getDataType(MyDict):
     retData=""    # Function return data
     for key in MyDict:
         if("int" in str(type(MyDict[key]))):
-            out=out+"%d,"
+            out=out+"%s,"
         elif("str" in str(type(MyDict[key]))):
             out=out+"%s,"
         elif("float" in str(type(MyDict[key]))):
-            out=out+"%f,"
+            out=out+"%s,"
     retData=out[:-1]
     return retData
 #To get the keys
@@ -33,10 +33,9 @@ def getKeys(MyDict):
     return retData
 # To return datas of Dictionary
 def getData(MyDict):
-    retData=""    # Function return data
+    retData=[]   # Function return data
     for key in MyDict:
-        retData=retData+str(MyDict[key])+","
-    retData=retData[:-1]
+        retData.append(MyDict[key])
     return retData   
 
 

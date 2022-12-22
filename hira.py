@@ -40,10 +40,13 @@ def showcount(count):
 #               MAIN LOGIC
 #-----------------------------------------------------------
 while 1:
-    AllRowData=mPkg.db.SelectData("commands","*","")
-    for row in AllRowData:
-        if row[0]==404:
-            print(str(row[1]))
+    insertdata={
+            "command":"hira turn off the bulb",
+            "priority":"med",
+            "frm":"me",
+            "exec":0
+            }
+    mPkg.db.UpdateData("commands",insertdata,"id=403")
     showcount(count)
     time.sleep(10)
     

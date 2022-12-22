@@ -7,7 +7,7 @@ pip install gTTS
 
 #-------------------Database------------------------
 apt install mariadb-server 
-pip3 install mysql-connector-python
+pip3 install mysql-connector-python==8.0.29
 # Steps to Create Local Database: https://raspberrytips.com/install-mariadb-raspberry-pi/
 
 #------------------Wikipedia--------------------------
