@@ -40,7 +40,10 @@ def showcount(count):
 #               MAIN LOGIC
 #-----------------------------------------------------------
 while 1:
-    mPkg.
+    AllRowData=mPkg.db.SelectData("commands","*","")
+    for row in AllRowData:
+        if row[0]==404:
+            print(str(row[1]))
     showcount(count)
     time.sleep(10)
     
