@@ -37,8 +37,8 @@ def insertData(tableName,values):
     return 1
 #Function for UPDATE query
 def UpdateData(tableName,values,condition):
-     setval=""
-     for key in values:
+    setval=""
+    for key in values:
         if("int" in str(type(values[key]))):
             setval=setval+key+"="+"%d,"
         elif("str" in str(type(values[key]))):
