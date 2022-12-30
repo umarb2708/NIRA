@@ -26,6 +26,7 @@ class startExecution(object):
         global count
         while True:
             # More statements comes here
+            mPkg.exe.startExecution()
             count=count+1
             time.sleep(self.interval)
 
@@ -40,13 +41,7 @@ def showcount(count):
 #               MAIN LOGIC
 #-----------------------------------------------------------
 while 1:
-    insertdata={
-            "command":"hira turn off the bulb",
-            "priority":"med",
-            "frm":"me",
-            "exec":0
-            }
-    mPkg.db.UpdateData("commands",insertdata,"id=403")
+    mPkg.inp.insertCmd()
     showcount(count)
     time.sleep(10)
     
