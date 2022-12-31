@@ -1,3 +1,13 @@
+#==============================================================================================================
+#                          HIRA Human Intelligent Robo Assistance
+#                                     ---------------
+#                                 Innovize Electro Solutions
+#--------------------------------------------------------------------------------------------------------------
+#                                Design and Developed by UMAR B
+#--------------------------------------------------------------------------------------------------------------
+#Module Name: serverMonitor.py
+#Module description:Monitor the Rasperry Pi data and send to nodered dashboard and website
+#==============================================================================================================
 import os
 import psutil
 import mysql.connector
@@ -32,25 +42,6 @@ hira={
     }
 init_dne=0
 
-#-----NGROK------------------------
-
-def startNgrok():
-    
-    pubIP=""
-    os.chdir("/home/pi/HIRA")
-    ng=os.popen("./ngrok http 80 --log=stdout > logs/ngrok.log &").read()[:-1]
-    time.sleep(10)
-            
-
-def killNgrok():
-    try:
-        pid=int(os.popen("pidof ./ngrok").read()[:-1])
-    except :
-        pid=0
-    if pid > 0:
-        os.popen("kill "+str(pid)).read()[:-1]
-
-#------------------------------------------
 
 def get_cpu_temp():
     cmd="vcgencmd measure_temp"
@@ -96,12 +87,12 @@ def get_LocalIP():
 def get_PublicIP():
     #currently using NGROK for public access
     pubIP=""
-    f=open("/home/pi/HIRA/logs/ngrok.log","r")
-    for lane in f:
-        if "https" in lane and 'msg="started tunnel"' in lane:
-            l=lane.split()
-            url=l[7].replace("url=https://","")
-            pubIP=url
+    mycursor.execute("SELECT PublicIP FROM raspi_info WHERE id=1")
+    myresult = mycursor.fetchall()
+    mydb.commit()
+    #print(myresult)
+    for x in myresult:
+        pubIP=str(x[0])
     return pubIP
 
 def get_hiraStat():
@@ -187,7 +178,7 @@ def storeValues(values,res):
 
 #----------------------Database Access--------------------------------------------
 def insert_raspi_info(values):
-    sql="UPDATE `raspi_info` SET `temp` = '"+values["temp"]+"', `cpu_load` = '"+values["cpu_load"]+"', `used_ram` = '"+values["used_ram"]+"', `used_mem` = '"+values["used_mem"]+"', `up_time` = '"+values["up_time"]+"', `devStat` = '"+values["devStat"]+"', `hiraStat` = '"+values["hiraStat"]+"', `LocalIP` = '"+values["LocalIP"]+"', `PublicIP` = '"+values["PublicIP"]+"' WHERE `raspi_info`.`id` = 1;"
+    sql="UPDATE `raspi_info` SET `temp` = '"+values["temp"]+"', `cpu_load` = '"+values["cpu_load"]+"', `used_ram` = '"+values["used_ram"]+"', `used_mem` = '"+values["used_mem"]+"', `up_time` = '"+values["up_time"]+"', `devStat` = '"+values["devStat"]+"', `hiraStat` = '"+values["hiraStat"]+"', `LocalIP` = '"+values["LocalIP"]+"' WHERE `raspi_info`.`id` = 1;"
     mycursor.execute(sql)
     mydb.commit()
     #print("Server info inserted->"+str(sql))
@@ -204,22 +195,16 @@ def get_hira_info():
         val["init"]=res[4]
         val["adb"]=res[5]
         val["sleep"]=res[6]
-    return val
-
-def initServer():
-    killNgrok()
-    startNgrok()
-    
+    return val    
 
 
 #--------------MAIN Logic---------------
-initServer()
 while 1:
     val=server_details()
     insert_raspi_info(val)
     res=send_to_website(val)
     storeValues(val,res)
-    #display_info(val,res)
+    display_info(val,res)
     time.sleep(10)
 
 

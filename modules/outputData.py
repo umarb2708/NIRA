@@ -18,7 +18,7 @@ mode=mPkg.init.outputMode
 def text2speech(st):
     tts = gTTS(st)
     tts.save('logs/hello.mp3')
-    cmd="mpg321 logs/hello.mp3"
+    cmd="omxplayer logs/hello.mp3"
     out=os.popen(cmd).read()[:-1]   
 
 def putOutput(st):
@@ -26,4 +26,6 @@ def putOutput(st):
         text2speech(st)
     elif mode==1:
         print(st)
+
+
 

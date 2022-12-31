@@ -41,7 +41,7 @@ def showcount(count):
 #               MAIN LOGIC
 #-----------------------------------------------------------
 while 1:
-    mPkg.inp.insertCmd()
+    mPkg.out.putOutput("Hi Madhu, How are you")
     showcount(count)
     time.sleep(10)
     

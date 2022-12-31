@@ -5,8 +5,8 @@ from modules import modulePkg as mPkg
 mydb = mysql.connector.connect(
   host="localhost",
   user="db_admin",
-  password="Admin@MDB123#",
-  database="hira_main"
+  password="Admin@HIRA123#",
+  database="hira_db"
 )
 #----------------------------------------------------
 
