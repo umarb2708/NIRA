@@ -6,3 +6,7 @@ from modules import logger as logs
 from modules import inputData as inp
 from modules import outputData as out
 from modules import executeCommands as exe
+
+
+
+from modules import automation as home

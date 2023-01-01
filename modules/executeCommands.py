@@ -34,6 +34,7 @@ def startExecution():
 def executeCmd(cmdDetails):
     module=SearchKeyWord(cmdDetails[1])
     print("Module:"+module)
+    result=eval("mPkg."+module+"('"+cmdDetails[1]+"')") 
     UpdateCmdStatus(cmdDetails,0)
 
 
