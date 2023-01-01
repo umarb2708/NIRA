@@ -199,6 +199,7 @@ def get_hira_info():
 
 
 #--------------MAIN Logic---------------
+os.system("rm -rf /home/pi/HIRA/logs/server.log")
 while 1:
     val=server_details()
     insert_raspi_info(val)

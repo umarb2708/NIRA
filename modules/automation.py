@@ -26,18 +26,38 @@ clr_param={
 
 
 def turnON(command):
-    print(findDev(command))
+    DevAction={
+            "id":0,
+            "status":0
+            }
+    devDet=findDev(command)
+    DevAction["id"]=devDet["id"]
+    DevAction["status"]=1
+    mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
     
     return 1
 
 def turnOFF(command):
-    findDev(command)
-
-
+    DevAction={
+            "id":0,
+            "status":0
+            }
+    devDet=findDev(command)
+    DevAction["id"]=devDet["id"]
+    DevAction["status"]=0
+    mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
+    
     return 1
 
-def changeParam(command):
-    findDev(command)
+def changeColour(command):
+    DevAction={
+            "id":0,
+            "param":0
+            }
+    devDet=findDev(command)
+    DevAction["id"]=devDet["id"]
+    DevAction["status"]=devDet["param"]
+    mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
 
 
         

@@ -52,8 +52,8 @@ def UpdateData(tableName,values,condition):
 
     sql = "UPDATE "+tableName+" SET "+setval+" WHERE "+condition
     val = mPkg.parser.getData(values)
-    #print(sql)
-    #print(val)    
+    print(sql)
+    print(val)    
     mycursor.execute(sql,val)
     mydb.commit()
 #Function for SELECT query
