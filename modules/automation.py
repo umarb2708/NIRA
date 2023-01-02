@@ -46,7 +46,6 @@ def turnOFF(command):
     DevAction["id"]=devDet["id"]
     DevAction["status"]=0
     mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
-    
     return 1
 
 def changeColour(command):
@@ -57,9 +56,20 @@ def changeColour(command):
     devDet=findDev(command)
     devDet["param"]=getColour(command);
     DevAction["id"]=devDet["id"]
-    DevAction["status"]=devDet["param"]
+    DevAction["param"]=devDet["param"]
     mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
+    return 1
 
+def adjustBrightness(command):
+    DevAction={
+            "id":0,
+            "brightness":0
+            }
+    devDet=findDev(command)
+    devDet["brightness"]=getBrightness(command);
+    DevAction["id"]=devDet["id"]
+    DevAction["brightness"]=devDet["brightness"]
+    mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))    
 
 def getColour(command):
     clr=4
@@ -72,7 +82,15 @@ def getColour(command):
         clr=int(mPkg.inp.getInput("colour"))
 
     return clr
-    
+def getBrightness(command):
+    bright=100
+    x=command.split("brightness")
+    if len(x[1]) < 3:
+        mPkg.out.putOutput("what percentage")
+        x[1]=mPkg.inp.getInput("percentage")
+        #if x[1] == 'full' # to be define
+    bright=mPkg.parser.toInt(x[1])
+    return bright
 
 def findDev(command):
     devDetails={
