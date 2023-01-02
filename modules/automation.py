@@ -55,12 +55,24 @@ def changeColour(command):
             "param":0
             }
     devDet=findDev(command)
+    devDet["param"]=getColour(command);
     DevAction["id"]=devDet["id"]
     DevAction["status"]=devDet["param"]
     mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
 
 
-        
+def getColour(command):
+    clr=4
+    for x in clr_list:
+        if x in command:
+            clr=int(clr_list.index(x))
+    #if no info about room given in command
+    if clr == 4:
+        mPkg.out.putOutput("Which colour")
+        clr=int(mPkg.inp.getInput("colour"))
+
+    return clr
+    
 
 def findDev(command):
     devDetails={
