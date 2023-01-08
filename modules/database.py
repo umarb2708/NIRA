@@ -52,10 +52,9 @@ def UpdateData(tableName,values,condition):
 
     sql = "UPDATE "+tableName+" SET "+setval+" WHERE "+condition
     val = mPkg.parser.getData(values)
-    print(sql)
-    print(val)    
     mycursor.execute(sql,val)
     mydb.commit()
+    return 1
 #Function for SELECT query
 def SelectData(tableName,rowNames,condition):
     query="SELECT "+rowNames+" FROM "+tableName+" "+condition
@@ -65,7 +64,11 @@ def SelectData(tableName,rowNames,condition):
     return myresult
 
 #Function for DELETE command
-
+def deleteData(tableName):
+    sql="DELETE FROM "+tableName
+    mycursor.execute(sql)
+    mydb.commit()
+    return 1
 
 
 

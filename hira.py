@@ -27,14 +27,12 @@ class startExecution(object):
         while True:
             # More statements comes here
             mPkg.exe.startExecution()
-            count=count+1
             time.sleep(self.interval)
 
-
+mPkg.init.initHira()
 tr = startExecution()
+print("Initialisation Completed")
 
-def showcount(count):
-    print("Counter="+str(count))
 
 
 #-----------------------------------------------------------
@@ -42,6 +40,5 @@ def showcount(count):
 #-----------------------------------------------------------
 while 1:
     mPkg.inp.insertCmd()
-    showcount(count)
     time.sleep(10)
     

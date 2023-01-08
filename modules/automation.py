@@ -9,6 +9,7 @@
 #Module description:Smart Home module to control device function such as on/off, speed, colour, brightness
 #==============================================================================================================
 
+import tinytuya # Library to controll tuya device
 from modules import modulePkg as mPkg
 
 bulb_list=["bulb","light"]
@@ -34,7 +35,9 @@ def turnON(command):
     DevAction["id"]=devDet["id"]
     DevAction["status"]=1
     mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
-    
+
+    if devDet["isTuya"] == '1' :
+        mPkg.tuya.ControlTuya('192.168.15.150',1,4,100,77.5)
     return 1
 
 def turnOFF(command):
@@ -46,7 +49,8 @@ def turnOFF(command):
     DevAction["id"]=devDet["id"]
     DevAction["status"]=0
     mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
-    
+    if devDet["isTuya"] == '1' :
+        mPkg.tuya.ControlTuya('192.168.15.150',0,4,100,77.5) 
     return 1
 
 def changeColour(command):
@@ -122,14 +126,17 @@ def findRoomFloor(command):
     # check available rooms in command
     for rm in roomList:
         if rm in command:
+            print("room found")
             roomData[0]=rm
             break
     # check available floor in command
     for floor in floorList:
         if floor in command:
-            roomData[1]=rm
+            print("floor found")
+            roomData[1]=floor
             break
     #if no info about room given in command
+    print ("room Data 0:"+str(roomData[0]))
     if roomData[0] == "":
         mPkg.out.putOutput("Which room")
         roomData[0]=mPkg.inp.getInput("room")
@@ -138,9 +145,10 @@ def findRoomFloor(command):
             #TBD get room and floor details from 
             #current position of HIRA
             #For debug enabling default value
-            roomData[0]="master bedroom"
+            roomData[0]="third bedroom"
             roomData[1]="first"
     #if no floor information
+    print ("room Data 1:"+str(roomData[1]))
     if roomData[1] == "":
         mPkg.out.putOutput("Which floor")
         roomData[0]=mPkg.inp.getInput("floor")

@@ -80,3 +80,6 @@ pip3 install twilio
 
 #--------------------SFTP-------------------
 pip3 install pysftp
+
+#-----------TUYA-------------
+pip3 install tinytuya

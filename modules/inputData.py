@@ -20,8 +20,8 @@ def getTerminalInput(command):
 
 
 def getInput(command):
-    retStr="None"
-    if mode==0:
+    retStr=''
+    while retStr=='':
         retStr=getTerminalInput(command)
     return retStr
 def formatInput():

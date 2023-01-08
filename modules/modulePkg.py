@@ -10,3 +10,4 @@ from modules import executeCommands as exe
 
 
 from modules import automation as home
+from modules import tuyaControl as tuya

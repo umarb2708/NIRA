@@ -21,11 +21,12 @@ adb_en=0 # Enable ADB 0:disable 1:enable
 serialCom_en=0 #Enable Serial communication 0:disable 1:enable
 
 
-
-
-
-if log_en==1:
-    mPkg.logs.createLogFile()
+#Deleting all previous data
+def initHira():
+    mPkg.db.deleteData("commands_executed")
+    mPkg.db.deleteData("commands")
+    if log_en==1:
+        mPkg.logs.createLogFile()
     
         
 
