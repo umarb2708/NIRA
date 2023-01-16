@@ -13,24 +13,29 @@
 import time
 import threading
 from modules import modulePkg as mPkg
-count=0
-
-class startExecution(object):
-    def __init__(self, interval=1):
+class hiraWarning(object):
+    def __init__(self, interval=20):
         self.interval = interval
-        thread = threading.Thread(target=self.run, args=())
-        thread.daemon = True
-        thread.start()
+        self.exeThread = threading.Thread(target=self.run, args=())
+        self.exeThread.daemon = True
+        self.controlThread()
+
+    def controlThread(self):
+        self.exeThread.start()
+
 
     def run(self):
-        global count
         while True:
             # More statements comes here
-            mPkg.exe.startExecution()
+            mPkg.mon.checkWarnings()
             time.sleep(self.interval)
 
+
+
 mPkg.init.initHira()
-tr = startExecution()
+
+warnObj = hiraWarning()
+#inpThread=startInput()
 print("Initialisation Completed")
 
 
@@ -40,5 +45,8 @@ print("Initialisation Completed")
 #-----------------------------------------------------------
 while 1:
     mPkg.inp.insertCmd()
-    time.sleep(10)
+    mPkg.exe.startExecution()
+    #time.sleep(10)
+    #while mPkg.config.ExecutionInProgress == 1:
+    #    time.sleep(10)
     

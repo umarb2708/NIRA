@@ -11,6 +11,7 @@
 
 import tinytuya # Library to controll tuya device
 from modules import modulePkg as mPkg
+moduleLogPriority=2
 
 bulb_list=["bulb","light"]
 lamp_list=["lamp","led","L E D", "LED"]
@@ -34,11 +35,12 @@ def turnON(command):
     devDet=findDev(command)
     DevAction["id"]=devDet["id"]
     DevAction["status"]=1
-    mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
-
+    #print(devDet)
     if devDet["isTuya"] == '1' :
-        mPkg.tuya.ControlTuya('192.168.15.150',1,4,100,77.5)
-    return 1
+        result=mPkg.tuya.ControlTuya('192.168.15.150',1,4,100,77.5)
+    mPkg.db.UpdateData("home_automation",DevAction,"id = "+str(DevAction["id"]))
+    mPkg.out.putOutput("Device turned on")
+    return 
 
 def turnOFF(command):
     DevAction={
@@ -145,17 +147,17 @@ def findRoomFloor(command):
     # check available rooms in command
     for rm in roomList:
         if rm in command:
-            print("room found")
+            #print("room found")
             roomData[0]=rm
             break
     # check available floor in command
     for floor in floorList:
         if floor in command:
-            print("floor found")
+            #print("floor found")
             roomData[1]=floor
             break
     #if no info about room given in command
-    print ("room Data 0:"+str(roomData[0]))
+    #print ("room Data 0:"+str(roomData[0]))
     if roomData[0] == "":
         mPkg.out.putOutput("Which room")
         roomData[0]=mPkg.inp.getInput("room")
@@ -167,10 +169,10 @@ def findRoomFloor(command):
             roomData[0]="third bedroom"
             roomData[1]="first"
     #if no floor information
-    print ("room Data 1:"+str(roomData[1]))
+    #print ("Floor:"+str(roomData[1]))
     if roomData[1] == "":
         mPkg.out.putOutput("Which floor")
-        roomData[0]=mPkg.inp.getInput("floor")
+        roomData[1]=mPkg.inp.getInput("floor")
     return roomData
 
 def fetchDevID(devDetails):

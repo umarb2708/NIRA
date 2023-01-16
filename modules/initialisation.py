@@ -9,24 +9,31 @@
 #==============================================================================================================
 
 from modules import modulePkg as mPkg
-#To print the output of each module status according to priority
-log_en=0    #0:disable 1:enable
-log_priority=1 #1:high 2:medium 3:low (low will print all high,medium,low, medium will print all medium and high, high will print only high)
-#To define input/output mode
-inputMode=0 #0:Terminal 1:speech 2:serial com
-outputMode=0 #0:TTS 1:terminal 2:serial com
-
-#Enabling some features
-adb_en=0 # Enable ADB 0:disable 1:enable
-serialCom_en=0 #Enable Serial communication 0:disable 1:enable
-
-
 #Deleting all previous data
+log_en=1
 def initHira():
+    dvVal={
+            "command":"Initialisation",
+            "status":'1'
+            }
     mPkg.db.deleteData("commands_executed")
     mPkg.db.deleteData("commands")
     if log_en==1:
         mPkg.logs.createLogFile()
+    mPkg.db.insertData("commands_executed",dvVal)
+    mPkg.db.UpdateData("hira_info",getHiraInfo(),"id = 1")
+    return 1
+def getHiraInfo():
+    info={}
+    info['pid']=mPkg.mon.curr_pid()
+    info['tty']=mPkg.mon.get_tty()
+    info['adb']=mPkg.mon.checkAdb()
+    info['sleep']=0
+    info['init']=1
+    info['status']=1
+
+    return info
+
     
         
 

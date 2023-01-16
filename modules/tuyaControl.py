@@ -1,10 +1,22 @@
+#==============================================================================================================
+#                          HIRA Human Intelligent Robo Assistance
+#                                     ---------------
+#                                 Innovize Electro Solutions
+#--------------------------------------------------------------------------------------------------------------
+#                                Design and Developed by UMAR B
+#--------------------------------------------------------------------------------------------------------------
+#Module Name: tuyaControl.py 
+#Module description: Module control tuya devices
+#
+#==============================================================================================================
+
 import tinytuya
 import time
 import random
 from modules import modulePkg as mPkg
 
 debugModule=0
-
+moduleLogPriority=3
 #tinytuya.set_debug(True)  # use tinytuya.set_debug(True,False) for non-ANSI color terminal
 
 def connectDevice(tuyaDevID,tuyaIP , tuyaLocalKey, tuyaVersion):
@@ -50,12 +62,12 @@ def fetchTuyaDev(tuyaIP):
         devData["devID"]=x[2]
         devData["devKey"]=x[3]
         devData["devVersion"]=x[4]
-    print(devData)
+    #print(devData)
     return devData
 
 
 def ControlTuya(tuyaIP,turnOn,colour,brightness,clrTemp):
-    retVal=""
+    retVal=1
     devData=fetchTuyaDev(tuyaIP)
     d=connectDevice(devData["devID"],devData["tuyaIP"],devData["devKey"],devData["devVersion"])
     st=checkStatus(d)
@@ -68,6 +80,10 @@ def ControlTuya(tuyaIP,turnOn,colour,brightness,clrTemp):
         turnON(d)
     else:
         turnOFF(d)
+    #if mPkg.config.log_en ==1 and moduleLogPriority <= mPkg.config.log_priority :
+        
+    return retVal
+
 
         
 

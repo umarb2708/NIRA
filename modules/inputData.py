@@ -10,12 +10,20 @@
 # MODE:0->Terminal(by default) 1:voice input 2:serial monitor input
 #==============================================================================================================
 from modules import modulePkg as mPkg
-mode=mPkg.init.inputMode
-
+from pytimedinput import timedInput
+moduleLogPriority=2
 
 #Function to get terminal Input
 def getTerminalInput(command):
-    return str(input(command+":"))
+    returnData=''
+    #mode=mPkg.config.getConfiguration()['inputMode']
+    termCmd,timeOut=timedInput(command+":",5)
+    if timeOut :
+        print("Input Timeout")
+        returnData='do nothong'
+    else:
+        returnData=termCmd
+    return str(returnData)
 
 
 
@@ -33,14 +41,15 @@ def formatInput():
     #print(cmd)
     return cmd
 def insertCmd():
-    command= formatInput()
-    if "hira" in command:
-        val={
-                "command":command,
-                "priority":"high" if "shutdown" in command or "reboot" in command else "med", 
-                "frm":"hira",
-                "exec":0
-                }
-        mPkg.db.insertData("commands",val)
+    if mPkg.config.ExecutionInProgress == 0:
+        command= formatInput()
+        if "hira" in command:
+            val={
+                    "command":command,
+                    "priority":"high" if "shutdown" in command or "reboot" in command else "med", 
+                    "frm":"hira",
+                    "exec":0
+                    }
+            mPkg.db.insertData("commands",val)
     
 

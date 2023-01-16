@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 04, 2022 at 12:30 PM
--- Server version: 10.3.34-MariaDB-0+deb10u1
--- PHP Version: 7.3.31-1~deb10u1
+-- Generation Time: Jan 14, 2023 at 09:36 PM
+-- Server version: 10.3.36-MariaDB-0+deb10u2
+-- PHP Version: 7.3.31-1~deb10u2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -62,8 +62,11 @@ CREATE TABLE `commands` (
 --
 
 INSERT INTO `commands` (`id`, `command`, `priority`, `frm`, `exec`) VALUES
-(403, 'hira turn on the light', 'med', 'hira', 1),
-(404, 'hira h', 'med', 'hira', 0);
+(37456, 'hira turn off the light', 'med', 'hira', 1),
+(37457, 'hira turn on the light in third bedroom first floor', 'low', 'dashboard', 1),
+(37458, 'hira turn off the light in third bedroom first floor', 'low', 'dashboard', 1),
+(37459, 'hira turn on the light in third bedroom first floor', 'med', 'hira', 1),
+(37460, 'hira turn off the light in third bedroom first floor', 'low', 'dashboard', 1);
 
 -- --------------------------------------------------------
 
@@ -82,8 +85,7 @@ CREATE TABLE `commands_executed` (
 --
 
 INSERT INTO `commands_executed` (`id`, `command`, `status`) VALUES
-(248, 'initialisation', '1'),
-(249, 'turn on the light', '1');
+(277, 'Initialisation', '1');
 
 -- --------------------------------------------------------
 
@@ -104,15 +106,15 @@ CREATE TABLE `command_centre` (
 --
 
 INSERT INTO `command_centre` (`sno`, `type`, `main_kw`, `action_file`, `keywords`) VALUES
-(4, 'Home Automation', 'turn on', 'aut.turn_on_device', ''),
-(5, 'Home Automation', 'turn off', 'aut.turn_off_device', ''),
+(4, 'Home Automation', 'turn on', 'home.turnON', ''),
+(5, 'Home Automation', 'turn off', 'home.turnOFF', ''),
 (6, '', 'move forward', 'mov.forward', ''),
 (7, '', 'training', 'train.train_rex', ''),
 (8, '', 'wiki', 'wiki.search_in_wiki', ''),
 (9, '', 'search', 'web.search_from_net', ''),
 (10, '', 'open youtube', 'yt.open_youtube', ''),
 (11, '', 'close youtube', 'yt.close_youtube', ''),
-(12, 'Home Automation', 'change colour', 'aut.change_colour', 'change,red,blue,green'),
+(12, 'Home Automation', 'change colour', 'home.changeColour', 'change,red,blue,green'),
 (13, '', 'send mail', 'mail.send_email', 'send,to,mail,'),
 (14, '', 'play', 'mdc.play_pause', ''),
 (15, '', 'pause', 'mdc.play_pause', ''),
@@ -140,15 +142,20 @@ CREATE TABLE `configuration` (
   `version` double NOT NULL,
   `test_en` int(11) NOT NULL DEFAULT 0,
   `input_mode` int(11) NOT NULL DEFAULT 0,
-  `remote_dash` int(1) NOT NULL DEFAULT 0
+  `outputMode` int(11) NOT NULL DEFAULT 0,
+  `remote_dash` int(1) NOT NULL DEFAULT 0,
+  `adb_en` int(1) NOT NULL DEFAULT 0,
+  `serialCom_en` int(1) NOT NULL DEFAULT 0,
+  `hiraWheels` int(1) NOT NULL DEFAULT 1,
+  `cam_en` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `configuration`
 --
 
-INSERT INTO `configuration` (`id`, `version`, `test_en`, `input_mode`, `remote_dash`) VALUES
-(1, 0.2, 1, 0, 1);
+INSERT INTO `configuration` (`id`, `version`, `test_en`, `input_mode`, `outputMode`, `remote_dash`, `adb_en`, `serialCom_en`, `hiraWheels`, `cam_en`) VALUES
+(1, 0.2, 1, 0, 0, 1, 0, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -193,7 +200,7 @@ CREATE TABLE `hira_info` (
 --
 
 INSERT INTO `hira_info` (`id`, `pid`, `tty`, `status`, `init`, `adb`, `sleep`) VALUES
-(1, '3362', '0', 1, 1, 0, 0);
+(1, '31599', '/dev/pts/0', 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -203,23 +210,25 @@ INSERT INTO `hira_info` (`id`, `pid`, `tty`, `status`, `init`, `adb`, `sleep`) V
 
 CREATE TABLE `home_automation` (
   `id` int(6) NOT NULL,
-  `room_id` int(5) NOT NULL,
+  `room` varchar(50) NOT NULL,
   `floor` varchar(30) NOT NULL,
-  `plac` varchar(30) NOT NULL,
   `component` varchar(10) NOT NULL DEFAULT 'light',
-  `status` tinyint(1) NOT NULL,
-  `param` int(2) NOT NULL DEFAULT 0
+  `isTuya` varchar(1) DEFAULT '0',
+  `TuyaIP` varchar(100) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 0,
+  `param` int(2) DEFAULT 0,
+  `brightness` int(10) DEFAULT 100
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `home_automation`
 --
 
-INSERT INTO `home_automation` (`id`, `room_id`, `floor`, `plac`, `component`, `status`, `param`) VALUES
-(4, 0, 'first', 'living', 'Light', 0, 0),
-(5, 0, 'first', 'living', 'Fan', 0, 0),
-(6, 0, 'first', 'living', 'Lamp', 0, 1),
-(7, 0, 'first', 'living', 'All', 1, 1);
+INSERT INTO `home_automation` (`id`, `room`, `floor`, `component`, `isTuya`, `TuyaIP`, `status`, `param`, `brightness`) VALUES
+(4, 'master bedroom', 'first', 'light', '1', NULL, 0, 0, 100),
+(5, 'master bedroom', 'first', 'fan', '0', NULL, 0, 0, 100),
+(6, 'master bedroom', 'first', 'night lamp', '1', NULL, 0, 2, 100),
+(8, 'third bedroom', 'first', 'light', '1', '192.168.15.150', 0, 0, 100);
 
 -- --------------------------------------------------------
 
@@ -296,6 +305,13 @@ CREATE TABLE `pma__export_templates` (
   `template_data` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved export templates';
 
+--
+-- Dumping data for table `pma__export_templates`
+--
+
+INSERT INTO `pma__export_templates` (`id`, `username`, `export_type`, `template_name`, `template_data`) VALUES
+(1, 'db_admin', 'database', 'hira_db', '{\"quick_or_custom\":\"quick\",\"what\":\"sql\",\"structure_or_data_forced\":\"0\",\"table_select[]\":[\"climate_info\",\"commands\",\"commands_executed\",\"command_centre\",\"configuration\",\"contacts\",\"hira_info\",\"home_automation\",\"pma__bookmark\",\"pma__central_columns\",\"pma__column_info\",\"pma__designer_settings\",\"pma__export_templates\",\"pma__favorite\",\"pma__history\",\"pma__navigationhiding\",\"pma__pdf_pages\",\"pma__recent\",\"pma__relation\",\"pma__savedsearches\",\"pma__table_coords\",\"pma__table_info\",\"pma__table_uiprefs\",\"pma__tracking\",\"pma__userconfig\",\"pma__usergroups\",\"pma__users\",\"raspi_info\",\"tuya_details\",\"user_log\"],\"table_structure[]\":[\"climate_info\",\"commands\",\"commands_executed\",\"command_centre\",\"configuration\",\"contacts\",\"hira_info\",\"home_automation\",\"pma__bookmark\",\"pma__central_columns\",\"pma__column_info\",\"pma__designer_settings\",\"pma__export_templates\",\"pma__favorite\",\"pma__history\",\"pma__navigationhiding\",\"pma__pdf_pages\",\"pma__recent\",\"pma__relation\",\"pma__savedsearches\",\"pma__table_coords\",\"pma__table_info\",\"pma__table_uiprefs\",\"pma__tracking\",\"pma__userconfig\",\"pma__usergroups\",\"pma__users\",\"raspi_info\",\"tuya_details\",\"user_log\"],\"table_data[]\":[\"climate_info\",\"commands\",\"commands_executed\",\"command_centre\",\"configuration\",\"contacts\",\"hira_info\",\"home_automation\",\"pma__bookmark\",\"pma__central_columns\",\"pma__column_info\",\"pma__designer_settings\",\"pma__export_templates\",\"pma__favorite\",\"pma__history\",\"pma__navigationhiding\",\"pma__pdf_pages\",\"pma__recent\",\"pma__relation\",\"pma__savedsearches\",\"pma__table_coords\",\"pma__table_info\",\"pma__table_uiprefs\",\"pma__tracking\",\"pma__userconfig\",\"pma__usergroups\",\"pma__users\",\"raspi_info\",\"tuya_details\",\"user_log\"],\"output_format\":\"sendit\",\"filename_template\":\"@DATABASE@\",\"remember_template\":\"on\",\"charset\":\"utf-8\",\"compression\":\"none\",\"maxsize\":\"\",\"codegen_structure_or_data\":\"data\",\"codegen_format\":\"0\",\"mediawiki_structure_or_data\":\"structure_and_data\",\"mediawiki_caption\":\"something\",\"mediawiki_headers\":\"something\",\"texytext_structure_or_data\":\"structure_and_data\",\"texytext_null\":\"NULL\",\"htmlword_structure_or_data\":\"structure_and_data\",\"htmlword_null\":\"NULL\",\"latex_caption\":\"something\",\"latex_structure_or_data\":\"structure_and_data\",\"latex_structure_caption\":\"Structure of table @TABLE@\",\"latex_structure_continued_caption\":\"Structure of table @TABLE@ (continued)\",\"latex_structure_label\":\"tab:@TABLE@-structure\",\"latex_relation\":\"something\",\"latex_comments\":\"something\",\"latex_mime\":\"something\",\"latex_columns\":\"something\",\"latex_data_caption\":\"Content of table @TABLE@\",\"latex_data_continued_caption\":\"Content of table @TABLE@ (continued)\",\"latex_data_label\":\"tab:@TABLE@-data\",\"latex_null\":\"\\\\textit{NULL}\",\"yaml_structure_or_data\":\"data\",\"ods_null\":\"NULL\",\"ods_structure_or_data\":\"data\",\"phparray_structure_or_data\":\"data\",\"csv_separator\":\",\",\"csv_enclosed\":\"\\\"\",\"csv_escaped\":\"\\\"\",\"csv_terminated\":\"AUTO\",\"csv_null\":\"NULL\",\"csv_structure_or_data\":\"data\",\"sql_include_comments\":\"something\",\"sql_header_comment\":\"\",\"sql_compatibility\":\"NONE\",\"sql_structure_or_data\":\"structure_and_data\",\"sql_create_table\":\"something\",\"sql_auto_increment\":\"something\",\"sql_create_view\":\"something\",\"sql_procedure_function\":\"something\",\"sql_create_trigger\":\"something\",\"sql_backquotes\":\"something\",\"sql_type\":\"INSERT\",\"sql_insert_syntax\":\"both\",\"sql_max_query_size\":\"50000\",\"sql_hex_for_binary\":\"something\",\"sql_utc_time\":\"something\",\"excel_null\":\"NULL\",\"excel_edition\":\"win\",\"excel_structure_or_data\":\"data\",\"xml_structure_or_data\":\"data\",\"xml_export_events\":\"something\",\"xml_export_functions\":\"something\",\"xml_export_procedures\":\"something\",\"xml_export_tables\":\"something\",\"xml_export_triggers\":\"something\",\"xml_export_views\":\"something\",\"xml_export_contents\":\"something\",\"pdf_report_title\":\"\",\"pdf_structure_or_data\":\"structure_and_data\",\"odt_structure_or_data\":\"structure_and_data\",\"odt_relation\":\"something\",\"odt_comments\":\"something\",\"odt_mime\":\"something\",\"odt_columns\":\"something\",\"odt_null\":\"NULL\",\"json_structure_or_data\":\"data\",\"\":null,\"lock_tables\":null,\"as_separate_files\":null,\"texytext_columns\":null,\"htmlword_columns\":null,\"ods_columns\":null,\"csv_removeCRLF\":null,\"csv_columns\":null,\"sql_dates\":null,\"sql_relation\":null,\"sql_mime\":null,\"sql_use_transaction\":null,\"sql_disable_fk\":null,\"sql_views_as_tables\":null,\"sql_metadata\":null,\"sql_create_database\":null,\"sql_drop_table\":null,\"sql_if_not_exists\":null,\"sql_truncate\":null,\"sql_delayed\":null,\"sql_ignore\":null,\"excel_removeCRLF\":null,\"excel_columns\":null,\"json_pretty_print\":null}');
+
 -- --------------------------------------------------------
 
 --
@@ -364,7 +380,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('db_admin', '[{\"db\":\"hira_db\",\"table\":\"command_centre\"},{\"db\":\"hira_db\",\"table\":\"home_automation\"},{\"db\":\"hira_db\",\"table\":\"raspi_info\"},{\"db\":\"hira_db\",\"table\":\"commands\"},{\"db\":\"hira_db\",\"table\":\"contacts\"},{\"db\":\"hira_db\",\"table\":\"configuration\"},{\"db\":\"hira_db\",\"table\":\"pma__pdf_pages\"},{\"db\":\"hira_db\",\"table\":\"hira_info\"},{\"db\":\"hira_db\",\"table\":\"user_log\"},{\"db\":\"hira_db\",\"table\":\"climate_info\"}]');
+('db_admin', '[{\"db\":\"hira_db\",\"table\":\"tuya_details\"},{\"db\":\"hira_db\",\"table\":\"command_centre\"},{\"db\":\"hira_db\",\"table\":\"configuration\"},{\"db\":\"hira_db\",\"table\":\"hira_info\"},{\"db\":\"hira_db\",\"table\":\"raspi_info\"},{\"db\":\"hira_db\",\"table\":\"commands\"},{\"db\":\"hira_db\",\"table\":\"home_automation\"},{\"db\":\"hira_db\",\"table\":\"commands_executed\"},{\"db\":\"hira_db\",\"table\":\"contacts\"},{\"db\":\"hira_db\",\"table\":\"pma__pdf_pages\"}]');
 
 -- --------------------------------------------------------
 
@@ -509,7 +525,7 @@ CREATE TABLE `raspi_info` (
   `used_ram` float NOT NULL DEFAULT 0,
   `used_mem` float NOT NULL DEFAULT 0,
   `up_time` varchar(30) NOT NULL DEFAULT '0 m',
-  `battery` int(10) NOT NULL DEFAULT 100,
+  `battery` float NOT NULL DEFAULT 100,
   `LocalIP` varchar(25) NOT NULL DEFAULT '192.168.15.2',
   `PublicIP` varchar(100) NOT NULL DEFAULT 'hira.local',
   `hiraStat` int(1) NOT NULL DEFAULT 0,
@@ -521,7 +537,28 @@ CREATE TABLE `raspi_info` (
 --
 
 INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`, `battery`, `LocalIP`, `PublicIP`, `hiraStat`, `devStat`) VALUES
-(1, 49.4, 1.8, 61.5, 44.6, '26 m', 100, '169.254.51.104', '40dd-43-224-158-58.ngrok.io', 0, 0);
+(1, 38.6, 3.8, 57.7, 46.2, '3 hs, 6 m', 133.93, '192.168.15.2', '2f2c-2409-4073-194-3b2c-bace-12eb-fc75-bd4.ngrok.io', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tuya_details`
+--
+
+CREATE TABLE `tuya_details` (
+  `id` int(100) NOT NULL,
+  `tuyaIP` varchar(16) NOT NULL,
+  `devID` varchar(100) NOT NULL,
+  `devKey` varchar(100) NOT NULL,
+  `devVersion` float NOT NULL DEFAULT 3.3
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tuya_details`
+--
+
+INSERT INTO `tuya_details` (`id`, `tuyaIP`, `devID`, `devKey`, `devVersion`) VALUES
+(1, '192.168.15.150', 'd7bb150fb9bf6552f6npay', 'aa4d2c48e6bb2ab1', 3.3);
 
 -- --------------------------------------------------------
 
@@ -738,6 +775,12 @@ ALTER TABLE `raspi_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tuya_details`
+--
+ALTER TABLE `tuya_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_log`
 --
 ALTER TABLE `user_log`
@@ -751,12 +794,12 @@ ALTER TABLE `user_log`
 -- AUTO_INCREMENT for table `commands`
 --
 ALTER TABLE `commands`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=405;
+  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37461;
 --
 -- AUTO_INCREMENT for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
 --
 -- AUTO_INCREMENT for table `command_centre`
 --
@@ -778,6 +821,11 @@ ALTER TABLE `contacts`
 ALTER TABLE `hira_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `home_automation`
+--
+ALTER TABLE `home_automation`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT for table `pma__bookmark`
 --
 ALTER TABLE `pma__bookmark`
@@ -791,7 +839,7 @@ ALTER TABLE `pma__column_info`
 -- AUTO_INCREMENT for table `pma__export_templates`
 --
 ALTER TABLE `pma__export_templates`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pma__history`
 --
@@ -807,6 +855,11 @@ ALTER TABLE `pma__pdf_pages`
 --
 ALTER TABLE `pma__savedsearches`
   MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tuya_details`
+--
+ALTER TABLE `tuya_details`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user_log`
 --

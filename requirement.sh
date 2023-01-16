@@ -2,8 +2,11 @@
 #				This file contains Library files need for HIRA to work perfectly 
 #--------------------------------------------------------------------------------------------------------------------------------
 
+
+#input with timeout
+pip3 install pytimedinput
 #------------------Text to Speech--------------------
-pip install gTTS
+pip3 install gTTS
 
 #-------------------Database------------------------
 apt install mariadb-server 

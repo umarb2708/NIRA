@@ -379,6 +379,32 @@
         "name": "HIRA-Auth"
     },
     {
+        "id": "16d9659b4ff9e57c",
+        "type": "mqtt-broker",
+        "name": "Hira Wheels",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
         "id": "d4ba43a001d7cfcf",
         "type": "function",
         "z": "bba4aba8f9d733f3",
@@ -716,7 +742,7 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "",
-        "func": "var msg1={payload:msg.payload[0][\"id\"]};\nvar msg2={payload:msg.payload[0][\"temp\"]};\nvar msg3={payload:msg.payload[0][\"cpu_load\"]};\nvar msg4={payload:msg.payload[0][\"used_ram\"]};\nvar msg5={payload:msg.payload[0][\"used_mem\"]};\nvar msg6={payload:msg.payload[0][\"up_time\"]};\nvar msg7;\nif (msg.payload[0][\"devStat\"]==1)\n    msg7={payload:\"UP\",colour:\"green\"};\nelse\n    msg7={payload:\"DOWN\",colour:\"red\"};\n    \nvar msg8;\nif (msg.payload[0][\"battery\"]>90)\n    msg8={payload:msg.payload[0][\"battery\"],colour:\"green\"};\nelse if  (msg.payload[0][\"battery\"]<90 && msg.payload[0][\"battery\"]>50)\n    msg8={payload:msg.payload[0][\"battery\"],colour:\"yellow\"};\nelse\n    msg8={payload:msg.payload[0][\"battery\"],colour:\"red\"};\n\nreturn [msg1,msg2,msg3,msg4,msg5,msg6,msg7,msg8];",
+        "func": "var msg1={payload:msg.payload[0][\"id\"]};\nvar msg2={payload:msg.payload[0][\"temp\"]};\nvar msg3={payload:msg.payload[0][\"cpu_load\"]};\nvar msg4={payload:msg.payload[0][\"used_ram\"]};\nvar msg5={payload:msg.payload[0][\"used_mem\"]};\nvar msg6={payload:msg.payload[0][\"up_time\"]};\nvar msg7;\nif (msg.payload[0][\"devStat\"]==1)\n    msg7={payload:\"UP\",colour:\"green\"};\nelse\n    msg7={payload:\"DOWN\",colour:\"red\"};\n    \nvar msg8;\nbatPercent=Math.floor(msg.payload[0][\"battery\"]);\nif (batPercent>90)\n    msg8={payload:batPercent,colour:\"green\"};\nelse if  (batPercent<90 && batPercent>50)\n    msg8={payload:batPercent,colour:\"yellow\"};\nelse\n    msg8={payload:batPercent,colour:\"red\"};\n\nreturn [msg1,msg2,msg3,msg4,msg5,msg6,msg7,msg8];",
         "outputs": 8,
         "noerr": 0,
         "initialize": "",
@@ -725,9 +751,7 @@
         "x": 550,
         "y": 860,
         "wires": [
-            [
-                "2fa90ede4335287d"
-            ],
+            [],
             [
                 "179bbc6142328605"
             ],
@@ -747,7 +771,8 @@
                 "490898eaa15336ad"
             ],
             [
-                "cb825d759526b792"
+                "cb825d759526b792",
+                "2fa90ede4335287d"
             ]
         ]
     },
@@ -815,7 +840,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 540,
-        "y": 1100,
+        "y": 1140,
         "wires": [
             [
                 "45aa6750d7b1674b"
@@ -843,7 +868,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 540,
-        "y": 1140,
+        "y": 1180,
         "wires": [
             [
                 "45aa6750d7b1674b"
@@ -871,10 +896,11 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 540,
-        "y": 1180,
+        "y": 1220,
         "wires": [
             [
-                "a160c2dff690c94b"
+                "a160c2dff690c94b",
+                "bb5f641bf8a3876d"
             ]
         ]
     },
@@ -909,9 +935,9 @@
         "type": "mysql",
         "z": "bba4aba8f9d733f3",
         "mydb": "dafdac5f3491cd58",
-        "name": "Server Info",
-        "x": 250,
-        "y": 1180,
+        "name": "hira_db",
+        "x": 240,
+        "y": 1220,
         "wires": [
             [
                 "c5a7652d2c044a59"
@@ -933,9 +959,9 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "SELECT * FROM `raspi_info` WHERE id=1",
+        "topic": "SELECT * FROM `hira_info` WHERE id=1",
         "x": 90,
-        "y": 1180,
+        "y": 1220,
         "wires": [
             [
                 "d677b334d341a69d"
@@ -947,14 +973,14 @@
         "type": "function",
         "z": "bba4aba8f9d733f3",
         "name": "",
-        "func": "\nif (msg.payload[0][\"hiraStat\"]==0)\n    msg={label:\"wakeup\",\n        topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira wake up', 'high', 'dashboard', '0');\"\n    };\nelse\n    msg={label:\"sleep\",\n    topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira sleep', 'high', 'dashboard', '0');\"\n        \n    };\nreturn msg;",
+        "func": "\nif (msg.payload[0][\"sleep\"]==0)\n    msg={label:\"wakeup\",\n        topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira wake up', 'high', 'dashboard', '0');\"\n    };\nelse\n    msg={label:\"sleep\",\n    topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira sleep', 'high', 'dashboard', '0');\"\n        \n    };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1180,
+        "y": 1220,
         "wires": [
             [
                 "e43c91b805928a6d"
@@ -1188,7 +1214,7 @@
         "bgcolor": "black",
         "className": "",
         "icon": "keyboard_arrow_left",
-        "payload": "left",
+        "payload": "2",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
@@ -1197,7 +1223,8 @@
         "wires": [
             [
                 "4d5661aa06ee5653",
-                "0954da6943d62b3c"
+                "0954da6943d62b3c",
+                "79a3698542722094"
             ]
         ]
     },
@@ -1217,7 +1244,7 @@
         "bgcolor": "black",
         "className": "",
         "icon": "keyboard_arrow_up",
-        "payload": "up",
+        "payload": "0",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
@@ -1226,7 +1253,8 @@
         "wires": [
             [
                 "4d5661aa06ee5653",
-                "0954da6943d62b3c"
+                "0954da6943d62b3c",
+                "79a3698542722094"
             ]
         ]
     },
@@ -1246,7 +1274,7 @@
         "bgcolor": "black",
         "className": "",
         "icon": "keyboard_arrow_down",
-        "payload": "down",
+        "payload": "1",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
@@ -1255,7 +1283,8 @@
         "wires": [
             [
                 "4d5661aa06ee5653",
-                "0954da6943d62b3c"
+                "0954da6943d62b3c",
+                "79a3698542722094"
             ]
         ]
     },
@@ -1275,7 +1304,7 @@
         "bgcolor": "black",
         "className": "",
         "icon": "keyboard_arrow_right",
-        "payload": "right",
+        "payload": "3",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
@@ -1284,7 +1313,8 @@
         "wires": [
             [
                 "4d5661aa06ee5653",
-                "0954da6943d62b3c"
+                "0954da6943d62b3c",
+                "79a3698542722094"
             ]
         ]
     },
@@ -1304,7 +1334,7 @@
         "bgcolor": "black",
         "className": "",
         "icon": "stop",
-        "payload": "stop",
+        "payload": "4",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
@@ -1313,7 +1343,8 @@
         "wires": [
             [
                 "4d5661aa06ee5653",
-                "0954da6943d62b3c"
+                "0954da6943d62b3c",
+                "79a3698542722094"
             ]
         ]
     },
@@ -1473,16 +1504,16 @@
         "id": "2c6442d3c2333b74",
         "type": "mqtt in",
         "z": "bba4aba8f9d733f3",
-        "name": "ESP-ROOM-I",
-        "topic": "ESP-ROOM-I",
+        "name": "HIRA-Wheels-Conn ",
+        "topic": "HIRA-WHEELS",
         "qos": "2",
         "datatype": "auto",
-        "broker": "6c0f44bd30c92d5e",
+        "broker": "16d9659b4ff9e57c",
         "nl": false,
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 230,
+        "x": 250,
         "y": 300,
         "wires": [
             [
@@ -1499,10 +1530,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 390,
+        "x": 470,
         "y": 300,
         "wires": []
     },
@@ -1511,8 +1543,8 @@
         "type": "mysql",
         "z": "bba4aba8f9d733f3",
         "mydb": "dafdac5f3491cd58",
-        "name": "Autoamtion",
-        "x": 270,
+        "name": "hira_db",
+        "x": 260,
         "y": 120,
         "wires": [
             [
@@ -1874,7 +1906,7 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "SELECT * FROM `home_automation` WHERE plac=\"living\" AND floor=\"first\"",
+        "topic": "SELECT * FROM `home_automation` WHERE room=\"master bedroom\" AND floor=\"first\"",
         "x": 110,
         "y": 120,
         "wires": [
@@ -1906,8 +1938,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
-        "y": 1140,
+        "x": 680,
+        "y": 1160,
         "wires": [
             [
                 "a160c2dff690c94b"
@@ -1919,9 +1951,9 @@
         "type": "mysql",
         "z": "bba4aba8f9d733f3",
         "mydb": "dafdac5f3491cd58",
-        "name": "commands",
-        "x": 860,
-        "y": 1140,
+        "name": "hira_db",
+        "x": 850,
+        "y": 1180,
         "wires": [
             []
         ]
@@ -1964,6 +1996,133 @@
         "wires": []
     },
     {
+        "id": "67076c5cf32204e4",
+        "type": "mqtt in",
+        "z": "bba4aba8f9d733f3",
+        "name": "HiraWheels-BAT",
+        "topic": "hiraWheels/battery",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "16d9659b4ff9e57c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1040,
+        "wires": [
+            [
+                "a620bded0798164f"
+            ]
+        ]
+    },
+    {
+        "id": "87bf1daddc32b159",
+        "type": "debug",
+        "z": "bba4aba8f9d733f3",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "79a3698542722094",
+        "type": "mqtt out",
+        "z": "bba4aba8f9d733f3",
+        "name": "Robo Controll",
+        "topic": "hiraWheels/roboControl",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "16d9659b4ff9e57c",
+        "x": 520,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "a620bded0798164f",
+        "type": "function",
+        "z": "bba4aba8f9d733f3",
+        "name": "BatPercent-DB",
+        "func": "st=parseFloat(msg.payload);\nvar msg2\nif(st<=15.00) msg2={payload:\"Low Battery, Please Charge\"};\nmsg={topic:\"UPDATE raspi_info SET battery = \"+st+\" WHERE id=1;\",payload:st}\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 1040,
+        "wires": [
+            [
+                "634711ba96e8f792"
+            ],
+            [
+                "dc7f185cde09b0ca",
+                "87bf1daddc32b159"
+            ]
+        ]
+    },
+    {
+        "id": "634711ba96e8f792",
+        "type": "mysql",
+        "z": "bba4aba8f9d733f3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira_db",
+        "x": 780,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dc7f185cde09b0ca",
+        "type": "ui_toast",
+        "z": "bba4aba8f9d733f3",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 810,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "bb5f641bf8a3876d",
+        "type": "debug",
+        "z": "bba4aba8f9d733f3",
+        "name": "HiraWakeStatus",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 1320,
+        "wires": []
+    },
+    {
         "id": "ed9b285aa406e8eb",
         "type": "inject",
         "z": "e2016417672d6d0e",
@@ -1978,7 +2137,7 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "SELECT * FROM `home_automation` WHERE plac=\"living\" AND floor=\"first\"",
+        "topic": "SELECT * FROM `home_automation` WHERE room=\"master bedroom\" AND floor=\"first\"",
         "x": 110,
         "y": 100,
         "wires": [
@@ -1992,8 +2151,8 @@
         "type": "mysql",
         "z": "e2016417672d6d0e",
         "mydb": "dafdac5f3491cd58",
-        "name": "Autoamtion",
-        "x": 270,
+        "name": "hira-db",
+        "x": 260,
         "y": 100,
         "wires": [
             [
@@ -2117,8 +2276,8 @@
         "type": "mysql",
         "z": "e2016417672d6d0e",
         "mydb": "dafdac5f3491cd58",
-        "name": "Home Automation",
-        "x": 1030,
+        "name": "hira-db",
+        "x": 1000,
         "y": 20,
         "wires": [
             []
@@ -2347,6 +2506,246 @@
         ]
     },
     {
+        "id": "3501e6b3c334d076",
+        "type": "inject",
+        "z": "e2016417672d6d0e",
+        "name": "Trigger DB",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM `home_automation` WHERE room=\"third bedroom\" AND floor=\"first\"",
+        "x": 70,
+        "y": 400,
+        "wires": [
+            [
+                "c379634bb2d862c8"
+            ]
+        ]
+    },
+    {
+        "id": "c379634bb2d862c8",
+        "type": "mysql",
+        "z": "e2016417672d6d0e",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira-db",
+        "x": 240,
+        "y": 400,
+        "wires": [
+            [
+                "385029a5c01db5eb"
+            ]
+        ]
+    },
+    {
+        "id": "385029a5c01db5eb",
+        "type": "function",
+        "z": "e2016417672d6d0e",
+        "name": "",
+        "func": "st=msg.payload[0][\"status\"];\nd8pVal=context.get('dev8');\nsame_st=(st==d8pVal)?1:0;\nif(same_st==0){\n    msg1={payload:st,\n    topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira turn \"+(st==1?\"on\":\"off\")+\" the light in third bedroom first floor', 'low', 'dashboard', '0');\"};\n}\nelse\n{\n    msg1={payload:st};\n}\ncontext.set('dev8',st);\nreturn msg1;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 400,
+        "wires": [
+            [
+                "3196e9e76ff071ba"
+            ]
+        ]
+    },
+    {
+        "id": "99e3027d7e37467a",
+        "type": "ui_slider",
+        "z": "e2016417672d6d0e",
+        "name": "fan speed",
+        "label": "",
+        "tooltip": "",
+        "group": "72e45ce6e4f690da",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "5",
+        "step": 1,
+        "className": "",
+        "x": 560,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e35059f32f1d3e7",
+        "type": "function",
+        "z": "e2016417672d6d0e",
+        "name": "tuyaDevFunc",
+        "func": "st=msg.payload==1?\"1\":\"0\";\nturn=msg.payload==1?\" on \":\" off \";\nmsg1={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=8;\",payload:st}\nmsg2={topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira turn\"+turn+\"the light in third bedroom first floor', 'low', 'dashboard', '0');\",payload:\"State Changed\"}\nreturn [msg1,msg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 340,
+        "wires": [
+            [
+                "560db15f104324b2"
+            ],
+            [
+                "560db15f104324b2"
+            ]
+        ]
+    },
+    {
+        "id": "560db15f104324b2",
+        "type": "mysql",
+        "z": "e2016417672d6d0e",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira-db",
+        "x": 960,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3196e9e76ff071ba",
+        "type": "ui_switch",
+        "z": "e2016417672d6d0e",
+        "name": "Light",
+        "label": "",
+        "tooltip": "",
+        "group": "72e45ce6e4f690da",
+        "order": 1,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "lightbulb_outline",
+        "oncolor": "lime",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "lightbulb_outline",
+        "offcolor": "yellow",
+        "animate": false,
+        "className": "",
+        "x": 550,
+        "y": 340,
+        "wires": [
+            [
+                "2e35059f32f1d3e7"
+            ]
+        ]
+    },
+    {
+        "id": "6c9560bd7637b8c1",
+        "type": "ui_switch",
+        "z": "e2016417672d6d0e",
+        "name": "Fan",
+        "label": "",
+        "tooltip": "",
+        "group": "72e45ce6e4f690da",
+        "order": 3,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "toys",
+        "oncolor": "lime",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "toys",
+        "offcolor": "yellow",
+        "animate": false,
+        "className": "",
+        "x": 550,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6c1a18754cded6bf",
+        "type": "ui_switch",
+        "z": "e2016417672d6d0e",
+        "name": "night lamp",
+        "label": "",
+        "tooltip": "",
+        "group": "72e45ce6e4f690da",
+        "order": 4,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "fa-moon-o",
+        "oncolor": "lime",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "fa-moon-o",
+        "offcolor": "yellow",
+        "animate": false,
+        "className": "",
+        "x": 570,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05f84598aa3039bf",
+        "type": "ui_button",
+        "z": "e2016417672d6d0e",
+        "name": "RGB",
+        "group": "72e45ce6e4f690da",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "{{colour}}",
+        "bgcolor": "rgb(55,55,55)",
+        "className": "",
+        "icon": "opacity",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 550,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "c56d77132b33fc1a",
         "type": "inject",
         "z": "20a3380ff85c946d",
@@ -2569,7 +2968,7 @@
         "type": "debug",
         "z": "20a3380ff85c946d",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,

@@ -12,7 +12,6 @@
 from gtts import gTTS
 import os
 from modules import modulePkg as mPkg
-mode=mPkg.init.outputMode
 
 
 def text2speech(st):
@@ -22,6 +21,7 @@ def text2speech(st):
     out=os.popen(cmd).read()[:-1]   
 
 def putOutput(st):
+    mode=mPkg.config.getConfiguration()['outputMode']
     if mode ==0:
         text2speech(st)
     elif mode==1:

@@ -1,5 +1,5 @@
 import datetime
-
+moduleLogPriority=3
 def get_date():
     return int(datetime.datetime.now().day)
 
@@ -14,6 +14,8 @@ def get_time():
 
 def get_hour():
     return int(datetime.datetime.now().hour)
+def getAlldateTime():
+    return datetime.datetime.now().strftime("%d:%m:%Y::%I:%M:%S")
 
 def wishme():
     hour=get_hour()

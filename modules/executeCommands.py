@@ -9,6 +9,7 @@
 #Module description: To execute the commands to HIRA with priority
 #==============================================================================================================
 from modules import modulePkg as mPkg
+moduleLogPriority=1
 def startExecution():
     lis_h=mPkg.db.SelectData("commands","*","WHERE priority = 'high' AND exec = 0")#high priority list
     lis_m=mPkg.db.SelectData("commands","*","WHERE priority = 'med' AND exec = 0")#Medium priority list
@@ -20,22 +21,25 @@ def startExecution():
     #print(lis_m)
     #print("Low Priority List")
     #print(lis_l)
-
+    mPkg.config.ExecutionInProgress=1
     for row in lis_h:#Running High Priority list first
         executeCmd(row)
     for row in lis_m:#Running Medium Priority list then
         executeCmd(row)
     for row in lis_l:#Running Low Priority list last
         executeCmd(row)
+    mPkg.config.ExecutionInProgress=0
 
 
     return 0
 
 def executeCmd(cmdDetails):
     module=SearchKeyWord(cmdDetails[1])
-    print("Module:"+module)
+    #print("Command:"+cmdDetails[1])
     result=eval("mPkg."+module+"('"+cmdDetails[1]+"')") 
     UpdateCmdStatus(cmdDetails,0)
+    if mPkg.config.log_en ==1 and moduleLogPriority <= mPkg.config.log_priority :
+        mPkg.log.writeLog("OK:M:exe Command:"+cmdDetails[1]+"")
 
 
 
