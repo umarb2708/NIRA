@@ -73,7 +73,7 @@ def alertTemperature(serverstat):
         "frm":"hira",
         "exec":0
             }
-    if serverStat['temp'] >= 55 serverStat['temp'] < 60:
+    if serverStat['temp'] >= 55 and serverStat['temp'] < 60:
         val["command"]="warn<->Temperature raise detected. Please check"
         mPkg.db.insertData("commands",val)
     elif serverStat['temp'] >= 60:
@@ -89,7 +89,7 @@ def alertBattery(serverstat):
         "frm":"hira",
         "exec":0
             }
-    if serverStat['battery'] >= 20 serverStat['battery'] < 30:
+    if serverStat['battery'] >= 20 and serverStat['battery'] < 30:
         val["command"]="warn<->Low battery. Please charge"
         mPkg.db.insertData("commands",val)
     elif serverStat['battery'] < 20:
@@ -105,7 +105,7 @@ def alertCPUusage(serverstat):
         "frm":"hira",
         "exec":0
             }
-    if serverStat['cpu_load'] >= 70 serverStat['cpu_load'] < 90:
+    if serverStat['cpu_load'] >= 70 and serverStat['cpu_load'] < 90:
         val["command"]="warn<->High CPU load detected. Please check"
         mPkg.db.insertData("commands",val)
     elif serverStat['cpu_load'] >90:
@@ -121,7 +121,7 @@ def alertRAMusage(serverstat):
         "frm":"hira",
         "exec":0
             }
-    if serverStat['used_ram'] >= 70 serverStat['used_ram'] < 90:
+    if serverStat['used_ram'] >= 70 and serverStat['used_ram'] < 90:
         val["command"]="warn<->High RAM usage detected. Please check"
         mPkg.db.insertData("commands",val)
     elif serverStat['used_ram'] >90:
@@ -137,7 +137,7 @@ def alertMEMusage(serverstat):
         "frm":"hira",
         "exec":0
             }
-    if serverStat['used_mem'] >= 70 serverStat['used_mem'] < 90:
+    if serverStat['used_mem'] >= 70 and serverStat['used_mem'] < 90:
         val["command"]="warn<->High memory usage detected. Please check"
         mPkg.db.insertData("commands",val)
     elif serverStat['used_mem'] >90:

@@ -2,7 +2,7 @@
 from modules import modulePkg as mPkg
 moduleLogPriority=1
 #To print the output of each module status according to priority
-log_en=0    #0:disable 1:enable
+log_en=1    #0:disable 1:enable
 log_priority=1 #1:high 2:medium 3:low (low will print all high,medium,low, medium will print all medium and high, high will print only high)
 #To define input/output mode
 inputMode=0 #0:Terminal 1:speech 2:serial com

@@ -39,7 +39,7 @@ def executeCmd(cmdDetails):
     result=eval("mPkg."+module+"('"+cmdDetails[1]+"')") 
     UpdateCmdStatus(cmdDetails,0)
     if mPkg.config.log_en ==1 and moduleLogPriority <= mPkg.config.log_priority :
-        mPkg.log.writeLog("OK:M:exe Command:"+cmdDetails[1]+"")
+        mPkg.log.writeLog("exe Command:"+cmdDetails[1]+"-->Done")
 
 
 

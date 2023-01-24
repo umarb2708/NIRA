@@ -15,6 +15,7 @@ from modules import modulePkg as mPkg
 
 
 def text2speech(st):
+    st=st.replace("warn<->","")
     tts = gTTS(st)
     tts.save('logs/hello.mp3')
     cmd="omxplayer logs/hello.mp3"

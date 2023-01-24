@@ -19,7 +19,7 @@
         "id": "27da521ba39d28a3",
         "type": "tab",
         "label": "Flow 3",
-        "disabled": true,
+        "disabled": false,
         "info": "",
         "env": []
     },
@@ -27,6 +27,14 @@
         "id": "20a3380ff85c946d",
         "type": "tab",
         "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "baa1db2de0bc4738",
+        "type": "tab",
+        "label": "Flow 5",
         "disabled": false,
         "info": "",
         "env": []
@@ -382,6 +390,58 @@
         "id": "16d9659b4ff9e57c",
         "type": "mqtt-broker",
         "name": "Hira Wheels",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "60f33f39cbbc9883",
+        "type": "mqtt-broker",
+        "name": "hiraCam",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "375782c2d46650bb",
+        "type": "mqtt-broker",
+        "name": "hiraEyes",
         "broker": "localhost",
         "port": "1883",
         "clientid": "",
@@ -1199,173 +1259,6 @@
         ]
     },
     {
-        "id": "2876403e142620df",
-        "type": "ui_button",
-        "z": "bba4aba8f9d733f3",
-        "name": "Left",
-        "group": "657060290e649c17",
-        "order": 5,
-        "width": 1,
-        "height": 1,
-        "passthru": false,
-        "label": "",
-        "tooltip": "",
-        "color": "white",
-        "bgcolor": "black",
-        "className": "",
-        "icon": "keyboard_arrow_left",
-        "payload": "2",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 190,
-        "y": 1880,
-        "wires": [
-            [
-                "4d5661aa06ee5653",
-                "0954da6943d62b3c",
-                "79a3698542722094"
-            ]
-        ]
-    },
-    {
-        "id": "232878d59d05be67",
-        "type": "ui_button",
-        "z": "bba4aba8f9d733f3",
-        "name": "up",
-        "group": "657060290e649c17",
-        "order": 6,
-        "width": 1,
-        "height": 1,
-        "passthru": false,
-        "label": "",
-        "tooltip": "",
-        "color": "white",
-        "bgcolor": "black",
-        "className": "",
-        "icon": "keyboard_arrow_up",
-        "payload": "0",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 190,
-        "y": 1760,
-        "wires": [
-            [
-                "4d5661aa06ee5653",
-                "0954da6943d62b3c",
-                "79a3698542722094"
-            ]
-        ]
-    },
-    {
-        "id": "8682e5ef94b9c2b3",
-        "type": "ui_button",
-        "z": "bba4aba8f9d733f3",
-        "name": "down",
-        "group": "657060290e649c17",
-        "order": 8,
-        "width": 1,
-        "height": 1,
-        "passthru": false,
-        "label": "",
-        "tooltip": "",
-        "color": "white",
-        "bgcolor": "black",
-        "className": "",
-        "icon": "keyboard_arrow_down",
-        "payload": "1",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 190,
-        "y": 1840,
-        "wires": [
-            [
-                "4d5661aa06ee5653",
-                "0954da6943d62b3c",
-                "79a3698542722094"
-            ]
-        ]
-    },
-    {
-        "id": "b6f3a25f7f9d0b4a",
-        "type": "ui_button",
-        "z": "bba4aba8f9d733f3",
-        "name": "right",
-        "group": "657060290e649c17",
-        "order": 9,
-        "width": 1,
-        "height": 1,
-        "passthru": false,
-        "label": "",
-        "tooltip": "",
-        "color": "white",
-        "bgcolor": "black",
-        "className": "",
-        "icon": "keyboard_arrow_right",
-        "payload": "3",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 190,
-        "y": 1720,
-        "wires": [
-            [
-                "4d5661aa06ee5653",
-                "0954da6943d62b3c",
-                "79a3698542722094"
-            ]
-        ]
-    },
-    {
-        "id": "0a56061556661bee",
-        "type": "ui_button",
-        "z": "bba4aba8f9d733f3",
-        "name": "stop",
-        "group": "657060290e649c17",
-        "order": 7,
-        "width": 1,
-        "height": 1,
-        "passthru": false,
-        "label": "",
-        "tooltip": "",
-        "color": "white",
-        "bgcolor": "black",
-        "className": "",
-        "icon": "stop",
-        "payload": "4",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 190,
-        "y": 1800,
-        "wires": [
-            [
-                "4d5661aa06ee5653",
-                "0954da6943d62b3c",
-                "79a3698542722094"
-            ]
-        ]
-    },
-    {
-        "id": "4d5661aa06ee5653",
-        "type": "ui_text",
-        "z": "bba4aba8f9d733f3",
-        "group": "657060290e649c17",
-        "order": 4,
-        "width": 5,
-        "height": 1,
-        "name": "car control",
-        "label": "controll: ",
-        "format": "{{msg.payload}}",
-        "layout": "row-center",
-        "className": "",
-        "x": 350,
-        "y": 1980,
-        "wires": []
-    },
-    {
         "id": "d4ad8c76152f9c6a",
         "type": "ui_text",
         "z": "bba4aba8f9d733f3",
@@ -1380,162 +1273,6 @@
         "className": "",
         "x": 270,
         "y": 1620,
-        "wires": []
-    },
-    {
-        "id": "4e9b3112a7768f33",
-        "type": "rpi-gpio out",
-        "z": "bba4aba8f9d733f3",
-        "name": "in1",
-        "pin": "33",
-        "set": "",
-        "level": "0",
-        "freq": "",
-        "out": "out",
-        "x": 730,
-        "y": 1800,
-        "wires": []
-    },
-    {
-        "id": "0954da6943d62b3c",
-        "type": "function",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "func": "var msg1;\nvar msg2;\nvar msg3;\nvar msg4;\n\n\n\nswitch (msg.payload)\n{\n    case \"right\":   msg1={payload:0};\n                    msg2={payload:1};\n                    msg3={payload:0};\n                    msg4={payload:1};\n                    msg5={payload:0};\n                    msg6={payload:1};\n                \n                    break;\n    case \"left\":    msg1={payload:1};\n                    msg2={payload:0};\n                    msg3={payload:1};\n                    msg4={payload:0};\n                    msg5={payload:1};\n                    msg6={payload:0};\n                    break;\n    case \"up\":      msg1={payload:0};\n                    msg2={payload:1};\n                    msg3={payload:1};\n                    msg4={payload:0};\n                    msg5={payload:1};\n                    msg6={payload:1};\n                    break;\n    case \"down\":    msg1={payload:1};\n                    msg2={payload:0};\n                    msg3={payload:0};\n                    msg4={payload:1};\n                    msg5={payload:1};\n                    msg6={payload:1};\n                    break;\n    case \"stop\":    msg1={payload:0};\n                    msg2={payload:0};\n                    msg3={payload:0};\n                    msg4={payload:0};\n                    msg5={payload:0};\n                    msg6={payload:0};\n                    break;\n}\nreturn [msg1,msg2,msg3,msg4,msg5,msg6];",
-        "outputs": 6,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 520,
-        "y": 1880,
-        "wires": [
-            [
-                "4e9b3112a7768f33"
-            ],
-            [
-                "09d3d70ddb0efa58"
-            ],
-            [
-                "7f1ee4f9bd87e3f8"
-            ],
-            [
-                "f5334b7cea8769a1"
-            ],
-            [
-                "89222674736b65fc"
-            ],
-            [
-                "19778b77373d7861"
-            ]
-        ]
-    },
-    {
-        "id": "09d3d70ddb0efa58",
-        "type": "rpi-gpio out",
-        "z": "bba4aba8f9d733f3",
-        "name": "in2",
-        "pin": "35",
-        "set": "",
-        "level": "0",
-        "freq": "",
-        "out": "out",
-        "x": 730,
-        "y": 1840,
-        "wires": []
-    },
-    {
-        "id": "7f1ee4f9bd87e3f8",
-        "type": "rpi-gpio out",
-        "z": "bba4aba8f9d733f3",
-        "name": "in3",
-        "pin": "38",
-        "set": "",
-        "level": "0",
-        "freq": "",
-        "out": "out",
-        "x": 730,
-        "y": 1880,
-        "wires": []
-    },
-    {
-        "id": "f5334b7cea8769a1",
-        "type": "rpi-gpio out",
-        "z": "bba4aba8f9d733f3",
-        "name": "in4",
-        "pin": "40",
-        "set": "",
-        "level": "0",
-        "freq": "",
-        "out": "out",
-        "x": 730,
-        "y": 1920,
-        "wires": []
-    },
-    {
-        "id": "89222674736b65fc",
-        "type": "rpi-gpio out",
-        "z": "bba4aba8f9d733f3",
-        "name": "En1",
-        "pin": "37",
-        "set": "",
-        "level": "0",
-        "freq": "",
-        "out": "out",
-        "x": 710,
-        "y": 1960,
-        "wires": []
-    },
-    {
-        "id": "19778b77373d7861",
-        "type": "rpi-gpio out",
-        "z": "bba4aba8f9d733f3",
-        "name": "En2",
-        "pin": "36",
-        "set": "",
-        "level": "0",
-        "freq": "",
-        "out": "out",
-        "x": 710,
-        "y": 2000,
-        "wires": []
-    },
-    {
-        "id": "2c6442d3c2333b74",
-        "type": "mqtt in",
-        "z": "bba4aba8f9d733f3",
-        "name": "HIRA-Wheels-Conn ",
-        "topic": "HIRA-WHEELS",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "16d9659b4ff9e57c",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 250,
-        "y": 300,
-        "wires": [
-            [
-                "584c58449ed00295"
-            ]
-        ]
-    },
-    {
-        "id": "584c58449ed00295",
-        "type": "debug",
-        "z": "bba4aba8f9d733f3",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 470,
-        "y": 300,
         "wires": []
     },
     {
@@ -2031,24 +1768,6 @@
         "statusType": "auto",
         "x": 530,
         "y": 960,
-        "wires": []
-    },
-    {
-        "id": "79a3698542722094",
-        "type": "mqtt out",
-        "z": "bba4aba8f9d733f3",
-        "name": "Robo Controll",
-        "topic": "hiraWheels/roboControl",
-        "qos": "2",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "16d9659b4ff9e57c",
-        "x": 520,
-        "y": 1720,
         "wires": []
     },
     {
@@ -2548,7 +2267,7 @@
         "type": "function",
         "z": "e2016417672d6d0e",
         "name": "",
-        "func": "st=msg.payload[0][\"status\"];\nd8pVal=context.get('dev8');\nsame_st=(st==d8pVal)?1:0;\nif(same_st==0){\n    msg1={payload:st,\n    topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira turn \"+(st==1?\"on\":\"off\")+\" the light in third bedroom first floor', 'low', 'dashboard', '0');\"};\n}\nelse\n{\n    msg1={payload:st};\n}\ncontext.set('dev8',st);\nreturn msg1;",
+        "func": "st=msg.payload[0][\"status\"];\nd8pVal=context.get('dev8');\nsame_st=(st==d8pVal)?1:0;\nif(same_st==0){\n    msg1={payload:st};\n}\nelse\n{\n    msg1={payload:st};\n}\ncontext.set('dev8',st);\nreturn msg1;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2592,8 +2311,8 @@
         "type": "function",
         "z": "e2016417672d6d0e",
         "name": "tuyaDevFunc",
-        "func": "st=msg.payload==1?\"1\":\"0\";\nturn=msg.payload==1?\" on \":\" off \";\nmsg1={topic:\"UPDATE home_automation SET status = \"+st+\" WHERE id=8;\",payload:st}\nmsg2={topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira turn\"+turn+\"the light in third bedroom first floor', 'low', 'dashboard', '0');\",payload:\"State Changed\"}\nreturn [msg1,msg2];",
-        "outputs": 2,
+        "func": "turn=msg.payload==1?\" on \":\" off \";\nmsg1={topic:\"INSERT INTO `commands` (`command`, `priority`, `frm`, `exec`) VALUES ( 'hira turn\"+turn+\"the light', 'low', 'dashboard', '0');\",payload:\"State Changed\"}\nreturn msg1;",
+        "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -2601,9 +2320,6 @@
         "x": 770,
         "y": 340,
         "wires": [
-            [
-                "560db15f104324b2"
-            ],
             [
                 "560db15f104324b2"
             ]
@@ -2615,7 +2331,7 @@
         "z": "e2016417672d6d0e",
         "mydb": "dafdac5f3491cd58",
         "name": "hira-db",
-        "x": 960,
+        "x": 1000,
         "y": 400,
         "wires": [
             []
@@ -2743,6 +2459,706 @@
         "y": 500,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "e34f6575ea71a818",
+        "type": "ui_button",
+        "z": "27da521ba39d28a3",
+        "name": "Left",
+        "group": "657060290e649c17",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "keyboard_arrow_left",
+        "payload": "left",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "9a463285d04147c8",
+                "1ee36945c577c3d5"
+            ]
+        ]
+    },
+    {
+        "id": "299a21b7e65d9e9f",
+        "type": "ui_button",
+        "z": "27da521ba39d28a3",
+        "name": "Forward",
+        "group": "657060290e649c17",
+        "order": 6,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "keyboard_arrow_up",
+        "payload": "forward",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "9a463285d04147c8",
+                "1ee36945c577c3d5"
+            ]
+        ]
+    },
+    {
+        "id": "ce894f05e9b84005",
+        "type": "ui_button",
+        "z": "27da521ba39d28a3",
+        "name": "backward",
+        "group": "657060290e649c17",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "keyboard_arrow_down",
+        "payload": "backward",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "9a463285d04147c8",
+                "1ee36945c577c3d5"
+            ]
+        ]
+    },
+    {
+        "id": "cc7a9a714eee04d4",
+        "type": "ui_button",
+        "z": "27da521ba39d28a3",
+        "name": "right",
+        "group": "657060290e649c17",
+        "order": 9,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "keyboard_arrow_right",
+        "payload": "right",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 40,
+        "wires": [
+            [
+                "9a463285d04147c8",
+                "1ee36945c577c3d5"
+            ]
+        ]
+    },
+    {
+        "id": "ec03264318bede3c",
+        "type": "ui_button",
+        "z": "27da521ba39d28a3",
+        "name": "stop",
+        "group": "657060290e649c17",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "black",
+        "className": "",
+        "icon": "stop",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "9a463285d04147c8",
+                "1ee36945c577c3d5"
+            ]
+        ]
+    },
+    {
+        "id": "9a463285d04147c8",
+        "type": "ui_text",
+        "z": "27da521ba39d28a3",
+        "group": "657060290e649c17",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "name": "car control",
+        "label": "controll: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 430,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "96b69c3db60f4805",
+        "type": "mqtt out",
+        "z": "27da521ba39d28a3",
+        "name": "HiraWheels",
+        "topic": "hiraWheels/roboControl",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "16d9659b4ff9e57c",
+        "x": 790,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "4127805ead92792a",
+        "type": "mysql",
+        "z": "27da521ba39d28a3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "Hira Info",
+        "x": 600,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ee36945c577c3d5",
+        "type": "function",
+        "z": "27da521ba39d28a3",
+        "name": "",
+        "func": "msg={topic:\"UPDATE hiraSubMCU SET hiraWheels = '\"+msg.payload.toString()+\"' WHERE id=2;\",payload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 80,
+        "wires": [
+            [
+                "4127805ead92792a",
+                "9f35ead9231cc4e4"
+            ]
+        ]
+    },
+    {
+        "id": "9f35ead9231cc4e4",
+        "type": "debug",
+        "z": "27da521ba39d28a3",
+        "name": "carControll",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "6321ca7a2b3e49cd",
+        "type": "mysql",
+        "z": "27da521ba39d28a3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira_db",
+        "x": 280,
+        "y": 700,
+        "wires": [
+            [
+                "0c16a9d565eac85e"
+            ]
+        ]
+    },
+    {
+        "id": "9fe7ac0f61a6fce7",
+        "type": "inject",
+        "z": "27da521ba39d28a3",
+        "name": "Select-hiraSubMCU",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "SELECT * FROM `hiraSubMCU` WHERE id=2",
+        "x": 100,
+        "y": 700,
+        "wires": [
+            [
+                "6321ca7a2b3e49cd"
+            ]
+        ]
+    },
+    {
+        "id": "0c16a9d565eac85e",
+        "type": "function",
+        "z": "27da521ba39d28a3",
+        "name": "",
+        "func": "\nwheelState=msg.payload[0][\"hiraWheels\"];\ncamState=msg.payload[0][\"hiraCam\"];\neyesState=msg.payload[0][\"hiraEyes\"];\nif(wheelState !=context.get('holdwheelState'))\n{\n   var msg1={payload:wheelState};\n}\nif(camState !=context.get('holdcamState'))\n{\n   var msg2={payload:camState};\n}\n\nif(eyesState !=context.get('holdeyesState'))\n{\n   var msg3={payload:eyesState};\n}\n\ncontext.set('holdwheelState', wheelState);\ncontext.set('holdcamState', camState);\ncontext.set('holdeyesState', eyesState);\nmsg4={payload:context.get('holdwheelState')+\":\"+context.get('holdcamState')+\":\"+context.get('holdeyesState')};\nreturn [msg1,msg2,msg3,msg4];",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set('holdwheelState', \"NA\");\ncontext.set('holdcamState', \"NA\");\ncontext.set('holdeyesState', \"NA\");",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 700,
+        "wires": [
+            [
+                "bc81d8ca0cefba50"
+            ],
+            [
+                "6148310666ad0c97",
+                "96b69c3db60f4805",
+                "bb6cd6e6cb98c592"
+            ],
+            [
+                "ebae2d5724d5280e",
+                "9b9084b811f58ec7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bc81d8ca0cefba50",
+        "type": "debug",
+        "z": "27da521ba39d28a3",
+        "name": "WheelsState",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6148310666ad0c97",
+        "type": "debug",
+        "z": "27da521ba39d28a3",
+        "name": "CamState",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "ebae2d5724d5280e",
+        "type": "debug",
+        "z": "27da521ba39d28a3",
+        "name": "EyesState",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "bb6cd6e6cb98c592",
+        "type": "mqtt out",
+        "z": "27da521ba39d28a3",
+        "name": "HiraCam",
+        "topic": "hiraCam/camControl",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "60f33f39cbbc9883",
+        "x": 780,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "9b9084b811f58ec7",
+        "type": "mqtt out",
+        "z": "27da521ba39d28a3",
+        "name": "HiraEyes",
+        "topic": "hiraEyes/eyesControl",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "375782c2d46650bb",
+        "x": 780,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "5b6a7765a7210739",
+        "type": "mqtt in",
+        "z": "27da521ba39d28a3",
+        "name": "HIRA-Wheels-Conn ",
+        "topic": "",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "16d9659b4ff9e57c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 1,
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "149e6232832a67bb"
+            ]
+        ]
+    },
+    {
+        "id": "0f6d8d233b51ba3a",
+        "type": "debug",
+        "z": "27da521ba39d28a3",
+        "name": "hiraWheelConn",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "149e6232832a67bb",
+        "type": "function",
+        "z": "27da521ba39d28a3",
+        "name": "",
+        "func": "\nmsg={topic:\"UPDATE hiraSubMCU SET hiraWheels = '\"+msg.payload+\"' WHERE id=1;\",payload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 360,
+        "wires": [
+            [
+                "9211916a7a547fd0",
+                "0f6d8d233b51ba3a"
+            ]
+        ]
+    },
+    {
+        "id": "9211916a7a547fd0",
+        "type": "mysql",
+        "z": "27da521ba39d28a3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira_db",
+        "x": 940,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ad37cf394cb44e3",
+        "type": "inject",
+        "z": "27da521ba39d28a3",
+        "name": "inject-SubMCU-Query",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "UPDATE hiraSubMCU SET hiraWheels = '0',hiraCam = '0',hiraEyes = '0'   WHERE id=1",
+        "payloadType": "date",
+        "x": 100,
+        "y": 400,
+        "wires": [
+            [
+                "ca1005db8e059a14"
+            ]
+        ]
+    },
+    {
+        "id": "ef7aed9a38065a54",
+        "type": "function",
+        "z": "27da521ba39d28a3",
+        "name": "",
+        "func": "var msg1={action:\"subscribe\",topic:\"hiraWheels/connection\"};\nvar msg2={action:\"subscribe\",topic:\"hiraCam/connection\"};\nvar msg3={action:\"subscribe\",topic:\"hiraEyes/connection\"};\nreturn [msg1,msg2,msg3];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 400,
+        "wires": [
+            [
+                "5b6a7765a7210739"
+            ],
+            [
+                "d0f33a0bf3c18cb0"
+            ],
+            [
+                "0a19b0429681af03"
+            ]
+        ]
+    },
+    {
+        "id": "ca1005db8e059a14",
+        "type": "mysql",
+        "z": "27da521ba39d28a3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira_db",
+        "x": 280,
+        "y": 400,
+        "wires": [
+            [
+                "ef7aed9a38065a54"
+            ]
+        ]
+    },
+    {
+        "id": "d0f33a0bf3c18cb0",
+        "type": "mqtt in",
+        "z": "27da521ba39d28a3",
+        "name": "HIRA-Cam-Conn ",
+        "topic": "",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "60f33f39cbbc9883",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 1,
+        "x": 600,
+        "y": 400,
+        "wires": [
+            [
+                "49c4997fbc76dd2d"
+            ]
+        ]
+    },
+    {
+        "id": "49c4997fbc76dd2d",
+        "type": "function",
+        "z": "27da521ba39d28a3",
+        "name": "",
+        "func": "\nmsg={topic:\"UPDATE hiraSubMCU SET hiraWheels = '\"+msg.payload+\"' WHERE id=1;\",payload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 400,
+        "wires": [
+            [
+                "a6954e0da0b08ff8",
+                "6639e27788562c8a"
+            ]
+        ]
+    },
+    {
+        "id": "a6954e0da0b08ff8",
+        "type": "mysql",
+        "z": "27da521ba39d28a3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira_db",
+        "x": 940,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0a19b0429681af03",
+        "type": "mqtt in",
+        "z": "27da521ba39d28a3",
+        "name": "HIRA-Eyes-Conn ",
+        "topic": "",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "375782c2d46650bb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 1,
+        "x": 600,
+        "y": 440,
+        "wires": [
+            [
+                "68e969eda1d83c8b"
+            ]
+        ]
+    },
+    {
+        "id": "68e969eda1d83c8b",
+        "type": "function",
+        "z": "27da521ba39d28a3",
+        "name": "",
+        "func": "\nmsg={topic:\"UPDATE hiraSubMCU SET hiraWheels = '\"+msg.payload+\"' WHERE id=1;\",payload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 440,
+        "wires": [
+            [
+                "840e503afb9cca7b",
+                "d5c77ad1d75d0a86"
+            ]
+        ]
+    },
+    {
+        "id": "840e503afb9cca7b",
+        "type": "mysql",
+        "z": "27da521ba39d28a3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira_db",
+        "x": 940,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6639e27788562c8a",
+        "type": "debug",
+        "z": "27da521ba39d28a3",
+        "name": "hiraCamConn",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d5c77ad1d75d0a86",
+        "type": "debug",
+        "z": "27da521ba39d28a3",
+        "name": "hiraEyesConn",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "0f7f8cadede1e2c2",
+        "type": "mysql",
+        "z": "27da521ba39d28a3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira_db",
+        "x": 320,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "72b218741c775697",
+        "type": "inject",
+        "z": "27da521ba39d28a3",
+        "name": "inject-SubMCU-Query",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "UPDATE hiraSubMCU SET hiraWheels = 'stop',hiraCam = 'idle',hiraEyes = 'sleep'   WHERE id=2",
+        "payloadType": "date",
+        "x": 100,
+        "y": 540,
+        "wires": [
+            [
+                "0f7f8cadede1e2c2"
+            ]
         ]
     },
     {
