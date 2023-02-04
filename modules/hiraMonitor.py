@@ -67,7 +67,7 @@ def checkWarnings():
     alertCPUusage(serverstat)
     alertRAMusage(serverstat)
     return 1
-def alertTemperature(serverstat):
+def alertTemperature(serverStat):
     val={
         "priority":"high", 
         "frm":"hira",
@@ -83,7 +83,7 @@ def alertTemperature(serverstat):
         val["command"]="shutdown"
         mPkg.db.insertData("commands",val)
     return 1
-def alertBattery(serverstat):
+def alertBattery(serverStat):
     val={
         "priority":"high", 
         "frm":"hira",
@@ -99,7 +99,7 @@ def alertBattery(serverstat):
         val["command"]="shutdown"
         mPkg.db.insertData("commands",val)
     return 1
-def alertCPUusage(serverstat):
+def alertCPUusage(serverStat):
     val={
         "priority":"high", 
         "frm":"hira",
@@ -115,7 +115,7 @@ def alertCPUusage(serverstat):
         val["command"]="shutdown"
         mPkg.db.insertData("commands",val)
     return 1
-def alertRAMusage(serverstat):
+def alertRAMusage(serverStat):
     val={
         "priority":"high", 
         "frm":"hira",
@@ -131,7 +131,7 @@ def alertRAMusage(serverstat):
         val["command"]="shutdown"
         mPkg.db.insertData("commands",val)
     return 1
-def alertMEMusage(serverstat):
+def alertMEMusage(serverStat):
     val={
         "priority":"high", 
         "frm":"hira",
