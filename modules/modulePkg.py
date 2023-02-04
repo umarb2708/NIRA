@@ -13,3 +13,5 @@ from modules import hiraMonitor as mon
 
 from modules import automation as home
 from modules import tuyaControl as tuya
+#from modules import faceRecognise as face
+from modules import remoteFtp as ftp
