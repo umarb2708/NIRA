@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 14, 2023 at 09:36 PM
+-- Generation Time: Feb 04, 2023 at 10:08 PM
 -- Server version: 10.3.36-MariaDB-0+deb10u2
 -- PHP Version: 7.3.31-1~deb10u2
 
@@ -62,11 +62,7 @@ CREATE TABLE `commands` (
 --
 
 INSERT INTO `commands` (`id`, `command`, `priority`, `frm`, `exec`) VALUES
-(37456, 'hira turn off the light', 'med', 'hira', 1),
-(37457, 'hira turn on the light in third bedroom first floor', 'low', 'dashboard', 1),
-(37458, 'hira turn off the light in third bedroom first floor', 'low', 'dashboard', 1),
-(37459, 'hira turn on the light in third bedroom first floor', 'med', 'hira', 1),
-(37460, 'hira turn off the light in third bedroom first floor', 'low', 'dashboard', 1);
+(37487, 'hira turn on the light', 'med', 'hira', 0);
 
 -- --------------------------------------------------------
 
@@ -85,7 +81,7 @@ CREATE TABLE `commands_executed` (
 --
 
 INSERT INTO `commands_executed` (`id`, `command`, `status`) VALUES
-(277, 'Initialisation', '1');
+(315, 'Initialisation', '1');
 
 -- --------------------------------------------------------
 
@@ -108,28 +104,15 @@ CREATE TABLE `command_centre` (
 INSERT INTO `command_centre` (`sno`, `type`, `main_kw`, `action_file`, `keywords`) VALUES
 (4, 'Home Automation', 'turn on', 'home.turnON', ''),
 (5, 'Home Automation', 'turn off', 'home.turnOFF', ''),
-(6, '', 'move forward', 'mov.forward', ''),
-(7, '', 'training', 'train.train_rex', ''),
-(8, '', 'wiki', 'wiki.search_in_wiki', ''),
-(9, '', 'search', 'web.search_from_net', ''),
-(10, '', 'open youtube', 'yt.open_youtube', ''),
-(11, '', 'close youtube', 'yt.close_youtube', ''),
 (12, 'Home Automation', 'change colour', 'home.changeColour', 'change,red,blue,green'),
-(13, '', 'send mail', 'mail.send_email', 'send,to,mail,'),
-(14, '', 'play', 'mdc.play_pause', ''),
-(15, '', 'pause', 'mdc.play_pause', ''),
-(16, '', 'play next', 'mdc.next', ''),
-(17, '', 'paly previous', 'mdc.previous', ''),
-(18, '', 'stop media', 'mdc.stop', ''),
-(19, '', 'weather today', 'wth.weather_info', ''),
 (20, '', 'shutdown', 'pwr.shut_down', ''),
 (21, '', 'power off', 'pwr.shut_down', ''),
 (22, '', 'restart', 'pwr.reboot', ''),
 (23, '', 'reboot', 'pwr.reboot', ''),
 (24, '', 'wake up', 'pwr.wake_sleep', ''),
 (25, '', 'sleep', 'pwr.wake_sleep', ''),
-(26, '', 'send email', 'mail.send_email', 'send,to,mail,'),
-(27, '', 'whatsapp', 'whatsapp.whatsapp', 'send,to,mail,');
+(28, 'Hira Monitor', 'warn<->', 'out.putOutput', ''),
+(29, 'Face Recognisation', 'recognise face ', 'face.detect', '');
 
 -- --------------------------------------------------------
 
@@ -200,7 +183,7 @@ CREATE TABLE `hira_info` (
 --
 
 INSERT INTO `hira_info` (`id`, `pid`, `tty`, `status`, `init`, `adb`, `sleep`) VALUES
-(1, '31599', '/dev/pts/0', 1, 1, 0, 0);
+(1, '20408', '/dev/pts/0', 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -228,7 +211,7 @@ INSERT INTO `home_automation` (`id`, `room`, `floor`, `component`, `isTuya`, `Tu
 (4, 'master bedroom', 'first', 'light', '1', NULL, 0, 0, 100),
 (5, 'master bedroom', 'first', 'fan', '0', NULL, 0, 0, 100),
 (6, 'master bedroom', 'first', 'night lamp', '1', NULL, 0, 2, 100),
-(8, 'third bedroom', 'first', 'light', '1', '192.168.15.150', 0, 0, 100);
+(8, 'third bedroom', 'first', 'light', '1', '192.168.15.150', 1, 0, 100);
 
 -- --------------------------------------------------------
 
@@ -380,7 +363,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('db_admin', '[{\"db\":\"hira_db\",\"table\":\"tuya_details\"},{\"db\":\"hira_db\",\"table\":\"command_centre\"},{\"db\":\"hira_db\",\"table\":\"configuration\"},{\"db\":\"hira_db\",\"table\":\"hira_info\"},{\"db\":\"hira_db\",\"table\":\"raspi_info\"},{\"db\":\"hira_db\",\"table\":\"commands\"},{\"db\":\"hira_db\",\"table\":\"home_automation\"},{\"db\":\"hira_db\",\"table\":\"commands_executed\"},{\"db\":\"hira_db\",\"table\":\"contacts\"},{\"db\":\"hira_db\",\"table\":\"pma__pdf_pages\"}]');
+('db_admin', '[{\"db\":\"hira_db\",\"table\":\"hiraSubMCU\"},{\"db\":\"hira_db\",\"table\":\"command_centre\"},{\"db\":\"hira_db\",\"table\":\"configuration\"},{\"db\":\"hira_db\",\"table\":\"pma__pdf_pages\"},{\"db\":\"hira_db\",\"table\":\"commands\"},{\"db\":\"hira_db\",\"table\":\"raspi_info\"},{\"db\":\"hira_db\",\"table\":\"tuya_details\"},{\"db\":\"hira_db\",\"table\":\"hira_info\"},{\"db\":\"hira_db\",\"table\":\"home_automation\"},{\"db\":\"hira_db\",\"table\":\"commands_executed\"}]');
 
 -- --------------------------------------------------------
 
@@ -537,7 +520,7 @@ CREATE TABLE `raspi_info` (
 --
 
 INSERT INTO `raspi_info` (`id`, `temp`, `cpu_load`, `used_ram`, `used_mem`, `up_time`, `battery`, `LocalIP`, `PublicIP`, `hiraStat`, `devStat`) VALUES
-(1, 38.6, 3.8, 57.7, 46.2, '3 hs, 6 m', 133.93, '192.168.15.2', '2f2c-2409-4073-194-3b2c-bace-12eb-fc75-bd4.ngrok.io', 0, 1);
+(1, 42.9, 2, 49.4, 61.6, '48 m', 87.52, '192.168.15.2', '9b52-2409-4071-229d-e140-4298-fbd4-13c-44c.ngrok.io', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -794,17 +777,17 @@ ALTER TABLE `user_log`
 -- AUTO_INCREMENT for table `commands`
 --
 ALTER TABLE `commands`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37461;
+  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37488;
 --
 -- AUTO_INCREMENT for table `commands_executed`
 --
 ALTER TABLE `commands_executed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
 --
 -- AUTO_INCREMENT for table `command_centre`
 --
 ALTER TABLE `command_centre`
-  MODIFY `sno` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `sno` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `configuration`
 --
