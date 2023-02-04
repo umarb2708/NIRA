@@ -17,12 +17,13 @@ moduleLogPriority=2
 def getTerminalInput(command):
     returnData=''
     #mode=mPkg.config.getConfiguration()['inputMode']
-    termCmd,timeOut=timedInput(command+":",5)
-    if timeOut :
-        print("Input Timeout")
-        returnData='do nothong'
-    else:
-        returnData=termCmd
+    #termCmd,timeOut=timedInput(command+":",5)
+    #if timeOut :
+    #    print("Input Timeout")
+    #    returnData='do nothong'
+    #else:
+    #    returnData=termCmd
+    returnData=input(command)
     return str(returnData)
 
 
