@@ -23,7 +23,7 @@ const char* mqtt_server = "192.168.15.2";
 const char* mqtt_user="hiraAdmin";
 const char* mqtt_pass="Admin@MQTT123#";
 String eyeControl="sleep";
-String newHostname="HIRA-EYES";
+String newHostname="hira-eyes";
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, LED_BUILTIN);
 WiFiClient espClient;
@@ -106,7 +106,7 @@ void reconnect() {
     if (client.connect(clientId.c_str(),mqtt_user, mqtt_pass)) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("hiraEyes/connection", "1");
+      //client.publish("hiraEyes/connection", "1");
       // ... and resubscribe
       client.subscribe("hiraEyes/eyesControl");
     } else {
