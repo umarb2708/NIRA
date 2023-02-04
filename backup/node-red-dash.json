@@ -2733,7 +2733,7 @@
         "type": "function",
         "z": "27da521ba39d28a3",
         "name": "",
-        "func": "\nwheelState=msg.payload[0][\"hiraWheels\"];\ncamState=msg.payload[0][\"hiraCam\"];\neyesState=msg.payload[0][\"hiraEyes\"];\nif(wheelState !=context.get('holdwheelState'))\n{\n   var msg1={payload:wheelState};\n}\nif(camState !=context.get('holdcamState'))\n{\n   var msg2={payload:camState};\n}\n\nif(eyesState !=context.get('holdeyesState'))\n{\n   var msg3={payload:eyesState};\n}\n\ncontext.set('holdwheelState', wheelState);\ncontext.set('holdcamState', camState);\ncontext.set('holdeyesState', eyesState);\nmsg4={payload:context.get('holdwheelState')+\":\"+context.get('holdcamState')+\":\"+context.get('holdeyesState')};\nreturn [msg1,msg2,msg3,msg4];",
+        "func": "\nwheelState=msg.payload[0][\"hiraWheels\"];\ncamState=msg.payload[0][\"hiraCam\"];\neyesState=msg.payload[0][\"hiraEyes\"];\nif(wheelState !=context.get('holdwheelState'))\n{\n   var msg1={payload:wheelState};\n}\nif(camState !=context.get('holdcamState') & (camState== \"idle\"|camState== \"capture\" ))\n{\n   var msg2={payload:camState};\n}\n\nif(eyesState !=context.get('holdeyesState'))\n{\n   var msg3={payload:eyesState};\n}\n\ncontext.set('holdwheelState', wheelState);\ncontext.set('holdcamState', camState);\ncontext.set('holdeyesState', eyesState);\nmsg4={payload:context.get('holdwheelState')+\":\"+context.get('holdcamState')+\":\"+context.get('holdeyesState')};\nreturn [msg1,msg2,msg3,msg4];",
         "outputs": 4,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set('holdwheelState', \"NA\");\ncontext.set('holdcamState', \"NA\");\ncontext.set('holdeyesState', \"NA\");",
@@ -2747,8 +2747,7 @@
             ],
             [
                 "6148310666ad0c97",
-                "96b69c3db60f4805",
-                "bb6cd6e6cb98c592"
+                "96b69c3db60f4805"
             ],
             [
                 "ebae2d5724d5280e",
@@ -2809,24 +2808,6 @@
         "wires": []
     },
     {
-        "id": "bb6cd6e6cb98c592",
-        "type": "mqtt out",
-        "z": "27da521ba39d28a3",
-        "name": "HiraCam",
-        "topic": "hiraCam/camControl",
-        "qos": "2",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "60f33f39cbbc9883",
-        "x": 780,
-        "y": 740,
-        "wires": []
-    },
-    {
         "id": "9b9084b811f58ec7",
         "type": "mqtt out",
         "z": "27da521ba39d28a3",
@@ -2845,27 +2826,6 @@
         "wires": []
     },
     {
-        "id": "5b6a7765a7210739",
-        "type": "mqtt in",
-        "z": "27da521ba39d28a3",
-        "name": "HIRA-Wheels-Conn ",
-        "topic": "",
-        "qos": "2",
-        "datatype": "utf8",
-        "broker": "16d9659b4ff9e57c",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 1,
-        "x": 610,
-        "y": 360,
-        "wires": [
-            [
-                "149e6232832a67bb"
-            ]
-        ]
-    },
-    {
         "id": "0f6d8d233b51ba3a",
         "type": "debug",
         "z": "27da521ba39d28a3",
@@ -2878,8 +2838,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 340,
+        "x": 620,
+        "y": 360,
         "wires": []
     },
     {
@@ -2887,14 +2847,14 @@
         "type": "function",
         "z": "27da521ba39d28a3",
         "name": "",
-        "func": "\nmsg={topic:\"UPDATE hiraSubMCU SET hiraWheels = '\"+msg.payload+\"' WHERE id=1;\",payload:msg.payload};\nreturn msg;",
+        "func": "st = msg.payload==0?\"0\":\"1\";\nmsg={topic:\"UPDATE hiraSubMCU SET hiraWheels = '\"+st+\"' WHERE id=1;\",payload:st};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 800,
-        "y": 360,
+        "x": 300,
+        "y": 380,
         "wires": [
             [
                 "9211916a7a547fd0",
@@ -2908,98 +2868,10 @@
         "z": "27da521ba39d28a3",
         "mydb": "dafdac5f3491cd58",
         "name": "hira_db",
-        "x": 940,
-        "y": 360,
+        "x": 440,
+        "y": 380,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "9ad37cf394cb44e3",
-        "type": "inject",
-        "z": "27da521ba39d28a3",
-        "name": "inject-SubMCU-Query",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "UPDATE hiraSubMCU SET hiraWheels = '0',hiraCam = '0',hiraEyes = '0'   WHERE id=1",
-        "payloadType": "date",
-        "x": 100,
-        "y": 400,
-        "wires": [
-            [
-                "ca1005db8e059a14"
-            ]
-        ]
-    },
-    {
-        "id": "ef7aed9a38065a54",
-        "type": "function",
-        "z": "27da521ba39d28a3",
-        "name": "",
-        "func": "var msg1={action:\"subscribe\",topic:\"hiraWheels/connection\"};\nvar msg2={action:\"subscribe\",topic:\"hiraCam/connection\"};\nvar msg3={action:\"subscribe\",topic:\"hiraEyes/connection\"};\nreturn [msg1,msg2,msg3];",
-        "outputs": 3,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 400,
-        "wires": [
-            [
-                "5b6a7765a7210739"
-            ],
-            [
-                "d0f33a0bf3c18cb0"
-            ],
-            [
-                "0a19b0429681af03"
-            ]
-        ]
-    },
-    {
-        "id": "ca1005db8e059a14",
-        "type": "mysql",
-        "z": "27da521ba39d28a3",
-        "mydb": "dafdac5f3491cd58",
-        "name": "hira_db",
-        "x": 280,
-        "y": 400,
-        "wires": [
-            [
-                "ef7aed9a38065a54"
-            ]
-        ]
-    },
-    {
-        "id": "d0f33a0bf3c18cb0",
-        "type": "mqtt in",
-        "z": "27da521ba39d28a3",
-        "name": "HIRA-Cam-Conn ",
-        "topic": "",
-        "qos": "2",
-        "datatype": "utf8",
-        "broker": "60f33f39cbbc9883",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 1,
-        "x": 600,
-        "y": 400,
-        "wires": [
-            [
-                "49c4997fbc76dd2d"
-            ]
         ]
     },
     {
@@ -3007,14 +2879,14 @@
         "type": "function",
         "z": "27da521ba39d28a3",
         "name": "",
-        "func": "\nmsg={topic:\"UPDATE hiraSubMCU SET hiraWheels = '\"+msg.payload+\"' WHERE id=1;\",payload:msg.payload};\nreturn msg;",
+        "func": "st = msg.payload==0?\"0\":\"1\";\nmsg={topic:\"UPDATE hiraSubMCU SET hiraCam = '\"+st+\"' WHERE id=1;\",payload:st};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 800,
-        "y": 400,
+        "x": 300,
+        "y": 420,
         "wires": [
             [
                 "a6954e0da0b08ff8",
@@ -3028,31 +2900,10 @@
         "z": "27da521ba39d28a3",
         "mydb": "dafdac5f3491cd58",
         "name": "hira_db",
-        "x": 940,
-        "y": 400,
+        "x": 440,
+        "y": 420,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "0a19b0429681af03",
-        "type": "mqtt in",
-        "z": "27da521ba39d28a3",
-        "name": "HIRA-Eyes-Conn ",
-        "topic": "",
-        "qos": "2",
-        "datatype": "utf8",
-        "broker": "375782c2d46650bb",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 1,
-        "x": 600,
-        "y": 440,
-        "wires": [
-            [
-                "68e969eda1d83c8b"
-            ]
         ]
     },
     {
@@ -3060,14 +2911,14 @@
         "type": "function",
         "z": "27da521ba39d28a3",
         "name": "",
-        "func": "\nmsg={topic:\"UPDATE hiraSubMCU SET hiraWheels = '\"+msg.payload+\"' WHERE id=1;\",payload:msg.payload};\nreturn msg;",
+        "func": "st = msg.payload==0?\"0\":\"1\";\nmsg={topic:\"UPDATE hiraSubMCU SET hiraEyes = '\"+st+\"' WHERE id=1;\",payload:st};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 800,
-        "y": 440,
+        "x": 300,
+        "y": 460,
         "wires": [
             [
                 "840e503afb9cca7b",
@@ -3081,8 +2932,8 @@
         "z": "27da521ba39d28a3",
         "mydb": "dafdac5f3491cd58",
         "name": "hira_db",
-        "x": 940,
-        "y": 440,
+        "x": 440,
+        "y": 460,
         "wires": [
             []
         ]
@@ -3100,8 +2951,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 380,
+        "x": 620,
+        "y": 400,
         "wires": []
     },
     {
@@ -3117,8 +2968,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 420,
+        "x": 620,
+        "y": 440,
         "wires": []
     },
     {
@@ -3158,6 +3009,110 @@
         "wires": [
             [
                 "0f7f8cadede1e2c2"
+            ]
+        ]
+    },
+    {
+        "id": "d077d35dcfeeebda",
+        "type": "comment",
+        "z": "27da521ba39d28a3",
+        "name": "Inject Sub MCU",
+        "info": "Initializing submcu data to the default at starting",
+        "x": 220,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "9983cd02a27cc393",
+        "type": "ping",
+        "z": "27da521ba39d28a3",
+        "protocol": "Automatic",
+        "mode": "timed",
+        "name": "HiraCam",
+        "host": "hira-cam",
+        "timer": "60",
+        "inputs": 0,
+        "x": 60,
+        "y": 420,
+        "wires": [
+            [
+                "49c4997fbc76dd2d"
+            ]
+        ]
+    },
+    {
+        "id": "5901b8166c21583e",
+        "type": "ping",
+        "z": "27da521ba39d28a3",
+        "protocol": "Automatic",
+        "mode": "timed",
+        "name": "HiraEyes",
+        "host": "hira-eyes",
+        "timer": "60",
+        "inputs": 0,
+        "x": 60,
+        "y": 460,
+        "wires": [
+            [
+                "68e969eda1d83c8b"
+            ]
+        ]
+    },
+    {
+        "id": "711e30bdfc3650a0",
+        "type": "ping",
+        "z": "27da521ba39d28a3",
+        "protocol": "Automatic",
+        "mode": "timed",
+        "name": "HiraWheels",
+        "host": "hira-wheels",
+        "timer": "60",
+        "inputs": 0,
+        "x": 70,
+        "y": 380,
+        "wires": [
+            [
+                "149e6232832a67bb"
+            ]
+        ]
+    },
+    {
+        "id": "4a623c4087afe353",
+        "type": "mysql",
+        "z": "27da521ba39d28a3",
+        "mydb": "dafdac5f3491cd58",
+        "name": "hira_db",
+        "x": 320,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dd2cec7fba7ae4be",
+        "type": "inject",
+        "z": "27da521ba39d28a3",
+        "name": "inject-SubMCU-Query",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "UPDATE hiraSubMCU SET hiraWheels = '0',hiraCam = '0',hiraEyes = '0'   WHERE id=1",
+        "payloadType": "date",
+        "x": 100,
+        "y": 600,
+        "wires": [
+            [
+                "4a623c4087afe353"
             ]
         ]
     },
