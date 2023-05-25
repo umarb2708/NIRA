@@ -15,3 +15,5 @@ from modules import automation as home
 from modules import tuyaControl as tuya
 #from modules import faceRecognise as face
 from modules import remoteFtp as ftp
+from modules import roboMotion as move
+from modules import hiraPower as power

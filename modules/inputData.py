@@ -23,7 +23,7 @@ def getTerminalInput(command):
     #    returnData='do nothong'
     #else:
     #    returnData=termCmd
-    returnData=input(command)
+    returnData=input(command+":")
     return str(returnData)
 
 

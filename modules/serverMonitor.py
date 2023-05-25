@@ -26,7 +26,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-web="https://hira.innovize.in"
+web="https://google.com"
 timeout=5
 connected=0;
 ngrok_started=0
@@ -203,9 +203,9 @@ os.system("rm -rf /home/pi/HIRA/logs/server.log")
 while 1:
     val=server_details()
     insert_raspi_info(val)
-    res=send_to_website(val)
-    storeValues(val,res)
-    display_info(val,res)
+    #res=send_to_website(val)
+    #storeValues(val,res)
+    #display_info(val,res)
     time.sleep(10)
 
 
