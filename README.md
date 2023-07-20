@@ -1,14 +1,2 @@
-#------------------------------------Human Intelligent Robo Assistant-------------------------------------
-Human Intelligent Robo Assistant 
-This is a python based Humanoid Robot Source Code
-
-
-
-
-
-
-
-
-
-
-
+# Human Intelligent Robo Assistant (HIRA)
+Humanoid Robot created using python scripting language. 
