@@ -6,7 +6,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="db_admin",
   password="Admin@HIRA123#",
-  database="hira_db"
+  database="hiraDB"
 )
 #----------------------------------------------------
 

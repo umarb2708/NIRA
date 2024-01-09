@@ -10,7 +10,7 @@
 # MODE:0->Terminal(by default) 1:voice input 2:serial monitor input
 #==============================================================================================================
 from modules import modulePkg as mPkg
-from pytimedinput import timedInput
+#from pytimedinput import timedInput
 moduleLogPriority=2
 
 #Function to get terminal Input

@@ -28,7 +28,6 @@ from modules import modulePkg as mPkg
 #            mPkg.mon.checkWarnings()
 #            mPkg.exe.startExecution()
 #            time.sleep(self.interval)
-
 #class hiraWarning(object):
 #    def __init__(self, interval=20):
 #        self.interval = interval
