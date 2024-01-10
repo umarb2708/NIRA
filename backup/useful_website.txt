@@ -1,2 +1,0 @@
-SWAP Memory: https://pimylifeup.com/raspberry-pi-swap-file/
-opencv : https://robu.in/real-time-face-detection-using-raspberry-pi-connections-and-code/
