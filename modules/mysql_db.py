@@ -6,11 +6,9 @@
 #       Database handling like insert,delete,update,create
 #----------------------------------------------------------------
 
-import mysql.connector
-#from modules import modulePkg as mPkg
-
+from modules import modulePkg as mPkg
 #---------LOCAL DATABASE CREDENTIAL-------------------
-mydb = mysql.connector.connect(
+mydb = mPkg.mysql.connector.connect(
   host="localhost",
   user="db_admin",
   password="Admin@MDB123#",
@@ -34,46 +32,60 @@ else:
     print(mydb)
 mycursor = mydb.cursor()
 
+
 #Function to Insert data to DB
-#def insertData(tableName,values):
-#    col=mPkg.parser.getKeys(values)
-#    Datatype=mPkg.parser.getDataType(values)
-#    val=mPkg.parser.getData(values)
-#    sql= "INSERT INTO "+tableName+" ("+col+") VALUES ("+Datatype+")"
-#    values=mPkg.parser.getData(values)
-#    #print(sql)
-#    #print(values)
-#    mycursor.execute(sql, val)
-#    mydb.commit()
-#    return 1
+def insertData(tableName,values):
+    col=mPkg.parser.getKeys(values)
+    Datatype=mPkg.parser.getDataType(values)
+    val=mPkg.parser.getData(values)
+    sql= "INSERT INTO "+tableName+" ("+col+") VALUES ("+Datatype+")"
+    values=mPkg.parser.getData(values)
+    #print(sql)
+    #print(values)
+    mycursor.execute(sql, val)
+    mydb.commit()
+    return 1
 #Function for UPDATE query
-#def UpdateData(tableName,values,condition):
-#    setval=""
-#    for key in values:
-#        if("int" in str(type(values[key]))):
-#            setval=setval+key+"="+"%s,"
-#        elif("str" in str(type(values[key]))):
-#            setval=setval+key+"="+"%s,"
-#        elif("float" in str(type(values[key]))):
-#            setval=setval+key+"="+"%s,"
-#    setval=setval[:-1]
-#
-#    sql = "UPDATE "+tableName+" SET "+setval+" WHERE "+condition
-#    val = mPkg.parser.getData(values)
-#    mycursor.execute(sql,val)
-#    mydb.commit()
-#    return 1
-##Function for SELECT query
-#def SelectData(tableName,rowNames,condition):
-#    query="SELECT "+rowNames+" FROM "+tableName+" "+condition
-#    mycursor.execute(query)
-#    myresult = mycursor.fetchall()
-#    mydb.commit()
-#    return myresult
-#
-##Function for DELETE command
-#def deleteData(tableName):
-#    sql="DELETE FROM "+tableName
-#    mycursor.execute(sql)
-#    mydb.commit()
-#    return 1
+def UpdateData(tableName,values,condition):
+    setval=""
+    for key in values:
+        if("int" in str(type(values[key]))):
+            setval=setval+key+"="+"%s,"
+        elif("str" in str(type(values[key]))):
+            setval=setval+key+"="+"%s,"
+        elif("float" in str(type(values[key]))):
+            setval=setval+key+"="+"%s,"
+    setval=setval[:-1]
+
+    sql = "UPDATE "+tableName+" SET "+setval+" WHERE "+condition
+    val = mPkg.parser.getData(values)
+    mycursor.execute(sql,val)
+    mydb.commit()
+    return 1
+#Function for SELECT query
+# SELECT Query has two type
+#   1. with condition
+#   2. without condition
+# We are using dispatch to do fundtion over riding
+
+@mPkg.dispatch(str,str,str)
+def SelectData(tableName,rowNames,condition):
+    query="SELECT "+rowNames+" FROM "+tableName+" WHERE "+condition
+    mycursor.execute(query)
+    myresult = mycursor.fetchall()
+    mydb.commit()
+    return myresult
+
+@mPkg.dispatch(str,str)
+def SelectData(tableName,rowNames):
+    query="SELECT "+rowNames+" FROM "+tableName
+    mycursor.execute(query)
+    myresult = mycursor.fetchall()
+    mydb.commit()
+    return myresult
+#Function for DELETE command
+def deleteData(tableName):
+    sql="DELETE FROM "+tableName
+    mycursor.execute(sql)
+    mydb.commit()
+    return 1
