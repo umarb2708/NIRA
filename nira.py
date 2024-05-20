@@ -1,10 +1,10 @@
 #----------------------------------------------------------------
-#               HIRA(Human Intelligent Robo Assistant)
+#              NIRA(Nueral Intelligent Robo Assistant)
 #               Developed by : Innovize Tech Solution
 #----------------------------------------------------------------
-#                       Module: hira.py 
-#                    Main module to start
-#--------------------------------------------------------------
+#                       Module: mysql.py 
+#       Database handling like insert,delete,update,create
+#---------------------------------------------------------------
 import multiprocessing 
 import time
 from modules import modulePkg as mPkg

@@ -10,7 +10,7 @@ import mysql.connector
 from multipledispatch import dispatch
 
 
-from modules import inputData as inp
+from modules import input as inp
 from modules import mysql_db as db
 
 

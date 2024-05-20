@@ -1,2 +1,7 @@
 Commands to Create Local Database: 
 Refer --> https://raspberrytips.com/install-mariadb-raspberry-pi/
+
+
+-----To auto backup to NextCloud----- 
+--> Add below Commands in crontab
+nextcloud-desktop-client.nextcloudcmd -u '<usrname>' -p 'psswd' <local-dir to backup> <nextcloud-server-url:port>
